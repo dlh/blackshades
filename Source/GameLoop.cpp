@@ -26,8 +26,6 @@ void	Game::HandleKeyDown( char theChar )
 
 {
 
-	ALint tempInt;
-
 	XYZ facing;
 
 	
@@ -214,6 +212,12 @@ static unsigned char ourkeys[16];
 
 static void init_sdlkeymap()
 {
+	int i;
+	
+	for (i = 0; i < SDLK_LAST; i++) {
+		sdlkeymap[i] = -1;
+	}
+	
 	sdlkeymap[SDLK_1] = MAC_1_KEY;
 	sdlkeymap[SDLK_2] = MAC_2_KEY;
 	sdlkeymap[SDLK_3] = MAC_3_KEY;
@@ -320,10 +324,11 @@ static void DoSDLKey(Game *g, SDL_Event *event)
 	}
 	
 	mackey = sdlkeymap[event->key.keysym.sym];
-	index = mackey / 8;
-	mask = 1 << (mackey % 8);
 	
-	if (mackey) {
+	if (mackey != -1) {
+		index = mackey / 8;
+		mask = 1 << (mackey % 8);
+		
 		if (press) {
 			ourkeys[index] |= mask;
 		} else {
