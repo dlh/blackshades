@@ -301,7 +301,7 @@ float fast_sqrt (register float arg)
 	
 	return result * arg;
 #else
-	std::sqrt(arg);
+	return sqrt(arg);
 #endif
 }
 

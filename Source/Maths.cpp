@@ -19,6 +19,6 @@ double fast_sqrt (register double arg)
 	
 	return result * arg;
 #else
-	return std::sqrt(arg);
+	return sqrt(arg);
 #endif
 }
