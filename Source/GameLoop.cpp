@@ -36,6 +36,11 @@ void	Game::HandleKeyDown( char theChar )
 
 	{
 
+		case 'l': 
+		        if(!lasersight==1){lasersight=1;}else{lasersight=0;} 
+			
+			break;
+
 		case 'k':
 
 			if(debug)timeremaining=0;
