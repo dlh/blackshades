@@ -216,16 +216,83 @@ static void init_sdlkeymap()
 {
 	sdlkeymap[SDLK_1] = MAC_1_KEY;
 	sdlkeymap[SDLK_2] = MAC_2_KEY;
-	
+	sdlkeymap[SDLK_3] = MAC_3_KEY;
+	sdlkeymap[SDLK_4] = MAC_4_KEY;
+	sdlkeymap[SDLK_5] = MAC_5_KEY;
+	sdlkeymap[SDLK_6] = MAC_6_KEY;
+	sdlkeymap[SDLK_7] = MAC_7_KEY;
+	sdlkeymap[SDLK_8] = MAC_8_KEY;
+	sdlkeymap[SDLK_9] = MAC_9_KEY;
+	sdlkeymap[SDLK_0] = MAC_0_KEY;
+	sdlkeymap[SDLK_KP1] = MAC_NUMPAD_1_KEY;
+	sdlkeymap[SDLK_KP2] = MAC_NUMPAD_2_KEY;
+	sdlkeymap[SDLK_KP3] = MAC_NUMPAD_3_KEY;
+	sdlkeymap[SDLK_KP4] = MAC_NUMPAD_4_KEY;
+	sdlkeymap[SDLK_KP5] = MAC_NUMPAD_5_KEY;
+	sdlkeymap[SDLK_KP6] = MAC_NUMPAD_6_KEY;
+	sdlkeymap[SDLK_KP7] = MAC_NUMPAD_7_KEY;
+	sdlkeymap[SDLK_KP8] = MAC_NUMPAD_8_KEY;
+	sdlkeymap[SDLK_KP9] = MAC_NUMPAD_9_KEY;
+	sdlkeymap[SDLK_KP0] = MAC_NUMPAD_0_KEY;
 	sdlkeymap[SDLK_a] = MAC_A_KEY;
-	
+	sdlkeymap[SDLK_b] = MAC_B_KEY;
+	sdlkeymap[SDLK_c] = MAC_C_KEY;
 	sdlkeymap[SDLK_d] = MAC_D_KEY;
-	
+	sdlkeymap[SDLK_e] = MAC_E_KEY;
+	sdlkeymap[SDLK_f] = MAC_F_KEY;
+	sdlkeymap[SDLK_g] = MAC_G_KEY;
+	sdlkeymap[SDLK_h] = MAC_H_KEY;
+	sdlkeymap[SDLK_i] = MAC_I_KEY;
+	sdlkeymap[SDLK_j] = MAC_J_KEY;
+	sdlkeymap[SDLK_k] = MAC_K_KEY;
+	sdlkeymap[SDLK_l] = MAC_L_KEY;
+	sdlkeymap[SDLK_m] = MAC_M_KEY;
+	sdlkeymap[SDLK_n] = MAC_N_KEY;
+	sdlkeymap[SDLK_o] = MAC_O_KEY;
+	sdlkeymap[SDLK_p] = MAC_P_KEY;
+	sdlkeymap[SDLK_q] = MAC_Q_KEY;
+	sdlkeymap[SDLK_r] = MAC_R_KEY;
 	sdlkeymap[SDLK_s] = MAC_S_KEY;
-	
+	sdlkeymap[SDLK_t] = MAC_T_KEY;
+	sdlkeymap[SDLK_u] = MAC_U_KEY;
+	sdlkeymap[SDLK_v] = MAC_V_KEY;
 	sdlkeymap[SDLK_w] = MAC_W_KEY;
-	
+	sdlkeymap[SDLK_x] = MAC_X_KEY;
+	sdlkeymap[SDLK_y] = MAC_Y_KEY;
+	sdlkeymap[SDLK_z] = MAC_Z_KEY;
+	sdlkeymap[SDLK_F1] = MAC_F1_KEY;
+	sdlkeymap[SDLK_F2] = MAC_F2_KEY;
+	sdlkeymap[SDLK_F3] = MAC_F3_KEY;
+	sdlkeymap[SDLK_F4] = MAC_F4_KEY;
+	sdlkeymap[SDLK_F5] = MAC_F5_KEY;
+	sdlkeymap[SDLK_F6] = MAC_F6_KEY;
+	sdlkeymap[SDLK_F7] = MAC_F7_KEY;
+	sdlkeymap[SDLK_F8] = MAC_F8_KEY;
+	sdlkeymap[SDLK_F9] = MAC_F9_KEY;
+	sdlkeymap[SDLK_F10] = MAC_F10_KEY;
+	sdlkeymap[SDLK_F11] = MAC_F11_KEY;
+	sdlkeymap[SDLK_F12] = MAC_F12_KEY;
+	sdlkeymap[SDLK_RETURN] = MAC_RETURN_KEY; /* or is this enter? */
+	sdlkeymap[SDLK_TAB] = MAC_TAB_KEY;
 	sdlkeymap[SDLK_SPACE] = MAC_SPACE_KEY;
+	/* TODO - delete? */
+	sdlkeymap[SDLK_ESCAPE] = MAC_ESCAPE_KEY;
+	/* TODO - control? */ 	
+	sdlkeymap[SDLK_LSHIFT] = MAC_SHIFT_KEY;
+	sdlkeymap[SDLK_RSHIFT] = MAC_SHIFT_KEY;
+	sdlkeymap[SDLK_CAPSLOCK] = MAC_CAPS_LOCK_KEY;
+	sdlkeymap[SDLK_PAGEUP] = MAC_PAGE_UP_KEY;
+	sdlkeymap[SDLK_PAGEDOWN] = MAC_PAGE_DOWN_KEY;
+	sdlkeymap[SDLK_INSERT] = MAC_INSERT_KEY;
+	sdlkeymap[SDLK_DELETE] = MAC_DEL_KEY;
+	sdlkeymap[SDLK_HOME] = MAC_HOME_KEY;
+	sdlkeymap[SDLK_END] = MAC_END_KEY;
+	sdlkeymap[SDLK_LEFTBRACKET] = MAC_LEFT_BRACKET_KEY;
+	sdlkeymap[SDLK_RIGHTBRACKET] = MAC_RIGHT_BRACKET_KEY;
+	sdlkeymap[SDLK_UP] = MAC_ARROW_UP_KEY;
+	sdlkeymap[SDLK_DOWN] = MAC_ARROW_DOWN_KEY;
+	sdlkeymap[SDLK_LEFT] = MAC_ARROW_LEFT_KEY;
+	sdlkeymap[SDLK_RIGHT] = MAC_ARROW_RIGHT_KEY;
 	
 	mapinit = 1;
 }
