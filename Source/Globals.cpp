@@ -57,7 +57,7 @@ float fogcolorb;
 float d;
 float a1,a2,a3;
 float total,denom,mu;
-XYZ pa1,pa2,pa3;
+XYZ n,pa1,pa2,pa3;
 
 float u0, u1, u2;
 float v0, v1, v2;
