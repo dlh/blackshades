@@ -1,5 +1,14 @@
 CLI Options
 AI Fix
+What Ryan said about it:
+I don't have the source in front of me, but it looks like the people walk
+correctly, but keep deciding to change their destination...this is likely
+because we're reading the path model wrong or something. I don't know.
+There's path determination code that if you comment it out, everyone
+walks in a straight line, so that's the problem. Whether it's the
+determination code itself or what it bases its calculation on...I have no
+idea.
+
 Keyboard config shit
 toggling third person
 Implement SDL_image for pngs
