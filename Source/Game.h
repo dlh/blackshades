@@ -14,10 +14,11 @@
 #include <cstdarg>
 #include <glm.h>
 #include <TextUtils.h>
-
-#include "AGL_DSp.h"	
 #include "Timer.h"	
+#ifdef MAC
+#include "AGL_DSp.h"	
 #include "MacInput.h"
+#endif
 #include "Quaternions.h"
 #include "Camera.h"
 #include "Skeleton.h"
