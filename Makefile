@@ -1,6 +1,6 @@
-CC := gcc-3.2
-CXX := g++-3.2
-LINKER := g++-3.2
+CC := gcc
+CXX := g++
+LINKER := g++
 ASM := nasm
 SRCDIR := ./Source
 BINDIR := ./objs
