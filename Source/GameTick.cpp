@@ -870,7 +870,10 @@ void 	Game::Tick(){
 		//Check people collisions
 
 		for(int k=0;k<numpeople;k++){
-
+			// SBF - backing up the old coordinates makes
+			// the most sense here.
+			person[k].oldplayercoords=person[k].playercoords;
+			
 			person[k].DoStuff(k);
 
 			if(person[k].skeleton.free<1){
@@ -1063,7 +1066,8 @@ void 	Game::Tick(){
 
 			}
 
-			person[k].oldplayercoords=person[k].playercoords;
+			// SBF - this is definately in the wrong spot!
+			//person[k].oldplayercoords=person[k].playercoords;
 
 			}
 
@@ -1733,10 +1737,10 @@ void 	Game::Tick(){
 					// Realcheck tells us
 					// a) we've got close to the end of our path or
 					// b) we're moving away from our target
-					// For whatever reason, part b) appears to be stuffed. Comment it out.
-			 		realcheck=(abs(person[i].playercoords.x-person[i].pathtarget.x)<1&&abs(person[i].playercoords.z-person[i].pathtarget.z)<1);
-					// ||findDistancefast(person[i].playercoords,person[i].pathtarget)>findDistancefast(person[i].oldplayercoords,person[i].pathtarget)
-			 		if(person[i].targetanimation==idleanim&&person[i].killtargetvisible==0){
+			 		realcheck=(abs(person[i].playercoords.x-person[i].pathtarget.x)<1&&abs(person[i].playercoords.z-person[i].pathtarget.z)<1)
+					  ||findDistancefast(person[i].playercoords,person[i].pathtarget)>findDistancefast(person[i].oldplayercoords,person[i].pathtarget);
+			 		
+					if(person[i].targetanimation==idleanim&&person[i].killtargetvisible==0){
 
 						person[i].targetanimation=walkanim;
 
