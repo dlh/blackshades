@@ -6,7 +6,6 @@
 #include <stdio.h>			
 #include <string.h>
 #include <ctype.h>
-#include <gl.h>				
 #include <glu.h>			
 #include <tk.h>				
 #include <Sound.h>
