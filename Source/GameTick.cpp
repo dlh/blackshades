@@ -1730,8 +1730,12 @@ void 	Game::Tick(){
 
 			 		person[i].pathcheckdelay-=multiplier;
 
-			 		realcheck=(abs(person[i].playercoords.x-person[i].pathtarget.x)<1&&abs(person[i].playercoords.z-person[i].pathtarget.z)<1)||findDistancefast(person[i].playercoords,person[i].pathtarget)>findDistancefast(person[i].oldplayercoords,person[i].pathtarget);
-
+					// Realcheck tells us
+					// a) we've got close to the end of our path or
+					// b) we're moving away from our target
+					// For whatever reason, part b) appears to be stuffed. Comment it out.
+			 		realcheck=(abs(person[i].playercoords.x-person[i].pathtarget.x)<1&&abs(person[i].playercoords.z-person[i].pathtarget.z)<1);
+					// ||findDistancefast(person[i].playercoords,person[i].pathtarget)>findDistancefast(person[i].oldplayercoords,person[i].pathtarget)
 			 		if(person[i].targetanimation==idleanim&&person[i].killtargetvisible==0){
 
 						person[i].targetanimation=walkanim;
