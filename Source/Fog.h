@@ -25,3 +25,4 @@ class Fog{
 };
 
 #endif
+
