@@ -3774,7 +3774,32 @@ int Game::InitGL(GLvoid)
 
 		return;
 #else
-	STUB_FUNCTION;
+        if (SDL_Init(SDL_INIT_VIDEO) == -1) {
+		fprintf(stderr, "SDL Init Video failed: %s\n", SDL_GetError());
+		exit(EXIT_FAILURE);
+        }
+        
+	atexit(SDL_Quit);
+
+	SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 5);
+        SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 5);
+        SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5);
+        SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
+        SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+
+	if(screenwidth<640||screenheight<480) {
+		if (SDL_SetVideoMode(640, 480, 0, SDL_OPENGL) == NULL) {
+			fprintf(stderr, "(OpenGL) SDL SetVideoMode failed: %s\n", SDL_GetError());
+			exit(EXIT_FAILURE);
+		}
+	} else {
+		if (SDL_SetVideoMode(screenwidth, screenheight, 0, SDL_OPENGL) == NULL) {
+			fprintf(stderr, "(OpenGL) SDL SetVideoMode failed: %s\n", SDL_GetError());
+			exit(EXIT_FAILURE);
+		}
+	}
+	
+	SDL_WM_SetCaption("Black Shades", "Black Shades");
 #endif
 		
 

@@ -56,9 +56,9 @@ $(BINDIR)/%.o: $(SRCDIR)/%.asm
 	$(ASM) $(ASMFLAGS) -o $@ $<
 
 .PHONY: all bindir blackshades
-all: blackshades
+all: $(EXE)
 
-blackshades: $(BINDIR) $(OBJS)
+$(EXE): $(BINDIR) $(OBJS)
 	$(LINKER) -o $(EXE) $(OBJS) $(LDFLAGS)
 
 $(BINDIR) :
