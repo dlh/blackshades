@@ -1,5 +1,7 @@
 #include "Models.h"
 
+#include "Serialize.h"
+
 //Functions
 void Model::UpdateVertexArray(){
 	int i;
@@ -71,17 +73,13 @@ bool Model::load(Str255 Name)
 
 		// read model settings
 	
-	count=2;
-	err=FSRead(tfile,&count,&vertexNum);
-	count=2;
-	err=FSRead(tfile,&count,&TriangleNum);
+	err=ReadShort(tfile,1,&vertexNum);
+	err=ReadShort(tfile,1,&TriangleNum);
 	
 		// read the model data
 	
-	count=(long)vertexNum*sizeof(XYZ);
-	err=FSRead(tfile,&count,&vertex);
-	count=(long)TriangleNum*sizeof(TexturedTriangle);
-	err=FSRead(tfile,&count,&Triangles);
+	err=ReadXYZ(tfile,vertexNum,vertex);
+	err=ReadTexturedTriangle(tfile,TriangleNum,Triangles);
 	
 	FSClose(tfile);
 	

@@ -2,6 +2,7 @@
 #include "Files.h"
 
 #include <sys/types.h>
+#include <dirent.h>
 #include <sys/stat.h>
 #include <fcntl.h>                     
 #include <unistd.h>
@@ -55,6 +56,89 @@ STUB_FUNCTION;
 #define MAX_PATH 256
 #endif
 
+static int find_filename(char *filename)
+{
+	char *ptr;
+	char *cur;
+	char *next;
+	DIR *dir;
+	struct dirent *dirent;
+	
+	if (access(filename, R_OK) == 0) {
+		return 1;
+	}
+	
+	ptr = filename;
+	
+	while (*ptr) {
+		if (ptr == filename || *ptr == '/') {
+			cur = ptr+1;
+			if (*cur == 0) {
+				/* hit the end */
+				break;
+			}
+			
+			next = strchr(cur, '/');
+			
+			if (ptr != filename) {
+				*ptr = 0;
+			}
+			
+			if (next) {
+				*next = 0;
+			}
+			
+			if (ptr == filename && *ptr == '/') {
+				dir = opendir("/");
+			} else {
+				dir = opendir(filename);
+			}
+			
+			if (dir == NULL) {
+				if (ptr != filename) {
+					*ptr = '/';
+				}
+				
+				if (next) {
+					*next = 0;
+				}
+				
+				return 0;
+			}
+			
+			while ((dirent = readdir(dir)) != NULL) {
+				if (strcasecmp(cur, dirent->d_name) == 0
+					&& (dirent->d_type == DT_UNKNOWN ||
+					(dirent->d_type == DT_DIR && next != NULL))) {
+					strcpy(cur, dirent->d_name);
+					break;
+				}
+			}
+			
+			closedir(dir);
+			
+			if (ptr != filename) {
+				*ptr = '/';
+			}
+			
+			if (next) {
+				*next = '/';
+				ptr = next;
+			} else {
+				ptr++;
+			}
+		} else {
+			ptr++;
+		}
+	}
+	
+	if (access(filename, R_OK) == 0) {
+		return 1;
+	}
+	
+	return 0;
+}
+
 static void fix_filename(const char *original, char *fixed)
 {
 	const char *start;
@@ -65,12 +149,7 @@ static void fix_filename(const char *original, char *fixed)
 	if (original[0] == ':') {
 		start = &original[1];
 	}
-	
-	/* 
-	  here would be stuff to check where the file is,
-	  including the game root and the user local dir
-	 */
-	
+
 	fixed[MAX_PATH-1] = 0;
 	
 	strncpy(fixed, start, MAX_PATH);
@@ -88,6 +167,18 @@ static void fix_filename(const char *original, char *fixed)
 		if (fixed[i] == ':') {
 			fixed[i] = '/';
 		}
+	}
+	
+	/* 
+	   here we would try to see if the file is available (game dir),
+	   else try another dir
+	   
+	   really, this function also needs a flag to indicate whether
+	   it should only go to local (write) or both (read)
+	 */
+
+	if (find_filename(fixed) == 0) {
+		fprintf(stderr, "find failed: %s\n", fixed);
 	}
 }
 

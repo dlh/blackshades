@@ -25,6 +25,7 @@ SRCS := Camera.cpp \
 	Models.cpp \
 	Person.cpp \
         Quaternions.cpp \
+	Serialize.cpp \
 	Skeleton.cpp \
         Sprites.cpp \
 	Support.cpp \
