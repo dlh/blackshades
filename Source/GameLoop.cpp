@@ -272,12 +272,14 @@ static void init_sdlkeymap()
 	sdlkeymap[SDLK_F10] = MAC_F10_KEY;
 	sdlkeymap[SDLK_F11] = MAC_F11_KEY;
 	sdlkeymap[SDLK_F12] = MAC_F12_KEY;
-	sdlkeymap[SDLK_RETURN] = MAC_RETURN_KEY; /* or is this enter? */
+	sdlkeymap[SDLK_RETURN] = MAC_RETURN_KEY;
+	sdlkeymap[SDLK_KP_ENTER] = MAC_ENTER_KEY;
 	sdlkeymap[SDLK_TAB] = MAC_TAB_KEY;
 	sdlkeymap[SDLK_SPACE] = MAC_SPACE_KEY;
-	/* TODO - delete? */
+	sdlkeymap[SDLK_BACKSPACE] = MAC_DELETE_KEY;
 	sdlkeymap[SDLK_ESCAPE] = MAC_ESCAPE_KEY;
-	/* TODO - control? */ 	
+	sdlkeymap[SDLK_LCTRL] = MAC_CONTROL_KEY;
+	sdlkeymap[SDLK_RCTRL] = MAC_CONTROL_KEY;
 	sdlkeymap[SDLK_LSHIFT] = MAC_SHIFT_KEY;
 	sdlkeymap[SDLK_RSHIFT] = MAC_SHIFT_KEY;
 	sdlkeymap[SDLK_CAPSLOCK] = MAC_CAPS_LOCK_KEY;
