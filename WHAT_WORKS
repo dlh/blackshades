@@ -1,5 +1,2 @@
-So far, with Makefile.zakk I can get:
-Camera.o, Fog.o, Frustum.o, and TGALoader.o
-With the regular Makefile after relnev's commits, I'm getting:
-Camera.o  Fog.o      GameDraw.o  Sprites.o    Text.o
-Decals.o  Frustum.o  Globals.o   TGALoader.o
+Right now it's all compiling...
+we get the dedicated server, woo!
