@@ -3817,6 +3817,12 @@ int Game::InitGL(GLvoid)
 	SDL_WM_SetCaption("Black Shades", "Black Shades");
 	
 	SDL_EnableUNICODE(1); /* toggle it to ON */
+
+#ifdef FULLSCREEN
+	SDL_WM_GrabInput(SDL_GRAB_ON);
+	SDL_ShowCursor(0);
+#endif
+
 #endif
 		
 
