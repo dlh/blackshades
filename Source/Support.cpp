@@ -67,3 +67,32 @@ void Files::EndLoad()
 }
 
     
+void alutLoadWAVFile(char *filename, ALenum *format, void **wave,
+	unsigned int *size, ALsizei *freq)
+{
+	char filename1[256];
+	ALsizei format1, size1, bits1, freq1;
+	int i, len;
+	
+	strncpy(filename1, filename, sizeof(filename1));
+	filename1[sizeof(filename1)-1] = 0;
+	
+	len = strlen(filename1);
+	for (i = 0; i < len; i++) {
+		if (filename1[i] == ':') {
+			filename1[i] = '/';
+		}
+	}
+	
+	alutLoadWAV(filename1, wave, &format1, &size1, &bits1, &freq1);
+	
+	*format = format1;
+	*size = size1;
+	*freq = freq1;
+}
+
+void alutUnloadWAV(ALenum format, void *wave, unsigned int size,
+	ALsizei freq)
+{
+	free(wave);
+}

@@ -15,6 +15,8 @@ SRCS := Camera.cpp \
         Fog.cpp \
         Frustum.cpp \
         GameDraw.cpp \
+	GameInitDispose.cpp \
+	GameLoop.cpp \
 	GameTick.cpp \
         Globals.cpp \
 	MacInput.cpp \
@@ -29,9 +31,7 @@ SRCS := Camera.cpp \
         Text.cpp \
 	Timer.cpp
 
-# Files.cpp
 # GameInitDispose.cpp
-# GameLoop.cpp
 # Main.cpp
 
 OBJS1 := $(SRCS:.c=.o)

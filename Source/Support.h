@@ -4,12 +4,16 @@
 #include <stdio.h>
 #include <unistd.h>
 
+#include <AL/al.h>
+#include <AL/alut.h>
+
 #define STUB_FUNCTION fprintf(stderr,"STUB: %s at " __FILE__ ", line %d, thread %d\n",__FUNCTION__,__LINE__,getpid())
 
 #define fsFromStart SEEK_SET
 
 typedef unsigned char * Str255;
 typedef int OSErr;
+typedef short int SInt16;
 
 typedef bool Boolean;
 #define TRUE true
@@ -37,5 +41,9 @@ void GetMouse(Point *p);
 void GetKeys(unsigned long *keys);
 int Button(void);
 
+void alutLoadWAVFile(char *filename, ALenum *format, void **wave, 
+	unsigned int *size, ALsizei *freq);
+void alutUnloadWAV(ALenum format, void *wave, unsigned int size, 
+	ALsizei freq);
 
 #endif

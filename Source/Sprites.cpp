@@ -403,12 +403,12 @@ void Sprites::draw()
 			glColor4f(color1[i]*fogcolorr*1.6,color2[i]*fogcolorg*1.6,color3[i]*fogcolorb*1.6,brightness[i]);
 			glTranslatef(location[i].x,location[i].y,location[i].z);
 			glGetFloatv(GL_MODELVIEW_MATRIX,M);
-			for( int ii=0; ii<3; ii+=2 ) 
+			for( int k=0; k<3; k+=2 ) 
 				for( int j=0; j<3; j++ ) {
-					if ( ii==j )
-						M[ii*4+j] = 1.0;
+					if ( k==j )
+						M[k*4+j] = 1.0;
 					else
-						M[ii*4+j] = 0.0;
+						M[k*4+j] = 0.0;
 				}
 			
 			

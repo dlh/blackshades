@@ -172,6 +172,7 @@ void	Game::HandleKeyDown( char theChar )
 
 /********************> DoEvent() <*****/
 
+#ifdef MAC
 void	Game::DoEvent( EventRecord *event )
 
 {
@@ -203,6 +204,7 @@ void	Game::DoEvent( EventRecord *event )
 	
 
 }
+#endif
 
 /********************> EventLoop() <*****/
 
@@ -210,7 +212,9 @@ void	Game::EventLoop( void )
 
 {
 
+#ifdef MAC
 	EventRecord		event;
+#endif
 
 	unsigned char	theKeyMap[16];
 
@@ -224,10 +228,13 @@ void	Game::EventLoop( void )
 
 	{
 
+#ifdef MAC
 		if ( GetNextEvent( everyEvent, &event ) )
 
 			DoEvent( &event );
-
+#else
+		STUB_FUNCTION;
+#endif
 		
 
 		start=TimerGetTime(&theTimer);
@@ -259,7 +266,7 @@ void	Game::EventLoop( void )
 #ifdef MAC
 			aglSwapBuffers( gOpenGLContext );
 #else
-                        SDL_GL_SwapBuffers( gOpenGLContext );
+                        SDL_GL_SwapBuffers();
 #endif
 
 		else

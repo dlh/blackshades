@@ -1,7 +1,10 @@
 #include "Game.h"	
 
-#include "ctype.h"
+#include <ctype.h>
 
+#ifndef MAC
+#include <time.h>
+#endif
 
 
 extern unsigned int gSourceID[100];
@@ -75,9 +78,6 @@ void LoadSounds(bool musictoggle);
 void LoadSounds(bool musictoggle)
 
 {
-
-	EventRecord	EventRec;
-
 	char *pBuffer1;
 
 	long lBuffer1Len;
@@ -85,9 +85,7 @@ void LoadSounds(bool musictoggle)
 	ALenum formatBuffer1;
 
 	ALsizei freqBuffer1;
-
-	FSSpec sfFile;
-
+	
 	Str255 sFileName;
 
 	short fRefNum;
@@ -123,7 +121,6 @@ void LoadSounds(bool musictoggle)
 	alGenBuffers(iNumSampleSets, &gSampleSet[0]);
 
 	
-
 	alutLoadWAVFile((char *)":Data:Sounds:underwater.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[visionsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
@@ -962,7 +959,7 @@ void Game::LoadingScreen(float percent)
 #ifdef MAC
 	aglSwapBuffers( gOpenGLContext );
 #else
-       SDL_GL_SwapBuffers( gOpenGLContext );
+	SDL_GL_SwapBuffers( );
 #endif
 
 }
@@ -1671,7 +1668,11 @@ void Game::InitGame()
 
 	//Setup random seed
 
+#ifdef MAC
 	qd.randSeed = TickCount();
+#else
+	srand(time(NULL));
+#endif
 
 	gamespeed=1;
 
@@ -2139,9 +2140,9 @@ void Game::InitGame()
 
 			blocks[i].boundingsphereradius=0;
 
-			for(int i=0;i<blocks[i].vertexNum;i++){
+			for(int x=0;i<blocks[x].vertexNum;x++){
 
-				if(findDistancefast(blocks[i].boundingspherecenter,blocks[i].vertex[i])>blocks[i].boundingsphereradius)blocks[i].boundingsphereradius=findDistancefast(blocks[i].boundingspherecenter,blocks[i].vertex[i]);
+				if(findDistancefast(blocks[i].boundingspherecenter,blocks[i].vertex[x])>blocks[i].boundingsphereradius)blocks[i].boundingsphereradius=findDistancefast(blocks[i].boundingspherecenter,blocks[i].vertex[x]);
 
 			}
 
@@ -3547,8 +3548,11 @@ int Game::InitGL(GLvoid)
 	if(!initialized){
 
 		//Default config in case config is not found	
-
+#ifdef MAC
 		HideCursor();
+#else
+		STUB_FUNCTION;
+#endif
 
 		screenwidth = 640;
 
@@ -3753,7 +3757,7 @@ int Game::InitGL(GLvoid)
 
 
 	//Setup screen
-
+#ifdef MAC
 	if(screenwidth<640||screenheight<480)
 
 		theScreen = SetupScreen( 640, 480 );
@@ -3769,7 +3773,9 @@ int Game::InitGL(GLvoid)
 	if ( !gOpenGLContext )
 
 		return;
-
+#else
+	STUB_FUNCTION;
+#endif
 		
 
 	text.LoadFontTexture(":Data:Textures:Font.tga");
@@ -3799,13 +3805,13 @@ int Game::InitGL(GLvoid)
 void Game::Dispose()										
 
 {
-
+#ifdef MAC
 	CleanupAGL( gOpenGLContext );
 
 	ShutdownScreen( theScreen );
 
 	ShowCursor();
-
+#endif
 	
 
 	//Delete sound sources
