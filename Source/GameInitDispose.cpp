@@ -3795,7 +3795,11 @@ int Game::InitGL(GLvoid)
         SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
 	if(screenwidth<640||screenheight<480) {
+#ifdef FULLSCREEN 
+		if (SDL_SetVideoMode(640, 480, 0, SDL_OPENGL | SDL_FULLSCREEN) == NULL) {
+#else
 		if (SDL_SetVideoMode(640, 480, 0, SDL_OPENGL) == NULL) {
+#endif
 			fprintf(stderr, "(OpenGL) SDL SetVideoMode failed: %s\n", SDL_GetError());
 			exit(EXIT_FAILURE);
 		}
