@@ -74,7 +74,12 @@ static int find_filename(char *filename)
 	
 	while (*ptr) {
 		if (ptr == filename || *ptr == '/') {
-			cur = ptr+1;
+			if (*ptr == '/') {
+				cur = ptr+1;
+			} else {
+				cur = ptr;
+			}
+			
 			if (*cur == 0) {
 				/* hit the end */
 				break;
@@ -109,9 +114,7 @@ static int find_filename(char *filename)
 			}
 			
 			while ((dirent = readdir(dir)) != NULL) {
-				if (strcasecmp(cur, dirent->d_name) == 0
-					&& (dirent->d_type == DT_UNKNOWN ||
-					(dirent->d_type == DT_DIR && next != NULL))) {
+				if (strcasecmp(cur, dirent->d_name) == 0) {
 					strcpy(cur, dirent->d_name);
 					break;
 				}
