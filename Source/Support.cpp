@@ -243,7 +243,7 @@ void Files::EndLoad()
 	sFile = -1;
 }
 
-    
+#ifdef NOOGG    
 /*
   Our own special magic version that fixes the filename.
  */
@@ -267,3 +267,25 @@ void alutUnloadWAV_CFH(ALenum format, void *wave, unsigned int size,
 {
 	free(wave);
 }
+#else
+void alutLoadVorbisFile_CFH(char *filename, ALenum *format, void **wave,
+	unsigned int *size, ALsizei *freq)
+{
+	char filename1[256];
+	ALsizei format1, size1, bits1, freq1;
+	
+	fix_filename(filename, filename1);
+	
+	alutLoadWAV(filename1, wave, &format1, &size1, &bits1, &freq1);
+	
+	*format = format1;
+	*size = size1;
+	*freq = freq1;
+}
+
+void alutUnloadVorbis_CFH(ALenum format, void *wave, unsigned int size,
+	ALsizei freq)
+{
+	free(wave);
+}
+#endif
