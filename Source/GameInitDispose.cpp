@@ -1480,7 +1480,7 @@ void Game::InitGame()
 
 		difficulty=.8;
 
-		ifstream ipstream(":Data:customlevels.txt");
+		ifstream ipstream("Data/customlevels.txt");
 
 	    if(!ipstream) {
 
