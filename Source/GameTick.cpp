@@ -893,7 +893,7 @@ void 	Game::Tick(){
 			
 
 			if(k!=0){
-
+				/* TODO: huh? */
 				beginx==person[k].whichblockx;
 
 				beginz==person[k].whichblocky;

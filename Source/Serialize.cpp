@@ -19,6 +19,8 @@ int ReadBool(int fd, int count, bool *b)
 		
 		b++;
 	}
+	
+	return 1;
 }
 
 int ReadShort(int fd, int count, short *s)
@@ -34,6 +36,8 @@ int ReadShort(int fd, int count, short *s)
 		
 		s++;
 	}
+	
+	return 1;
 }
 
 int ReadInt(int fd, int count, int *s)
@@ -49,6 +53,8 @@ int ReadInt(int fd, int count, int *s)
 		
 		s++;
 	}
+	
+	return 1;
 }
 
 union intfloat {
@@ -67,6 +73,8 @@ int ReadFloat(int fd, int count, float *f)
 		
 		f++;
 	}
+	
+	return 1;
 }
 
 int ReadXYZ(int fd, int count, XYZ *xyz)
@@ -78,6 +86,8 @@ int ReadXYZ(int fd, int count, XYZ *xyz)
 		
 		xyz++;
 	}
+	
+	return 1;
 }
 
 int ReadTexturedTriangle(int fd, int count, TexturedTriangle *tt)
@@ -90,4 +100,6 @@ int ReadTexturedTriangle(int fd, int count, TexturedTriangle *tt)
 		
 		tt++;
 	}
+	
+	return count;
 }

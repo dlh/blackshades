@@ -484,7 +484,7 @@ int Game::DrawGLScene(GLvoid)
 
 		glColor4f(.3-sinefluct/20,.3-sinefluct/20,.3-sinefluct/20,1);
 
-		sprintf (string, "uDevGame 2002 Entry - Visit iDevGames.com for more games!", highscore);
+		sprintf (string, "uDevGame 2002 Entry - Visit iDevGames.com for more games!");
 
 		text.glPrint(500,750,string,1,.6,640,480);
 
@@ -1757,9 +1757,11 @@ int Game::DrawGLScene(GLvoid)
 
 		}
 
+		/*
 		sprintf (string, "");
 
 		text.glPrint(10,80,string,0,.8,screenwidth,screenheight);
+		*/	
 
 	}
 

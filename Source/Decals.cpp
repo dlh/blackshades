@@ -254,6 +254,8 @@ int Decals::MakeDecal(int atype, XYZ location, float size, XYZ normal, int poly,
     type[howmanydecals]=atype;
 	alivetime[howmanydecals]=0;
 	if(howmanydecals<maxdecals){howmanydecals++;}
+
+	return 0;
 }
 
 int Decals::DeleteDecal(int which){
@@ -268,6 +270,8 @@ int Decals::DeleteDecal(int which){
 	    }
 		if(howmanydecals>0){howmanydecals--;}
 	}
+	
+	return 0;
 }
 
 void Decals::LoadBulletHoleTexture(char *fileName)

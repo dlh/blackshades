@@ -78,6 +78,7 @@ int FRUSTUM::
 	CubeInFrustum(float x, float y, float z, float size) {
 	int c, c2;
 	
+	c2 = 0;
 	for(int i=0; i<6; i++) {
 		c=0;
 		if(frustum[i][0] * (x-size) + frustum[i][1] * (y-size) + frustum[i][2] * (z-size) + frustum[i][3] > 0)
@@ -110,7 +111,8 @@ int FRUSTUM::
 int FRUSTUM::
 	CubeInFrustum(float x, float y, float z, float size, float height) {
 	int c, c2;
-	
+
+	c2 = 0;	
 	for(int i=0; i<6; i++) {
 		c=0;
 		if(frustum[i][0] * (x-size) + frustum[i][1] * (y-height) + frustum[i][2] * (z-size) + frustum[i][3] > 0)
@@ -143,7 +145,8 @@ int FRUSTUM::
 int FRUSTUM::
 	SphereInFrustum(float x, float y, float z, float radius) {
 	int  c2;
-	
+
+	c2 = 0;	
 	for(int i=0; i<6; i++) {
 		if(frustum[i][0] * x + frustum[i][1] * y + frustum[i][2] * z + frustum[i][3] > -1*radius)
 			c2++;
