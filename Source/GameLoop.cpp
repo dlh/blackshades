@@ -323,10 +323,12 @@ static void DoSDLKey(Game *g, SDL_Event *event)
 	index = mackey / 8;
 	mask = 1 << (mackey % 8);
 	
-	if (press) {
-		ourkeys[index] |= mask;
-	} else {
-		ourkeys[index] &= ~mask;
+	if (mackey) {
+		if (press) {
+			ourkeys[index] |= mask;
+		} else {
+			ourkeys[index] &= ~mask;
+		}
 	}
 	
 	if (event->key.keysym.unicode && 
