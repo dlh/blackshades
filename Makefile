@@ -11,9 +11,9 @@ CXXFLAGS := $(CFLAGS)
 LDFLAGS := $(shell sdl-config --libs) -lGL -lGLU -lopenal # -framework QuickTime
 
 # Don't want ogg?
-CFLAGS += -DNOOGG
+#CFLAGS += -DNOOGG
 # Got ogg?
-#LDFLAGS += -lvorbisfile -lvorbis
+LDFLAGS += -lvorbisfile -lvorbis
 
 SRCS := Camera.cpp \
         Decals.cpp \
