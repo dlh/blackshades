@@ -16,7 +16,7 @@ TGAImageRec*	LoadTGA( char *filename )
 	FILE			*file;
 	
 	// Open The TGA File
-	file = fopen( filename, "rb" );
+	file = cfh_fopen( filename, "rb" );
 
 	if( ( file == NULL ) ||	// Does File Even Exist?
 		( fread( TGAcompare, 1, sizeof( TGAcompare ), file ) != sizeof( TGAcompare ) ) ||	// Are There 12 Bytes To Read?

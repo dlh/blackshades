@@ -51,9 +51,66 @@ STUB_FUNCTION;
 #define O_BINARY 0
 #endif
 
+#ifndef MAX_PATH
+#define MAX_PATH 256
+#endif
+
+static void fix_filename(const char *original, char *fixed)
+{
+	const char *start;
+	int i;
+	int len;
+
+	start = original;
+	if (original[0] == ':') {
+		start = &original[1];
+	}
+	
+	/* 
+	  here would be stuff to check where the file is,
+	  including the game root and the user local dir
+	 */
+	
+	fixed[MAX_PATH-1] = 0;
+	
+	strncpy(fixed, start, MAX_PATH);
+	
+	/* check to see if strncpy overwrote the terminator */
+	if (fixed[MAX_PATH-1] != 0) {
+		fixed[MAX_PATH-1] = 0;
+	
+		fprintf(stderr, "ERROR: file truncation error: %s -> %s\n", 
+			original, fixed);
+	}
+	
+	len = strlen(fixed);
+	for (i = 0; i < len; i++) {
+		if (fixed[i] == ':') {
+			fixed[i] = '/';
+		}
+	}
+}
+
+/*
+Convenient Filename Hacks
+*/
+
+FILE *cfh_fopen(const char *filename, const char *mode)
+{
+	char filename1[MAX_PATH];
+	
+	fix_filename(filename, filename1);
+	
+	return fopen(filename1, mode);	
+}
+
 int Files::OpenFile(Str255 Name)
 {
-	sFile = open((char *)Name, O_RDONLY | O_BINARY);
+	char filename1[MAX_PATH];
+	
+	fix_filename((char *)Name, filename1);
+	
+	sFile = open(filename1, O_RDONLY | O_BINARY);
 	return sFile;
 }
 
@@ -74,15 +131,7 @@ void alutLoadWAVFile(char *filename, ALenum *format, void **wave,
 	ALsizei format1, size1, bits1, freq1;
 	int i, len;
 	
-	strncpy(filename1, filename, sizeof(filename1));
-	filename1[sizeof(filename1)-1] = 0;
-	
-	len = strlen(filename1);
-	for (i = 0; i < len; i++) {
-		if (filename1[i] == ':') {
-			filename1[i] = '/';
-		}
-	}
+	fix_filename(filename, filename1);
 	
 	alutLoadWAV(filename1, wave, &format1, &size1, &bits1, &freq1);
 	

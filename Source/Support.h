@@ -46,4 +46,6 @@ void alutLoadWAVFile(char *filename, ALenum *format, void **wave,
 void alutUnloadWAV(ALenum format, void *wave, unsigned int size, 
 	ALsizei freq);
 
+FILE *cfh_fopen(const char *filename, const char *mode);
+
 #endif
