@@ -2,13 +2,16 @@
 #define _DECALS_H_
 
 #include "Quaternions.h"
+#ifdef MAC
 #include <gl.h>
 #include <glu.h>
+#include "glut.h"
+#else
+#include <GL/glut.h>
+#endif
 #include "Files.h"
 #include "TGALoader.h"
 #include "Quaternions.h"
-#include "gl.h"		
-#include "glut.h"
 #include "Camera.h"
 #include "Models.h"
 #include "Fog.h"

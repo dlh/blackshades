@@ -3,7 +3,12 @@
 
 
 /**> HEADER FILES <**/
+#ifdef MAC
 #include <gl.h>
+#else
+#include <GL/gl.h>
+#endif
+
 #include "Quaternions.h"
 
 class Camera

@@ -2,10 +2,16 @@
 #ifndef _QUATERNIONS_H_
 #define _QUATERNIONS_H_
 
+#ifdef MAC
 #pragma mark -
+#endif
 
 #include "Maths.h"
+#ifdef MAC
 #include <gl.h>
+#else
+#include <GL/gl.h>
+#endif
 #include "PhysicsMath.h"
 
 /**> Quaternion Structures <**/

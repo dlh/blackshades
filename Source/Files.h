@@ -6,20 +6,27 @@
 #include <stdio.h>			// Header File For Standard Input/Output
 #include <string.h>
 #include <ctype.h>
+#ifdef MAC
 #include "gl.h"				// Header File For The OpenGL32 Library
 #include "glu.h"			// Header File For The GLu32 Library
 #include "tk.h"				// Header File For The Glaux Library
+#else
+#include <GL/gl.h>
+#include <GL/glu.h>
+#endif
+#ifdef MAC
 #include <Sound.h>
 #include <Resources.h>
-#ifdef MAC
 #include "AGL_DSp.h"		// Header for OpenGL and DrawSprocket Functions
 #include "MacInput.h"		// Header for Special Mac Input functions
 #include "Alerts.h"			// Header for Dialogs and alerts for this application
 #endif
 #include <cstdarg>
 #include <math.h>
+#ifdef MAC
 #include "glm.h"
 #include <TextUtils.h>
+#endif
 #include <iostream.h>
 #include <fstream.h>
 

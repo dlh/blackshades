@@ -6,8 +6,13 @@
 // Model Maximums
 //
 #include "Quaternions.h"
+#ifdef MAC
 #include <gl.h>
 #include <glu.h>
+#else
+#include <GL/gl.h>
+#include <GL/glu.h>
+#endif
 #include "Files.h"
 #include "Constants.h"
 

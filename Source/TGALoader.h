@@ -1,4 +1,6 @@
+#ifdef MAC
 #pragma once
+#endif
 
 #ifndef	_TGA_LOADER_H_
 #define	_TGA_LOADER_H_
@@ -8,8 +10,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#ifdef MAC
 #include "gl.h"
-
+#endif
 
 /**> DATA STRUCTURES <**/
 typedef struct TGAImageRec
