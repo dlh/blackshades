@@ -79,13 +79,12 @@ class Files
 #else
 		int sFile;
 #endif
-		long  lSize;
 
 #ifdef MAC
 		short OpenFile(Str255 Name);
 #else
 		int OpenFile(Str255 Name);
-		Files() : sFile(-1), lSize(0) { } 
+		Files() : sFile(-1) { } 
 #endif
 
 #ifdef MAC

@@ -3,6 +3,7 @@
 
 /* these all read big-endian data */
 
+int ReadBool(int fd, int count, bool *b);
 int ReadShort(int fd, int count, short *s);
 int ReadInt(int fd, int count, int *s);
 int ReadFloat(int fd, int count, float *f);

@@ -1,6 +1,8 @@
 /**> HEADER FILES <**/
 #include "Skeleton.h"
 
+#include "Serialize.h"
+
 extern double multiplier;
 extern unsigned int gSourceID[100];
 extern unsigned int gSampleSet[100];
@@ -461,33 +463,27 @@ void Animation::Load(char *fileName)
 	float placeholder[3];
 	files.OpenFile((unsigned char*)fileName);
 	if(files.sFile){
-		files.lSize=sizeof(numframes);
-		FSRead( files.sFile, &files.lSize, &numframes);
+		ReadInt(files.sFile, 1, &numframes);
 		for(int i=0;i<numframes;i++){
-			files.lSize=sizeof(XYZ);
 			for(int j=0;j<max_joints;j++){
-				FSRead( files.sFile, &files.lSize, &position[j][i]);
+				ReadXYZ(files.sFile, 1, &position[j][i]);
 			}
-			files.lSize=sizeof(float);
 			for(int j=0;j<max_joints;j++){
-				FSRead( files.sFile, &files.lSize, &twist[j][i]);
+				ReadFloat(files.sFile, 1, &twist[j][i]);
 			}
-			files.lSize=sizeof(bool);
 			for(int j=0;j<max_joints;j++){
-				FSRead( files.sFile, &files.lSize, &onground[j][i]);
+				ReadBool(files.sFile, 1, &onground[j][i]);
 			}
-			files.lSize=sizeof(float);
-			FSRead( files.sFile, &files.lSize, &speed[i]);
-			files.lSize=sizeof(float);
-			FSRead( files.sFile, &files.lSize, &gunrotation[i]);
+			ReadFloat(files.sFile, 1, &speed[i]);
+			ReadFloat(files.sFile, 1, &gunrotation[i]);
 		}
 		for(int i=0;i<numframes;i++){
-			files.lSize=sizeof(float);
 			for(int j=0;j<max_joints;j++){
-				FSRead( files.sFile, &files.lSize, &twist2[j][i]);
+				ReadFloat(files.sFile, 1, &twist2[j][i]);
 			}
 		}
 	}
+	
 	files.EndLoad();
 	
 	for(int j=0;j<numframes;j++){
@@ -611,31 +607,24 @@ void Animation::Load(char *fileName, float rotate)
 	float placeholder[3];
 	files.OpenFile((unsigned char*)fileName);
 	if(files.sFile){
-		files.lSize=sizeof(numframes);
-		FSRead( files.sFile, &files.lSize, &numframes);
+		ReadInt(files.sFile, 1, &numframes);
 		for(int i=0;i<numframes;i++){
-			files.lSize=sizeof(XYZ);
 			for(int j=0;j<max_joints;j++){
-				FSRead( files.sFile, &files.lSize, &position[j][i]);
+				ReadXYZ(files.sFile, 1, &position[j][i]);
 				position[j][i]=DoRotation(position[j][i],0,rotate,0);
 			}
-			files.lSize=sizeof(float);
 			for(int j=0;j<max_joints;j++){
-				FSRead( files.sFile, &files.lSize, &twist[j][i]);
+				ReadFloat(files.sFile, 1, &twist[j][i]);
 			}
-			files.lSize=sizeof(bool);
 			for(int j=0;j<max_joints;j++){
-				FSRead( files.sFile, &files.lSize, &onground[j][i]);
+				ReadBool(files.sFile, 1, &onground[j][i]);
 			}
-			files.lSize=sizeof(float);
-			FSRead( files.sFile, &files.lSize, &speed[i]);
-			files.lSize=sizeof(float);
-			FSRead( files.sFile, &files.lSize, &gunrotation[i]);
+			ReadFloat(files.sFile, 1, &speed[i]);
+			ReadFloat(files.sFile, 1, &gunrotation[i]);
 		}
 		for(int i=0;i<numframes;i++){
-			files.lSize=sizeof(float);
 			for(int j=0;j<max_joints;j++){
-				FSRead( files.sFile, &files.lSize, &twist2[j][i]);
+				ReadFloat(files.sFile, 1, &twist2[j][i]);
 			}
 		}
 	}
@@ -760,72 +749,51 @@ void Animation::Load(char *fileName, float rotate)
 void Skeleton::Load(char *fileName)
 {
 	int parentID;
-	int what;
+	bool what;
 	bool lock;
 	float placeholder[3];
 	files.OpenFile((unsigned char*)fileName);
 	if(files.sFile){
-		files.lSize=sizeof(num_joints);
-		FSRead( files.sFile, &files.lSize, &num_joints);
+		ReadInt(files.sFile, 1, &num_joints);
 		for(int i=0;i<num_joints;i++){
-			files.lSize=sizeof(XYZ);
-			FSRead( files.sFile, &files.lSize, &joints[i].position);
-			files.lSize=sizeof(float);
-			FSRead( files.sFile, &files.lSize, &joints[i].length);
-			files.lSize=sizeof(float);
-			FSRead( files.sFile, &files.lSize, &joints[i].mass);
-			files.lSize=sizeof(bool);
-			FSRead( files.sFile, &files.lSize, &joints[i].hasparent);
-			files.lSize=sizeof(bool);
-			FSRead( files.sFile, &files.lSize, &joints[i].locked);
-			files.lSize=sizeof(int);
-			FSRead( files.sFile, &files.lSize, &joints[i].modelnum);
-			files.lSize=sizeof(bool);
-			FSRead( files.sFile, &files.lSize, &joints[i].visible);
-			files.lSize=sizeof(bool);
-			FSRead( files.sFile, &files.lSize, &what);
-			files.lSize=sizeof(int);
-			FSRead( files.sFile, &files.lSize, &joints[i].label);
-			files.lSize=sizeof(int);
-			FSRead( files.sFile, &files.lSize, &joints[i].hasgun);
-			files.lSize=sizeof(bool);
-			FSRead( files.sFile, &files.lSize, &joints[i].lower);
-			files.lSize=sizeof(int);
-			FSRead( files.sFile, &files.lSize, &parentID);
+			ReadXYZ(files.sFile, 1, &joints[i].position);
+			ReadFloat(files.sFile, 1, &joints[i].length);
+			ReadFloat(files.sFile, 1, &joints[i].mass);
+			ReadBool(files.sFile, 1, &joints[i].hasparent);
+			ReadBool(files.sFile, 1, &joints[i].locked);
+			ReadInt(files.sFile, 1, &joints[i].modelnum);
+			ReadBool(files.sFile, 1, &joints[i].visible);
+			ReadBool(files.sFile, 1, &what);
+			ReadInt(files.sFile, 1, &joints[i].label);
+			ReadInt(files.sFile, 1, &joints[i].hasgun);
+			ReadBool(files.sFile, 1, &joints[i].lower);
+			ReadInt(files.sFile, 1, &parentID);
 			if(joints[i].hasparent)joints[i].parent=&joints[parentID];
 			joints[i].velocity=0;
 			joints[i].oldposition=joints[i].position;
 			joints[i].existing=1;
 		}
-		files.lSize=sizeof(num_muscles);
-		FSRead( files.sFile, &files.lSize, &num_muscles);
+
+		ReadInt(files.sFile, 1, &num_muscles);
 		for(int i=0;i<num_muscles;i++){
-			files.lSize=sizeof(float);
-			FSRead( files.sFile, &files.lSize, &muscles[i].length);
-			files.lSize=sizeof(float);
-			FSRead( files.sFile, &files.lSize, &muscles[i].targetlength);
-			files.lSize=sizeof(float);
-			FSRead( files.sFile, &files.lSize, &muscles[i].minlength);
-			files.lSize=sizeof(float);
-			FSRead( files.sFile, &files.lSize, &muscles[i].maxlength);
-			files.lSize=sizeof(float);
-			FSRead( files.sFile, &files.lSize, &muscles[i].strength);
-			files.lSize=sizeof(int);
-			FSRead( files.sFile, &files.lSize, &muscles[i].type);
-			files.lSize=sizeof(bool);
-			FSRead( files.sFile, &files.lSize, &muscles[i].visible);
-			files.lSize=sizeof(int);
-			FSRead( files.sFile, &files.lSize, &parentID);
+			ReadFloat(files.sFile, 1, &muscles[i].length);
+			ReadFloat(files.sFile, 1, &muscles[i].targetlength);
+			ReadFloat(files.sFile, 1, &muscles[i].minlength);
+			ReadFloat(files.sFile, 1, &muscles[i].maxlength);
+			ReadFloat(files.sFile, 1, &muscles[i].strength);
+			ReadInt(files.sFile, 1, &muscles[i].type);
+			ReadBool(files.sFile, 1, &muscles[i].visible);
+			ReadInt(files.sFile, 1, &parentID);
 			muscles[i].parent1=&joints[parentID];
-			FSRead( files.sFile, &files.lSize, &parentID);
+			ReadInt(files.sFile, 1, &parentID);
 			muscles[i].parent2=&joints[parentID];
 		}
-		files.lSize=sizeof(int);
+
 		for(int j=0;j<3;j++){
-			FSRead( files.sFile, &files.lSize, &forwardjoints[j]);
+			ReadInt(files.sFile, 1, &forwardjoints[j]);
 		}
 		for(int j=0;j<3;j++){
-			FSRead( files.sFile, &files.lSize, &lowforwardjoints[j]);
+			ReadInt(files.sFile, 1, &lowforwardjoints[j]);
 		}
 	}
 	files.EndLoad();

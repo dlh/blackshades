@@ -34,7 +34,6 @@ typedef struct Point
 #define Random rand
 #define SetFPos(fildes, whence, offset) lseek(fildes, offset, whence)
 #define FSClose(fildes) close(fildes)
-#define FSRead(fildes, count, buf) read(fildes, buf, *count)
 
 void Microseconds(UnsignedWide *microTickCount);
 void GetMouse(Point *p);

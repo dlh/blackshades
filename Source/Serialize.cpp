@@ -6,12 +6,29 @@
 
 /* these all read big-endian data */
 
+int ReadBool(int fd, int count, bool *b)
+{
+	while (count--) {
+		unsigned char buf[1];
+		
+		if (read(fd, buf, 1) != 1) {
+			STUB_FUNCTION;
+		}
+		
+		*b = (buf[0] != 0) ? true : false;
+		
+		b++;
+	}
+}
+
 int ReadShort(int fd, int count, short *s)
 {
 	while (count--) {
 		unsigned char buf[2];
 		
-		read(fd, buf, 2);
+		if (read(fd, buf, 2) != 2) {
+			STUB_FUNCTION;
+		}
 		
 		*s = (short)((buf[0] << 8) | buf[1]);
 		
@@ -24,7 +41,9 @@ int ReadInt(int fd, int count, int *s)
 	while (count--) {
 		unsigned char buf[4];
 		
-		read(fd, buf, 2);
+		if (read(fd, buf, 4) != 4) {
+			STUB_FUNCTION;
+		}
 		
 		*s = (int)((buf[0] << 24) | (buf[1] << 16) | (buf[2] << 8) | buf[3]);
 		
