@@ -3489,7 +3489,12 @@ void Game::InitGame()
 
 		GLint swapInt = 1;
 
+#ifdef MAC
  	   	aglSetInteger(gOpenGLContext, AGL_SWAP_INTERVAL, &swapInt);
+#else
+ 
+#endif
+
 
                
 

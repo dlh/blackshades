@@ -256,7 +256,11 @@ void	Game::EventLoop( void )
 
 		if ( DrawGLScene())
 
+#ifdef MAC
 			aglSwapBuffers( gOpenGLContext );
+#else
+                        SDL_GL_SwapBuffers( gOpenGLContext );
+#endif
 
 		else
 
