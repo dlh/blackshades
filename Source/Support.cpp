@@ -288,7 +288,13 @@ void LoadOGG_CFH(char *filename, ALenum *format, void **wave,
 	int asize;
 	int err;
 	int eof;
-	
+
+#if BYTE_ORDER == BIG_ENDIAN
+	const int endian = 1;
+#else
+	const int endian = 0;
+#endif
+
 	/* try to find the real file (and place it in filename1) */
 	fix_filename(filename, filename1);
 
@@ -332,7 +338,8 @@ void LoadOGG_CFH(char *filename, ALenum *format, void **wave,
 	buf = (char *)wave1;
 	
 	while(!eof) {
-		long ret = ov_read(&vf, buf, 1024, 0, 2, 1, &current_section);
+		long ret = ov_read(&vf, buf, 1024, endian, 2, 1, 
+			&current_section);
 		
 		if (ret == 0) {
 			/* end of file */
