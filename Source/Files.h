@@ -11,11 +11,11 @@
 #include "tk.h"				// Header File For The Glaux Library
 #include <Sound.h>
 #include <Resources.h>
-#include "AGL_DSp.h"		// Header for OpenGL and DrawSprocket Functions
 #ifdef MAC
+#include "AGL_DSp.h"		// Header for OpenGL and DrawSprocket Functions
 #include "MacInput.h"		// Header for Special Mac Input functions
-#endif
 #include "Alerts.h"			// Header for Dialogs and alerts for this application
+#endif
 #include <cstdarg>
 #include <math.h>
 #include "glm.h"
