@@ -51,9 +51,11 @@ void InitMouse()
 
 void MoveMouse(int xcoord, int ycoord, Point *mouseloc)
 {
-	/* mouse warp is annoying when we can just grab the mouse */
-//	SDL_WarpMouse(xcoord, ycoord);
-//	SDL_PumpEvents();
+	/* TODO: mouse warp is annoying when we can just grab the mouse */
+#ifdef FULLSCREEN
+	SDL_WarpMouse(xcoord, ycoord);
+	SDL_PumpEvents();
+#endif
 	GetMouse(mouseloc);
 }
 
