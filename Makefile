@@ -6,7 +6,7 @@ SRCDIR := ./Source
 BINDIR := ./objs
 EXE := $(BINDIR)/blackshades
 
-CFLAGS := -g $(shell sdl-config --cflags) -I$(SRCDIR) -DPOOLOOPS
+CFLAGS := -g $(shell sdl-config --cflags) -I$(SRCDIR) -include Source/Support.h -DPOOLOOPS
 CXXFLAGS := $(CFLAGS)
 LDFLAGS := $(shell sdl-config --libs) -lGL -lGLU # -framework QuickTime
 
