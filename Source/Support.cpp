@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include <sys/types.h>
 #include <dirent.h>
 #include <sys/stat.h>
@@ -11,8 +13,11 @@
 
 int Random()
 {
-	/* holdon, will fix in a minute! */
-	return rand();
+#if RAND_MAX >= 65535
+	return (rand() % 65535) - 32767;
+#else
+#error please fix this for your platform
+#endif
 }
 
 void Microseconds(UnsignedWide *microTickCount)
