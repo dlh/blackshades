@@ -12,13 +12,6 @@ void Microseconds(UnsignedWide *microTickCount)
 	microTickCount->lo = SDL_GetTicks() * 1000;
 }
 
-OSErr FSRead(int refNum, long *count, void *buffPtr)
-{
-	read(refNum, buffPtr, *count);
-	
-	return 0;
-}
-
 void GetMouse(Point *p)
 {
 STUB_FUNCTION;

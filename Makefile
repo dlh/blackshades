@@ -19,6 +19,7 @@ SRCS := Camera.cpp \
         Globals.cpp \
 	MacInput.cpp \
         Maths.cpp \
+	Models.cpp \
 	Person.cpp \
         Quaternions.cpp \
 	Skeleton.cpp \
@@ -31,9 +32,7 @@ SRCS := Camera.cpp \
 # Files.cpp
 # GameInitDispose.cpp
 # GameLoop.cpp
-# GameTick.cpp
 # Main.cpp
-# Models.cpp
 
 OBJS1 := $(SRCS:.c=.o)
 OBJS2 := $(OBJS1:.cpp=.o)

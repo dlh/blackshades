@@ -6,6 +6,8 @@
 
 #define STUB_FUNCTION fprintf(stderr,"STUB: %s at " __FILE__ ", line %d, thread %d\n",__FUNCTION__,__LINE__,getpid())
 
+#define fsFromStart SEEK_SET
+
 typedef unsigned char * Str255;
 typedef int OSErr;
 
@@ -26,11 +28,14 @@ typedef struct Point
 } Point;
 
 #define Random rand
+#define SetFPos(fildes, whence, offset) lseek(fildes, offset, whence)
+#define FSClose(fildes) close(fildes)
+#define FSRead(fildes, count, buf) read(fildes, buf, *count)
 
 void Microseconds(UnsignedWide *microTickCount);
-OSErr FSRead(int refNum, long *count, void *buffPtr);
 void GetMouse(Point *p);
 void GetKeys(unsigned long *keys);
 int Button(void);
+
 
 #endif
