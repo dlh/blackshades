@@ -15,3 +15,4 @@ void TimerInit(timer* theTimer);
 float TimerGetTime(timer* theTimer);
 
 #endif
+
