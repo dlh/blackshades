@@ -1763,5 +1763,6 @@ int Game::DrawGLScene(GLvoid)
 
 	}
 
+	return 1;
 }
 
