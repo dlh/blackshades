@@ -19,6 +19,9 @@
 #include "AGL_DSp.h"	
 #include "MacInput.h"
 #endif
+#ifdef POOLOOPS
+#include <SDL/SDL.h>
+#endif
 #include "Quaternions.h"
 #include "Camera.h"
 #include "Skeleton.h"
