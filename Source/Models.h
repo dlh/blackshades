@@ -47,7 +47,9 @@ class Model{
 				int LineCheck3(XYZ p1,XYZ p2, XYZ *p,XYZ move,float rotate,float *d);
 				
 				void UpdateVertexArray();
+#ifdef MAC
 				bool load(Str255 Name);
+#endif
 				void Scale(float xscale,float yscale,float zscale);
 				void ScaleNormals(float xscale,float yscale,float zscale);
 				void Translate(float xtrans,float ytrans,float ztrans);

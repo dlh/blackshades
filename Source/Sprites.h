@@ -2,13 +2,16 @@
 #define _SPRITE_H_
 
 #include "Quaternions.h"
+#ifdef MAC
 #include <gl.h>
 #include <glu.h>
+#else
+#include <GL/gl.h>
+#include <GL/glu.h>
+#endif
 #include "Files.h"
 #include "TGALoader.h"
 #include "Quaternions.h"
-#include "gl.h"		
-#include "glut.h"
 #include "Camera.h"
 #include "Models.h"
 #include "Fog.h"
@@ -78,13 +81,13 @@ class Sprites{
 				void LoadRainTexture(char *fileName);
 				
 				~Sprites() {
-					glDeleteTextures( 1, (const unsigned long *)muzzleflaretextureptr );
-					glDeleteTextures( 1, (const unsigned long *)flaretextureptr );
-					glDeleteTextures( 1, (const unsigned long *)bullettextureptr );
-					glDeleteTextures( 1, (const unsigned long *)smoketextureptr );
-					glDeleteTextures( 1, (const unsigned long *)bloodtextureptr );
-					glDeleteTextures( 1, (const unsigned long *)raintextureptr );
-					glDeleteTextures( 1, (const unsigned long *)snowtextureptr );
+					glDeleteTextures( 1, (const GLuint *)muzzleflaretextureptr );
+					glDeleteTextures( 1, (const GLuint *)flaretextureptr );
+					glDeleteTextures( 1, (const GLuint *)bullettextureptr );
+					glDeleteTextures( 1, (const GLuint *)smoketextureptr );
+					glDeleteTextures( 1, (const GLuint *)bloodtextureptr );
+					glDeleteTextures( 1, (const GLuint *)raintextureptr );
+					glDeleteTextures( 1, (const GLuint *)snowtextureptr );
 				};
 };
 

@@ -1,6 +1,10 @@
 #include "Game.h"	
 
-
+#ifdef POOLOOPS
+#include <stdio.h>
+#include <unistd.h>
+#define STUB_FUNCTION fprintf(stderr,"STUB: %s at " __FILE__ ", line %d, thread %d\n",__FUNCTION__,__LINE__,getpid())
+#endif
 
 extern int thirdperson;
 
@@ -493,7 +497,7 @@ int Game::DrawGLScene(GLvoid)
 		
 
 		
-
+#ifdef MAC
 		//Mouse (draw)
 
 		glMatrixMode(GL_PROJECTION);						// Select The Projection Matrix
@@ -508,12 +512,12 @@ int Game::DrawGLScene(GLvoid)
 
 		glDisable(GL_TEXTURE_2D);
 
+
 		Point mouseloc;
 
 		GetMouse(&mouseloc);
 
 		mouseloc.v=screenheight-mouseloc.v;
-
 		
 
 		glColor4f(.1,0,0,1);
@@ -575,9 +579,10 @@ int Game::DrawGLScene(GLvoid)
 		glPopMatrix();
 
 		
-
 		olddrawmouse=mouseloc;
-
+#else
+		STUB_FUNCTION;
+#endif
 		
 
 		//Flash

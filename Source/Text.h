@@ -4,12 +4,15 @@
 
 /**> HEADER FILES <**/
 #include "Quaternions.h"
+#ifdef MAC
 #include <gl.h>
 #include <glu.h>
+#else
+#include <GL/gl.h>
+#include <GL/glu.h>
+#endif
 #include "Files.h"
 #include "Quaternions.h"
-#include "gl.h"		
-#include "glut.h"
 #include "TGALoader.h"
 
 class Text{
@@ -22,7 +25,7 @@ class Text{
 		void glPrint(GLint x, GLint y, char *string, int set, float size, float width, float height);
 		
 		~Text(){
-			glDeleteTextures( 1, (const unsigned long *)FontTexture );
+			glDeleteTextures( 1, (const GLuint *)FontTexture );
 		}
 };
 

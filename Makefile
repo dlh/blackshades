@@ -6,13 +6,12 @@ SRCDIR := ./Source
 BINDIR := ./objs
 EXE := $(BINDIR)/blackshades
 
-CFLAGS := -g $(shell sdl-config --cflags) -I$(SRCDIR)
+CFLAGS := -g $(shell sdl-config --cflags) -I$(SRCDIR) -DPOOLOOPS
 CXXFLAGS := $(CFLAGS)
 LDFLAGS := $(shell sdl-config --libs) -framework QuickTime
 
 SRCS := Camera.cpp \
         Decals.cpp \
-        Files.cpp \
         Fog.cpp \
         Frustum.cpp \
         GameDraw.cpp \
@@ -30,6 +29,8 @@ SRCS := Camera.cpp \
         TGALoader.cpp \
         Text.cpp \
         Timer.cpp
+
+# Files.cpp
 
 OBJS1 := $(SRCS:.c=.o)
 OBJS2 := $(OBJS1:.cpp=.o)

@@ -70,11 +70,14 @@ class Files
 	public:
 		char          szSavedGameName[FILE_NAME_SIZE + 1];
 		short         sSavedGameVolume;
+#ifdef MAC
 		SFReply    sfReply;
 		Boolean       bGameSaved;
+#endif
 		short sFile;
 		long  lSize;
-	
+
+#ifdef MAC	
 		short OpenFile(Str255 Name);
 		short PromptForSaveAS( short   sPromptID,
                               short   sNameID,
@@ -87,6 +90,7 @@ class Files
 		short OpenFileDialog();
 		void LoadNamedMap(Str255 Name);
 		void LoadGame(Str255 Name, int animnum);
+#endif
 		void LoadMap();
 		void StartSave();
 		void EndSave();

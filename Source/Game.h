@@ -1,18 +1,28 @@
 #ifndef _GAME_H_
 #define _GAME_H_
 
+#ifdef MAC
 #include <gl.h>
+#include <glu.h>
+#include <tk.h>
+#else
+#include <GL/gl.h>
+#include <GL/glu.h>
+#endif
+
 #include <stdlib.h>			
 #include <stdio.h>			
 #include <string.h>
 #include <ctype.h>
-#include <glu.h>			
-#include <tk.h>				
+#ifdef MAC
 #include <Sound.h>
 #include <Resources.h>		
+#endif
 #include <cstdarg>
+#ifdef MAC
 #include <glm.h>
 #include <TextUtils.h>
+#endif
 #include "Timer.h"	
 #ifdef MAC
 #include "AGL_DSp.h"	
@@ -28,7 +38,12 @@
 #include "Models.h"
 #include "Text.h"
 #include "TGALoader.h"
+#ifdef MAC
 #include "alut.h"
+#else
+#include <AL/al.h>
+#include <AL/alut.h>
+#endif
 #include "Fog.h"
 #include "Frustum.h"
 #include "Sprites.h"
@@ -45,15 +60,18 @@ class Game
 {
 	public:
 		//Eventloop
+#ifdef MAC
   		Boolean	gQuit;
+#endif
 		float gamespeed;
 		double multiplier2,multiplier3,multiplier4,multiplier5,end,start,timetaken,framespersecond;
 		timer theTimer;	
 		float sps;
 		int maxfps;
+#ifdef MAC
 		AGLContext gOpenGLContext;
 		CGrafPtr	theScreen;
-		
+#endif
 		//Graphics
 		int screenwidth,screenheight;
 		float viewdistance;
@@ -66,7 +84,9 @@ class Game
 		
 		//Game Functions
 		void	HandleKeyDown( char theChar );
+#ifdef MAC
 		void	DoEvent( EventRecord *event );
+#endif
 		void	EventLoop( void );
 		void 	Tick();
 		void 	Splat(int k);
@@ -74,8 +94,10 @@ class Game
 		void 	Dispose();
 		
 		//Mouse
+#ifdef MAC
 		Point mouseloc;
 		Point oldmouseloc;
+#endif
 		float mouserotation,mouserotation2;
 		float oldmouserotation,oldmouserotation2;
 		float mousesensitivity;
@@ -144,9 +166,11 @@ class Game
 		bool reloadtoggle;
 		
 		bool aimtoggle;
-		
+
+#ifdef MAC		
 		Point olddrawmouse;
-		
+#endif
+	
 		XYZ vipgoal;
 		
 		XYZ aimer[2];
@@ -202,10 +226,10 @@ class Game
 		bool oldvisionkey;
 		
 		~Game() {
-			glDeleteTextures( 1, (const unsigned long *)personspritetextureptr );
-			glDeleteTextures( 1, (const unsigned long *)deadpersonspritetextureptr );
-			glDeleteTextures( 1, (const unsigned long *)scopetextureptr );
-			glDeleteTextures( 1, (const unsigned long *)flaretextureptr );
+			glDeleteTextures( 1, (const GLuint *)personspritetextureptr );
+			glDeleteTextures( 1, (const GLuint *)deadpersonspritetextureptr );
+			glDeleteTextures( 1, (const GLuint *)scopetextureptr );
+			glDeleteTextures( 1, (const GLuint *)flaretextureptr );
 		}
 		
 };

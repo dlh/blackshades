@@ -32,10 +32,15 @@
 #define rightfoot 20
 
 /**> HEADER FILES <**/
+#ifdef MAC
 #include <gl.h>
+#include "alut.h"
+#else
+#include <GL/gl.h>
+#include <AL/alut.h>
+#endif
 #include "Quaternions.h"
 #include "Constants.h"
-#include "alut.h"
 #include "Files.h"
 #include "Models.h"
 #include "Camera.h"

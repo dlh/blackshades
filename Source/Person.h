@@ -2,10 +2,18 @@
 #define _PERSON_H_
 
 /**> HEADER FILES <**/
+#ifdef MAC
 #include <gl.h>
+#else
+#include <GL/gl.h>
+#endif
 #include "Quaternions.h"
 #include "Constants.h"
+#ifdef MAC
 #include "alut.h"
+#else
+#include <AL/alut.h>
+#endif
 #include "Skeleton.h"
 #include "Models.h"
 #include "math.h"

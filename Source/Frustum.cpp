@@ -1,6 +1,10 @@
 #include "Frustum.h"
 #include <math.h>
+#ifdef MAC
 #include "gl.h"
+#else
+#include <GL/gl.h>
+#endif
 
 void FRUSTUM::
 	GetFrustum() {
