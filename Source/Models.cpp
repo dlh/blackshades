@@ -65,7 +65,7 @@ void Model::UpdateVertexArray(){
 bool Model::load(Str255 Name)
 {
 	short				tfile;
-	long				i,count,err;
+	long				err;
 	Files file;
 	
 	tfile=file.OpenFile(Name);
@@ -80,9 +80,9 @@ bool Model::load(Str255 Name)
 	
 	err=ReadXYZ(tfile,vertexNum,vertex);
 	err=ReadTexturedTriangle(tfile,TriangleNum,Triangles);
-	
+
 	FSClose(tfile);
-	
+		
 	UpdateVertexArray();
 	
 	XYZ average;
@@ -160,7 +160,7 @@ void Model::Rotate(float xang,float yang,float zang)
 
 void Model::CalculateNormals()
 {
-	int i,j;
+	int i;
 	for(i=0;i<TriangleNum;i++){
 		CrossProduct(vertex[Triangles[i].vertex[1]]-vertex[Triangles[i].vertex[0]],vertex[Triangles[i].vertex[2]]-vertex[Triangles[i].vertex[0]],&normals[i]);
 		Normalise(&normals[i]);
@@ -239,8 +239,8 @@ int Model::LineCheck(XYZ p1,XYZ p2, XYZ *p)
 {
   	int j;
 	float distance;
-	float olddistance;
-	int intersecting;
+	float olddistance=9999999.0;
+	int intersecting=0;
 	int firstintersecting=-1;
 	XYZ point;
 	if(sphere_line_intersection(p1.x,p1.y,p1.z,
@@ -259,8 +259,8 @@ int Model::LineCheck2(XYZ p1,XYZ p2, XYZ *p, XYZ move, float rotate)
 {
   	int j;
 	float distance;
-	float olddistance;
-	int intersecting;
+	float olddistance=9999999.0;
+	int intersecting=0;
 	int firstintersecting=-1;
 	XYZ point;
 	p1=p1-move;
@@ -286,8 +286,8 @@ int Model::LineCheck2(XYZ *p1,XYZ *p2, XYZ *p, XYZ *move, float *rotate)
 {
   	int j;
 	float distance;
-	float olddistance;
-	int intersecting;
+	float olddistance=9999999.0;
+	int intersecting=0;
 	int firstintersecting=-1;
 	XYZ point;
 	*p1=*p1-*move;
@@ -313,8 +313,8 @@ int Model::LineCheck3(XYZ p1,XYZ p2, XYZ *p, XYZ move, float rotate, float *d)
 {
   	int j;
 	float distance;
-	float olddistance;
-	int intersecting;
+	float olddistance=9999999.0;
+	int intersecting=0;
 	int firstintersecting=-1;
 	XYZ point;
 	p1=p1-move;
