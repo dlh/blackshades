@@ -711,10 +711,8 @@ bool sphere_line_intersection (
 	  // no intersection
 	  return(0);
 	 }
-	 if ( i >= 0.0 )
-	 {
-	  return(1);
-	 }
+
+	return(1);
 }
 
 XYZ DoRotationRadian(XYZ thePoint, float xang, float yang, float zang){
