@@ -959,8 +959,11 @@ void Game::LoadingScreen(float percent)
 	
 
 	
-
+#ifdef MAC
 	aglSwapBuffers( gOpenGLContext );
+#else
+       SDL_GL_SwapBuffers( gOpenGLContext );
+#endif
 
 }
 
@@ -3487,6 +3490,8 @@ void Game::InitGame()
 		GLint swapInt = 1;
 
  	   	aglSetInteger(gOpenGLContext, AGL_SWAP_INTERVAL, &swapInt);
+
+               
 
 	}
 
