@@ -1,5 +1,9 @@
 #include "Support.h"
+#include "Files.h"
 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>                     
 #include <unistd.h>
 
 #include "SDL.h"
@@ -42,3 +46,24 @@ void DisposeMouse()
 {
 STUB_FUNCTION;
 }
+
+#ifndef O_BINARY
+#define O_BINARY 0
+#endif
+
+int Files::OpenFile(Str255 Name)
+{
+	sFile = open((char *)Name, O_RDONLY | O_BINARY);
+	return sFile;
+}
+
+void Files::EndLoad()
+{
+	if (sFile != -1) {
+		FSClose( sFile );
+	}
+	
+	sFile = -1;
+}
+
+    

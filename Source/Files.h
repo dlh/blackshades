@@ -81,7 +81,13 @@ class Files
 #endif
 		long  lSize;
 
+#ifdef MAC
 		short OpenFile(Str255 Name);
+#else
+		int OpenFile(Str255 Name);
+		Files() : sFile(-1), lSize(0) { } 
+#endif
+
 #ifdef MAC
 		short PromptForSaveAS( short   sPromptID,
                               short   sNameID,
