@@ -493,375 +493,375 @@ void LoadSounds(bool musictoggle)
 
 	}
 #else
-	alutLoadVorbisFile((char *)":Data:Sounds:underwater.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:underwater.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[visionsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[visionsound], AL_BUFFER, gSampleSet[visionsound]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 	
 
-	alutLoadVorbisFile((char *)":Data:Sounds:soulin.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:soulin.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[soulinsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[soulinsound], AL_BUFFER, gSampleSet[soulinsound]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 	
 
-	alutLoadVorbisFile((char *)":Data:Sounds:soulout.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:soulout.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[souloutsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[souloutsound], AL_BUFFER, gSampleSet[souloutsound]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 	
 
-	alutLoadVorbisFile((char *)":Data:Sounds:footstep1.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:footstep1.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[footstepsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[footstepsound], AL_BUFFER, gSampleSet[footstepsound]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */ 
 
 	
 
-	alutLoadVorbisFile((char *)":Data:Sounds:footstep2.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:footstep2.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[footstepsound+1], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[footstepsound+1], AL_BUFFER, gSampleSet[footstepsound+1]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 	
 
-	alutLoadVorbisFile((char *)":Data:Sounds:footstep3.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:footstep3.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[footstepsound+2], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[footstepsound+2], AL_BUFFER, gSampleSet[footstepsound+2]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 	
 
-	alutLoadVorbisFile((char *)":Data:Sounds:footstep4.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:footstep4.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[footstepsound+3], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[footstepsound+3], AL_BUFFER, gSampleSet[footstepsound+3]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 	
 
-	alutLoadVorbisFile((char *)":Data:Sounds:footstep5.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:footstep5.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[footstepsound+4], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[footstepsound+4], AL_BUFFER, gSampleSet[footstepsound+4]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 	
 
-	alutLoadVorbisFile((char *)":Data:Sounds:bodyland.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:bodyland.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[bodylandsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[bodylandsound], AL_BUFFER, gSampleSet[bodylandsound]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 
 
-	alutLoadVorbisFile((char *)":Data:Sounds:headland.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:headland.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[headlandsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[headlandsound], AL_BUFFER, gSampleSet[headlandsound]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 	
 
-	alutLoadVorbisFile((char *)":Data:Sounds:sniperrifle.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:sniperrifle.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[riflesound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[riflesound], AL_BUFFER, gSampleSet[riflesound]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 	
 
-	alutLoadVorbisFile((char *)":Data:Sounds:BodyHit.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:BodyHit.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[bodyhitsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[bodyhitsound], AL_BUFFER, gSampleSet[bodyhitsound]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 
 
-	alutLoadVorbisFile((char *)":Data:Sounds:WallHit.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:WallHit.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[wallhitsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[wallhitsound], AL_BUFFER, gSampleSet[wallhitsound]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 	
 
-	alutLoadVorbisFile((char *)":Data:Sounds:machinegun.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:machinegun.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[machinegunsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[machinegunsound], AL_BUFFER, gSampleSet[machinegunsound]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 	
 
-	alutLoadVorbisFile((char *)":Data:Sounds:Nearbullet.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:Nearbullet.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[nearbulletsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[nearbulletsound], AL_BUFFER, gSampleSet[nearbulletsound]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 	
 
-	alutLoadVorbisFile((char *)":Data:Sounds:riflewhack.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:riflewhack.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[headwhacksound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[headwhacksound], AL_BUFFER, gSampleSet[headwhacksound]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 
 
-	alutLoadVorbisFile((char *)":Data:Sounds:headshot.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:headshot.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[headshotsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[headshotsound], AL_BUFFER, gSampleSet[headshotsound]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 	
 
-	alutLoadVorbisFile((char *)":Data:Sounds:reload.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:reload.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[reloadsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[reloadsound], AL_BUFFER, gSampleSet[reloadsound]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 	
 
-	alutLoadVorbisFile((char *)":Data:Sounds:click.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:click.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[clicksound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[clicksound], AL_BUFFER, gSampleSet[clicksound]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 	
 
-	alutLoadVorbisFile((char *)":Data:Sounds:SW.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:SW.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[pistol1sound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[pistol1sound], AL_BUFFER, gSampleSet[pistol1sound]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 	
 
-	alutLoadVorbisFile((char *)":Data:Sounds:glock.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:glock.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[pistol2sound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[pistol2sound], AL_BUFFER, gSampleSet[pistol2sound]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 	
 
-	alutLoadVorbisFile((char *)":Data:Sounds:pinpull.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:pinpull.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[pinpullsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[pinpullsound], AL_BUFFER, gSampleSet[pinpullsound]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 	
 
-	alutLoadVorbisFile((char *)":Data:Sounds:pinreplace.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:pinreplace.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[pinreplacesound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[pinreplacesound], AL_BUFFER, gSampleSet[pinreplacesound]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 	
 
-	alutLoadVorbisFile((char *)":Data:Sounds:handlerelease.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:handlerelease.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[grenadethrowsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[grenadethrowsound], AL_BUFFER, gSampleSet[grenadethrowsound]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 	
 
-	alutLoadVorbisFile((char *)":Data:Sounds:bounce.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:bounce.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[bouncesound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[bouncesound], AL_BUFFER, gSampleSet[bouncesound]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 	
 
-	alutLoadVorbisFile((char *)":Data:Sounds:bounce2.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:bounce2.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[bounce2sound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[bounce2sound], AL_BUFFER, gSampleSet[bounce2sound]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 	
 
-	alutLoadVorbisFile((char *)":Data:Sounds:explosion.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:explosion.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[explosionsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[explosionsound], AL_BUFFER, gSampleSet[explosionsound]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 	
 
-	alutLoadVorbisFile((char *)":Data:Sounds:headland.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:headland.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[bodywhacksound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[bodywhacksound], AL_BUFFER, gSampleSet[bodywhacksound]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 
 
-	alutLoadVorbis((char *)":Data:Sounds:rain.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:rain.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[rainsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[rainsound], AL_BUFFER, gSampleSet[rainsound]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 
 
-	alutLoadVorbisFile((char *)":Data:Sounds:Lose.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:Lose.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[losesound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[losesound], AL_BUFFER, gSampleSet[losesound]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 
 
-	alutLoadVorbisFile((char *)":Data:Sounds:Disguisekill.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:Disguisekill.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[disguisekillsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[disguisekillsound], AL_BUFFER, gSampleSet[disguisekillsound]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 
 
-	alutLoadVorbisFile((char *)":Data:Sounds:knifeslash.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:knifeslash.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[knifeslashsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[knifeslashsound], AL_BUFFER, gSampleSet[knifeslashsound]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 
 
-	alutLoadVorbisFile((char *)":Data:Sounds:shotgun.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:shotgun.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[shotgunsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[shotgunsound], AL_BUFFER, gSampleSet[shotgunsound]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 
 
 	if(musictoggle){
 
-	alutLoadVorbisFile((char *)":Data:Sounds:mainmenusong.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:mainmenusong.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[mainmenusong], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[mainmenusong], AL_BUFFER, gSampleSet[mainmenusong]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 
 
-	alutLoadVorbisFile((char *)":Data:Sounds:shootsong.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:shootsong.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[shootsong], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[shootsong], AL_BUFFER, gSampleSet[shootsong]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 
 
-	alutLoadVorbisFile((char *)":Data:Sounds:zombiesong.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:zombiesong.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[zombiesong], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[zombiesong], AL_BUFFER, gSampleSet[zombiesong]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 
 
-	alutLoadVorbisFile((char *)":Data:Sounds:knifesong.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
+	alutLoadVorbis_LOKI((char *)":Data:Sounds:knifesong.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[knifesong], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
 
 	alSourcei(gSourceID[knifesong], AL_BUFFER, gSampleSet[knifesong]);
 
-	alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
+	/* alutUnloadVorbis(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1); */
 
 	}
 

@@ -48,12 +48,12 @@ void alutUnloadWAV_CFH(ALenum format, void *wave, unsigned int size,
 #define alutLoadWAVFile alutLoadWAVFile_CFH
 #define alutUnloadWAV alutUnloadWAV_CFH 
 #else
-void alutLoadVorbisFile_CFH(char *filename, ALenum *format, void **wave, 
+void alutLoadVorbis_LOKI_CFH(char *filename, ALenum *format, void **wave, 
 	unsigned int *size, ALsizei *freq);
 void alutUnloadVorbis_CFH(ALenum format, void *wave, unsigned int size, 
 	ALsizei freq);
-#define alutLoadVorbisFile alutLoadVorbisFile_CFH
-#define alutUnloadVorbis alutUnloadVorbis_CFH 
+#define alutLoadVorbis_LOKI alutLoadVorbis_LOKI_CFH
+#define alutUnloadVorbis_CFH(...) 
 #endif
 
 
