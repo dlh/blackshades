@@ -19,8 +19,10 @@ SRCS := Camera.cpp \
         Maths.cpp \
         Quaternions.cpp \
         Sprites.cpp \
+	Support.cpp \
         TGALoader.cpp \
-        Text.cpp
+        Text.cpp \
+	Timer.cpp
 
 # Files.cpp
 # GameInitDispose.cpp
