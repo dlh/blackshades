@@ -22,13 +22,13 @@
 #include "Alerts.h"			// Header for Dialogs and alerts for this application
 #endif
 #include <cstdarg>
-#include <math.h>
+#include <cmath>
 #ifdef MAC
 #include "glm.h"
 #include <TextUtils.h>
 #endif
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
 
 #define FILE_STRINGS              130
 #define Pstr unsigned char *

@@ -4,7 +4,7 @@
 
 
 
-#include <math.h>
+#include <cmath>
 
 #include "Quaternions.h"
 

@@ -3,7 +3,7 @@
 
 
 /**> HEADER FILES <**/
-#include <math.h>
+#include <cmath>
 
 double fast_sqrt (register double arg);
 

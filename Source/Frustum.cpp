@@ -1,5 +1,5 @@
 #include "Frustum.h"
-#include <math.h>
+#include <cmath>
 #ifdef MAC
 #include "gl.h"
 #else

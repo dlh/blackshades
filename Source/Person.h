@@ -17,7 +17,7 @@
 #endif
 #include "Skeleton.h"
 #include "Models.h"
-#include "math.h"
+#include <cmath>
 #include "Camera.h"
 #include "Sprites.h"
 

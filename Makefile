@@ -8,7 +8,7 @@ EXE := $(BINDIR)/blackshades
 
 CFLAGS := -g $(shell sdl-config --cflags) -I$(SRCDIR) -include Source/Support.h -DPOOLOOPS
 CXXFLAGS := $(CFLAGS)
-LDFLAGS := $(shell sdl-config --libs) -lGL -lGLU # -framework QuickTime
+LDFLAGS := $(shell sdl-config --libs) -lGL -lGLU -lopenal # -framework QuickTime
 
 SRCS := Camera.cpp \
         Decals.cpp \
@@ -47,7 +47,7 @@ CLEANUP = $(wildcard *.exe) $(wildcard *.obj) \
 # Rules for compiling individual source files...
 
 $(BINDIR)/%.o: $(SRCDIR)/%.cpp
-	$(CC) -c -o $@ $< $(CXXFLAGS)
+	$(CXX) -c -o $@ $< $(CXXFLAGS)
 
 $(BINDIR)/%.o: $(SRCDIR)/%.c
 	$(CC) -c -o $@ $< $(CFLAGS)
