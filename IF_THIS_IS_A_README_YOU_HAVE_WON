@@ -1,5 +1,6 @@
 Right now it's all compiling...
-http://filesingularity.timedoctor.org/Data.tar.bz2
+http://filesingularity.timedoctor.org/Textures.tar.bz2
+untar that in the Data/ dir to get the targas until somebody adds png support.
 See "Readme" for the developer's original, which of course contains notes on playing the game and such.
 Additional things we added:
 Ctrl+G to grab/ungrab the cursor
@@ -21,5 +22,8 @@ relnev
 theoddone33
 icculus
 zakk
+
+The Bug fixed by:
+Toby Haynes
 
 send diffs to zakk@timedoctor.org
