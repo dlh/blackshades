@@ -1035,3 +1035,4 @@ int Person::DrawSkeleton(int who){
 	
 	glDisable(GL_LIGHT1);
 }
+
