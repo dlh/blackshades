@@ -6,3 +6,4 @@ void Camera::Apply()
 {
 	glTranslatef(-position.x,-position.y,-position.z);
 }
+

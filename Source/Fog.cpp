@@ -51,3 +51,4 @@ void Fog::ResetFog()
 	
 	glEnable(GL_FOG);
 }
+
