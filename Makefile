@@ -17,6 +17,7 @@ SRCS := Camera.cpp \
         GameDraw.cpp \
         Globals.cpp \
         Maths.cpp \
+	Person.cpp \
         Quaternions.cpp \
 	Skeleton.cpp \
         Sprites.cpp \

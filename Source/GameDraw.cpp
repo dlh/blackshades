@@ -1,12 +1,5 @@
 #include "Game.h"	
 
-#ifdef POOLOOPS
-#include <stdio.h>
-#include <unistd.h>
-#define STUB_FUNCTION fprintf(stderr,"STUB: %s at " __FILE__ ", line %d, thread %d\n",__FUNCTION__,__LINE__,getpid())
-#define Random rand
-#endif
-
 extern int thirdperson;
 
 extern double multiplier;
@@ -498,7 +491,6 @@ int Game::DrawGLScene(GLvoid)
 		
 
 		
-#ifdef MAC
 		//Mouse (draw)
 
 		glMatrixMode(GL_PROJECTION);						// Select The Projection Matrix
@@ -581,9 +573,6 @@ int Game::DrawGLScene(GLvoid)
 
 		
 		olddrawmouse=mouseloc;
-#else
-		STUB_FUNCTION;
-#endif
 		
 
 		//Flash

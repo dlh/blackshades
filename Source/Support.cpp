@@ -18,3 +18,13 @@ OSErr FSRead(int refNum, long *count, void *buffPtr)
 	
 	return 0;
 }
+
+void GetMouse(Point *p)
+{
+STUB_FUNCTION;
+}
+
+void GetKeys(unsigned long *keys)
+{
+STUB_FUNCTION;
+}

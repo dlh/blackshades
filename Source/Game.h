@@ -26,8 +26,8 @@
 #include "Timer.h"	
 #ifdef MAC
 #include "AGL_DSp.h"	
-#include "MacInput.h"
 #endif
+#include "MacInput.h"
 #ifdef POOLOOPS
 #include <SDL/SDL.h>
 #endif
@@ -60,9 +60,7 @@ class Game
 {
 	public:
 		//Eventloop
-#ifdef MAC
   		Boolean	gQuit;
-#endif
 		float gamespeed;
 		double multiplier2,multiplier3,multiplier4,multiplier5,end,start,timetaken,framespersecond;
 		timer theTimer;	
@@ -94,10 +92,9 @@ class Game
 		void 	Dispose();
 		
 		//Mouse
-#ifdef MAC
 		Point mouseloc;
 		Point oldmouseloc;
-#endif
+
 		float mouserotation,mouserotation2;
 		float oldmouserotation,oldmouserotation2;
 		float mousesensitivity;
@@ -167,9 +164,7 @@ class Game
 		
 		bool aimtoggle;
 
-#ifdef MAC		
 		Point olddrawmouse;
-#endif
 	
 		XYZ vipgoal;
 		

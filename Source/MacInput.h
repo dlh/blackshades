@@ -4,7 +4,9 @@
 /**> HEADER FILES <**/
 #include <stdlib.h>
 #include <stdio.h>
+#ifdef MAC
 #include <CursorDevices.h> //Mouse
+#endif
 
 /**> CONSTANT DECLARATIONS <**/
 // Mac Keyboard Codes

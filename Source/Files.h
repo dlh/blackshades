@@ -18,9 +18,9 @@
 #include <Sound.h>
 #include <Resources.h>
 #include "AGL_DSp.h"		// Header for OpenGL and DrawSprocket Functions
-#include "MacInput.h"		// Header for Special Mac Input functions
 #include "Alerts.h"			// Header for Dialogs and alerts for this application
 #endif
+#include "MacInput.h"		// Header for Special Mac Input functions
 #include <cstdarg>
 #include <cmath>
 #ifdef MAC
