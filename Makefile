@@ -6,9 +6,14 @@ SRCDIR := ./Source
 BINDIR := ./objs
 EXE := $(BINDIR)/blackshades
 
-CFLAGS := -O2 -Wall -g $(shell sdl-config --cflags) -I$(SRCDIR) -DNOOGG -include Source/Support.h
+CFLAGS := -O2 -Wall -g $(shell sdl-config --cflags) -I$(SRCDIR) -include Source/Support.h
 CXXFLAGS := $(CFLAGS)
 LDFLAGS := $(shell sdl-config --libs) -lGL -lGLU -lopenal # -framework QuickTime
+
+# Don't want ogg?
+CFLAGS += -DNOOGG
+# Got ogg?
+#LDFLAGS += -lvorbisfile -lvorbis
 
 SRCS := Camera.cpp \
         Decals.cpp \
