@@ -3807,6 +3807,8 @@ int Game::InitGL(GLvoid)
 	}
 	
 	SDL_WM_SetCaption("Black Shades", "Black Shades");
+	
+	SDL_EnableUNICODE(1); /* toggle it to ON */
 #endif
 		
 

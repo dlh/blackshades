@@ -19,33 +19,35 @@ void Microseconds(UnsignedWide *microTickCount)
 
 void GetMouse(Point *p)
 {
-STUB_FUNCTION;
-}
-
-void GetKeys(unsigned long *keys)
-{
-STUB_FUNCTION;
+	int x;
+	int y;
+	
+	SDL_GetMouseState(&x, &y);
+	
+	p->h = x;
+	p->v = y;
 }
 
 int Button(void)
 {
-STUB_FUNCTION;
-	return 0;
+	return (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(1));
 }
 
 void InitMouse()
 {
-STUB_FUNCTION;
+// STUB_FUNCTION;
 }
 
 void MoveMouse(int xcoord, int ycoord, Point *mouseloc)
 {
-STUB_FUNCTION;
+	SDL_WarpMouse(xcoord, ycoord);
+	SDL_PumpEvents();
+	GetMouse(mouseloc);
 }
 
 void DisposeMouse()
 {
-STUB_FUNCTION;
+// STUB_FUNCTION;
 }
 
 #ifndef O_BINARY
