@@ -1,9 +1,5 @@
 #include "Sprites.h"
 
-#ifndef MAC
-#define Random rand
-#endif
-
 extern double multiplier;
 extern bool slomo;
 extern Fog fog;

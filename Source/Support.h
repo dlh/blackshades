@@ -31,10 +31,10 @@ typedef struct Point
 	int v;
 } Point;
 
-#define Random rand
 #define SetFPos(fildes, whence, offset) lseek(fildes, offset, whence)
 #define FSClose(fildes) close(fildes)
 
+int Random();
 void Microseconds(UnsignedWide *microTickCount);
 void GetMouse(Point *p);
 void GetKeys(unsigned long *keys);

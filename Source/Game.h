@@ -9,7 +9,6 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #endif
-
 #include <stdlib.h>			
 #include <stdio.h>			
 #include <string.h>
@@ -23,14 +22,20 @@
 #include <glm.h>
 #include <TextUtils.h>
 #endif
+#ifndef MAC
+#include <SDL/SDL.h>
+#endif
+#ifdef MAC
+#include "alut.h"
+#else
+#include <AL/al.h>
+#include <AL/alut.h>
+#endif
 #include "Timer.h"	
 #ifdef MAC
 #include "AGL_DSp.h"	
 #endif
 #include "MacInput.h"
-#ifndef MAC
-#include <SDL/SDL.h>
-#endif
 #include "Quaternions.h"
 #include "Camera.h"
 #include "Skeleton.h"
@@ -38,12 +43,6 @@
 #include "Models.h"
 #include "Text.h"
 #include "TGALoader.h"
-#ifdef MAC
-#include "alut.h"
-#else
-#include <AL/al.h>
-#include <AL/alut.h>
-#endif
 #include "Fog.h"
 #include "Frustum.h"
 #include "Sprites.h"

@@ -1,8 +1,8 @@
+#include <unistd.h>
+
 #include "Models.h"
 #include "Quaternions.h"
 #include "Serialize.h"
-
-#include <unistd.h>
 
 /* these all read big-endian data */
 

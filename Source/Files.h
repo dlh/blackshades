@@ -6,6 +6,10 @@
 #include <stdio.h>			// Header File For Standard Input/Output
 #include <string.h>
 #include <ctype.h>
+#include <cstdarg>
+#include <cmath>
+#include <iostream>
+#include <fstream>
 #ifdef MAC
 #include "gl.h"				// Header File For The OpenGL32 Library
 #include "glu.h"			// Header File For The GLu32 Library
@@ -21,14 +25,10 @@
 #include "Alerts.h"			// Header for Dialogs and alerts for this application
 #endif
 #include "MacInput.h"		// Header for Special Mac Input functions
-#include <cstdarg>
-#include <cmath>
 #ifdef MAC
 #include "glm.h"
 #include <TextUtils.h>
 #endif
-#include <iostream>
-#include <fstream>
 
 #define FILE_STRINGS              130
 #define Pstr unsigned char *

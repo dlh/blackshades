@@ -1,13 +1,19 @@
-#include "Support.h"
-#include "Files.h"
-
 #include <sys/types.h>
 #include <dirent.h>
 #include <sys/stat.h>
-#include <fcntl.h>                     
+#include <fcntl.h>
 #include <unistd.h>
 
 #include "SDL.h"
+
+#include "Support.h"
+#include "Files.h"
+
+int Random()
+{
+	/* holdon, will fix in a minute! */
+	return rand();
+}
 
 void Microseconds(UnsignedWide *microTickCount)
 {

@@ -1,10 +1,10 @@
-#include "Game.h"	
-
 #include <ctype.h>
 
 #ifndef MAC
 #include <time.h>
 #endif
+
+#include "Game.h"	
 
 
 extern unsigned int gSourceID[100];

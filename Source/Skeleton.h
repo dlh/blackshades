@@ -1,6 +1,21 @@
 #ifndef _SKELETON_H_
 #define _SKELETON_H_
 
+/**> HEADER FILES <**/
+#ifdef MAC
+#include <gl.h>
+#include "alut.h"
+#else
+#include <GL/gl.h>
+#include <AL/al.h>
+#include <AL/alut.h>
+#endif
+#include "Quaternions.h"
+#include "Constants.h"
+#include "Files.h"
+#include "Models.h"
+#include "Camera.h"
+
 #define boneconnect 0
 #define constraint 1
 #define muscle 2
@@ -30,21 +45,6 @@
 #define rightknee 18
 #define rightankle 19
 #define rightfoot 20
-
-/**> HEADER FILES <**/
-#ifdef MAC
-#include <gl.h>
-#include "alut.h"
-#else
-#include <GL/gl.h>
-#include <AL/al.h>
-#include <AL/alut.h>
-#endif
-#include "Quaternions.h"
-#include "Constants.h"
-#include "Files.h"
-#include "Models.h"
-#include "Camera.h"
 
 class Joint
 {

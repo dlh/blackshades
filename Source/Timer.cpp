@@ -1,6 +1,7 @@
 /**> HEADER FILES <**/
-#include "Timer.h"				
 #include <string.h>
+#include "Timer.h"				
+
 
 /********************> Timer <*****/
 void TimerInit(timer* theTimer)
