@@ -1,1 +1,2 @@
 So far, with Makefile.zakk I can get: Camera.o, Fog.o, Frustum.o, and TGALoader.o
+With the regular Makefile after relnev's commits, I'm getting: Camera.o  Fog.o  Frustum.o  Text.o
