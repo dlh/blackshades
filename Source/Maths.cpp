@@ -3,7 +3,7 @@
 
 double fast_sqrt (register double arg)
 {	
-#ifdef MAC
+#ifdef OS9 
 	// Can replace with slower return std::sqrt(arg);
 	register double result;
 

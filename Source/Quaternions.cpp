@@ -285,7 +285,7 @@ void Normalise(XYZ *vectory) {
 
 float fast_sqrt (register float arg)
 {	
-#ifdef MAC
+#ifdef OS9 
 	// Can replace with slower return std::sqrt(arg);
 	register float result;
 

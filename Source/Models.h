@@ -6,7 +6,7 @@
 // Model Maximums
 //
 #include "Quaternions.h"
-#ifdef MAC
+#ifdef OS9 
 #include <gl.h>
 #include <glu.h>
 #else

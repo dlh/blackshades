@@ -19,7 +19,7 @@ int 	main( int argc, char *argv[] )
 	{
 
 	
-#ifdef MAC
+#ifdef OS9 
 	ToolboxInit();
 
 	
@@ -47,7 +47,7 @@ int 	main( int argc, char *argv[] )
 	game.Dispose();
 
 	
-#ifdef MAC
+#ifdef OS9 
 	if ( HasAppearance() )
 
 		UnregisterAppearanceClient();

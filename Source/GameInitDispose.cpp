@@ -1,6 +1,6 @@
 #include <ctype.h>
 
-#ifndef MAC
+#ifndef OS9 
 #include <time.h>
 #endif
 
@@ -956,7 +956,7 @@ void Game::LoadingScreen(float percent)
 	
 
 	
-#ifdef MAC
+#ifdef OS9 
 	aglSwapBuffers( gOpenGLContext );
 #else
 	SDL_GL_SwapBuffers( );
@@ -1668,7 +1668,7 @@ void Game::InitGame()
 
 	//Setup random seed
 
-#ifdef MAC
+#ifdef OS9 
 	qd.randSeed = TickCount();
 #else
 	srand(time(NULL));
@@ -3490,7 +3490,7 @@ void Game::InitGame()
 
 		GLint swapInt = 1;
 
-#ifdef MAC
+#ifdef OS9 
  	   	aglSetInteger(gOpenGLContext, AGL_SWAP_INTERVAL, &swapInt);
 #else
  
@@ -3548,7 +3548,7 @@ int Game::InitGL(GLvoid)
 	if(!initialized){
 
 		//Default config in case config is not found	
-#ifdef MAC
+#ifdef OS9 
 		HideCursor();
 #else
 		STUB_FUNCTION;
@@ -3707,7 +3707,7 @@ int Game::InitGL(GLvoid)
 		
 
 		//Read high score
-#ifdef MAC
+#ifdef OS9 
 		ifstream ipstream2(":Data:Highscore");
 #else
 		/* TODO */
@@ -3719,7 +3719,7 @@ int Game::InitGL(GLvoid)
 
 	        beatgame=0;
 
-#ifdef MAC
+#ifdef OS9 
 	        ofstream opstream(":Data:Highscore"); 
 #else
 		/* TODO */
@@ -3764,7 +3764,7 @@ int Game::InitGL(GLvoid)
 
 
 	//Setup screen
-#ifdef MAC
+#ifdef OS9 
 	if(screenwidth<640||screenheight<480)
 
 		theScreen = SetupScreen( 640, 480 );
@@ -3853,7 +3853,7 @@ int Game::InitGL(GLvoid)
 void Game::Dispose()										
 
 {
-#ifdef MAC
+#ifdef OS9 
 	CleanupAGL( gOpenGLContext );
 
 	ShutdownScreen( theScreen );

@@ -2,12 +2,12 @@
 #ifndef _QUATERNIONS_H_
 #define _QUATERNIONS_H_
 
-#ifdef MAC
+#ifdef OS9 
 #pragma mark -
 #endif
 
 #include "Maths.h"
-#ifdef MAC
+#ifdef OS9 
 #include <gl.h>
 #else
 #include <GL/gl.h>

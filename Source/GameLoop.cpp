@@ -172,7 +172,7 @@ void	Game::HandleKeyDown( char theChar )
 
 /********************> DoEvent() <*****/
 
-#ifdef MAC
+#ifdef OS9 
 void	Game::DoEvent( EventRecord *event )
 
 {
@@ -206,7 +206,7 @@ void	Game::DoEvent( EventRecord *event )
 }
 #endif
 
-#ifndef MAC
+#ifndef OS9 
 static int mapinit = 0;
 static int sdlkeymap[SDLK_LAST];
 
@@ -386,7 +386,7 @@ void	Game::EventLoop( void )
 
 {
 
-#ifdef MAC
+#ifdef OS9 
 	EventRecord		event;
 #endif
 
@@ -402,7 +402,7 @@ void	Game::EventLoop( void )
 
 	{
 
-#ifdef MAC
+#ifdef OS9 
 		if ( GetNextEvent( everyEvent, &event ) )
 
 			DoEvent( &event );
@@ -437,7 +437,7 @@ void	Game::EventLoop( void )
 
 		if ( DrawGLScene())
 
-#ifdef MAC
+#ifdef OS9 
 			aglSwapBuffers( gOpenGLContext );
 #else
                         SDL_GL_SwapBuffers();
@@ -497,7 +497,7 @@ void	Game::EventLoop( void )
 
 				highscore=score;
 
-#ifdef MAC
+#ifdef OS9 
 				ofstream opstream(":Data:Highscore"); 
 #else
 				/* TODO */

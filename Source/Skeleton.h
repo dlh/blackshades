@@ -2,7 +2,7 @@
 #define _SKELETON_H_
 
 /**> HEADER FILES <**/
-#ifdef MAC
+#ifdef OS9 
 #include <gl.h>
 #include "alut.h"
 #else

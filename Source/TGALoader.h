@@ -1,4 +1,4 @@
-#ifdef MAC
+#ifdef OS9 
 #pragma once
 #endif
 
@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#ifdef MAC
+#ifdef OS9 
 #include "gl.h"
 #else
 #include <GL/gl.h>

@@ -4,7 +4,7 @@
 /**> HEADER FILES <**/
 #include <stdlib.h>
 #include <stdio.h>
-#ifdef MAC
+#ifdef OS9 
 #include <CursorDevices.h> //Mouse
 #endif
 

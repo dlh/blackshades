@@ -3,7 +3,7 @@
 
 
 /**> HEADER FILES <**/
-#ifdef MAC
+#ifdef OS9 
 #include <gl.h>
 #else
 #include <GL/gl.h>

@@ -3,12 +3,12 @@
 
 /**> HEADER FILES <**/
 #include <cmath>
-#ifdef MAC
+#ifdef OS9 
 #include <gl.h>
 #else
 #include <GL/gl.h>
 #endif
-#ifdef MAC
+#ifdef OS9 
 #include "alut.h"
 #else
 #include <AL/al.h>
