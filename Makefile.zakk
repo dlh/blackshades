@@ -6,7 +6,7 @@ SRCDIR := ./Source
 BINDIR := ./objs
 EXE := $(BINDIR)/blackshades
 
-CFLAGS := -g $(shell sdl-config --cflags) -I/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/CarbonSound.framework/Versions/A/Headers -I/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/CarbonCore.framework/Versions/A/Headers -I/System/Library/Frameworks/GLUT.framework/Versions/A/Headers -I/System/Library/Frameworks/DrawSprocket.framework/Versions/A/Headers -I/Developer/Headers/FlatCarbon -I/System/Library/Frameworks/AGL.framework/Versions/A/Headers -I/System/Library/Frameworks/OpenGL.framework/Versions/A/Headers -I/sw/include -I/usr/X11R6/include -D POOLOOPS -I$(SRCDIR)
+CFLAGS := -g $(shell sdl-config --cflags) -I/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/CarbonSound.framework/Versions/A/Headers -I/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/CarbonCore.framework/Versions/A/Headers -I/System/Library/Frameworks/GLUT.framework/Versions/A/Headers -I/System/Library/Frameworks/DrawSprocket.framework/Versions/A/Headers -I/Developer/Headers/FlatCarbon -I/System/Library/Frameworks/AGL.framework/Versions/A/Headers -I/System/Library/Frameworks/OpenGL.framework/Versions/A/Headers -I/sw/include -I/sw/include/AL -I/usr/X11R6/include -D POOLOOPS -I$(SRCDIR)
 CXXFLAGS := $(CFLAGS)
 LDFLAGS := $(shell sdl-config --libs) -framework QuickTime
 

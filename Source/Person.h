@@ -6,12 +6,11 @@
 #include "Quaternions.h"
 #include "Constants.h"
 #include "alut.h"
-#include "skeleton.h"
-#include "models.h"
-#include "constants.h"
+#include "Skeleton.h"
+#include "Models.h"
 #include "math.h"
-#include "camera.h"
-#include "sprites.h"
+#include "Camera.h"
+#include "Sprites.h"
 
 #define playertype 0
 #define civiliantype 1
