@@ -149,7 +149,11 @@ void Skeleton::DoConstraints(Model *collide, XYZ *move, float rotation)
 					gLoc[0]=joints[i].position.x/soundscalefactor;
 					gLoc[1]=joints[i].position.y/soundscalefactor;
 					gLoc[2]=joints[i].position.z/soundscalefactor;
+#ifdef DEBIAN_NEEDS_TO_UPDATE_THEIR_OPENAL					
+					alGetSourceiv(gSourceID[headlandsound], AL_SOURCE_STATE, &tempint);
+#else
 					alGetSourcei(gSourceID[headlandsound], AL_SOURCE_STATE, &tempint);
+#endif
 					if (tempint != AL_PLAYING){
 						alSourcef(gSourceID[headlandsound], AL_MIN_GAIN, ALfloat(findLengthfast(avgvelocity)*2/findDistancefast(joints[i].position,camera.position)*soundscalefactor*2));
 						alSourcef(gSourceID[headlandsound], AL_MAX_GAIN, ALfloat(findLengthfast(avgvelocity)*2/findDistancefast(joints[i].position,camera.position)*soundscalefactor*2));
@@ -166,7 +170,11 @@ void Skeleton::DoConstraints(Model *collide, XYZ *move, float rotation)
 					gLoc[0]=joints[i].position.x/soundscalefactor;
 					gLoc[1]=joints[i].position.y/soundscalefactor;
 					gLoc[2]=joints[i].position.z/soundscalefactor;
+#ifdef DEBIAN_NEEDS_TO_UPDATE_THEIR_OPENAL
+					alGetSourceiv(gSourceID[bodylandsound], AL_SOURCE_STATE, &tempint);
+#else
 					alGetSourcei(gSourceID[bodylandsound], AL_SOURCE_STATE, &tempint);
+#endif					
 					if (tempint != AL_PLAYING){
 						alSourcef(gSourceID[bodylandsound], AL_MIN_GAIN, ALfloat(findLengthfast(joints[i].velocity)*1/findDistancefast(joints[i].position,camera.position)*soundscalefactor*2));
 						alSourcef(gSourceID[bodylandsound], AL_MAX_GAIN, ALfloat(findLengthfast(joints[i].velocity)*1/findDistancefast(joints[i].position,camera.position)*soundscalefactor*2));
