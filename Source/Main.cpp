@@ -14,12 +14,12 @@ Game game;
 
 /********************> main() <*****/
 
-void	main( void )
+int 	main( int argc, char *argv[] )
 
 	{
 
 	
-
+#ifdef MAC
 	ToolboxInit();
 
 	
@@ -27,7 +27,7 @@ void	main( void )
 	if ( HasAppearance() )
 
 		RegisterAppearanceClient();
-
+#endif
 	
 
 
@@ -47,7 +47,7 @@ void	main( void )
 	game.Dispose();
 
 	
-
+#ifdef MAC
 	if ( HasAppearance() )
 
 		UnregisterAppearanceClient();
@@ -57,7 +57,7 @@ void	main( void )
 	FlushEvents( everyEvent, 0 );
 
 	ExitToShell();
-
+#endif
 	
 
 }

@@ -20,6 +20,7 @@ SRCS := Camera.cpp \
 	GameTick.cpp \
         Globals.cpp \
 	MacInput.cpp \
+	Main.cpp \
         Maths.cpp \
 	Models.cpp \
 	Person.cpp \
@@ -30,9 +31,6 @@ SRCS := Camera.cpp \
         TGALoader.cpp \
         Text.cpp \
 	Timer.cpp
-
-# GameInitDispose.cpp
-# Main.cpp
 
 OBJS1 := $(SRCS:.c=.o)
 OBJS2 := $(OBJS1:.cpp=.o)
