@@ -37,6 +37,7 @@
 #include "alut.h"
 #else
 #include <GL/gl.h>
+#include <AL/al.h>
 #include <AL/alut.h>
 #endif
 #include "Quaternions.h"

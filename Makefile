@@ -8,29 +8,29 @@ EXE := $(BINDIR)/blackshades
 
 CFLAGS := -g $(shell sdl-config --cflags) -I$(SRCDIR) -DPOOLOOPS
 CXXFLAGS := $(CFLAGS)
-LDFLAGS := $(shell sdl-config --libs) -framework QuickTime
+LDFLAGS := $(shell sdl-config --libs) -lGL -lGLU # -framework QuickTime
 
 SRCS := Camera.cpp \
         Decals.cpp \
         Fog.cpp \
         Frustum.cpp \
         GameDraw.cpp \
-        GameInitDispose.cpp \
-        GameLoop.cpp \
-        GameTick.cpp \
         Globals.cpp \
-        Main.cpp \
         Maths.cpp \
-        Models.cpp \
-        Person.cpp \
         Quaternions.cpp \
-        Skeleton.cpp \
         Sprites.cpp \
         TGALoader.cpp \
-        Text.cpp \
-        Timer.cpp
+        Text.cpp
 
 # Files.cpp
+# GameInitDispose.cpp
+# GameLoop.cpp
+# GameTick.cpp
+# Main.cpp
+# Models.cpp
+# Person.cpp
+# Skeleton.cpp
+# Timer.cpp
 
 OBJS1 := $(SRCS:.c=.o)
 OBJS2 := $(OBJS1:.cpp=.o)

@@ -12,6 +12,7 @@
 #ifdef MAC
 #include "alut.h"
 #else
+#include <AL/al.h>
 #include <AL/alut.h>
 #endif
 #include "Skeleton.h"

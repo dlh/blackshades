@@ -3,6 +3,7 @@
 
 double fast_sqrt (register double arg)
 {	
+#ifdef MAC
 	// Can replace with slower return std::sqrt(arg);
 	register double result;
 
@@ -17,5 +18,7 @@ double fast_sqrt (register double arg)
 	result = result + 0.5 * result * (1.0 - arg * result * result);
 	
 	return result * arg;
+#else
+	return std::sqrt(arg);
+#endif
 }
-

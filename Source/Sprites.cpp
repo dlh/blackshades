@@ -1,5 +1,9 @@
 #include "Sprites.h"
 
+#ifndef MAC
+#define Random rand
+#endif
+
 extern double multiplier;
 extern bool slomo;
 extern Fog fog;
@@ -295,7 +299,7 @@ void Sprites::DoStuff()
 		if(type[i]==flashsprite)brightness[i]-=multiplier*10;
 		if(type[i]==smokesprite||type[i]==smokespritenoup||type[i]==bloodspritedown||type[i]==particlesspritedown)brightness[i]-=multiplier*.5;
 		if(type[i]==bloodspritenoup)brightness[i]-=multiplier*.9;
-		if(type[i]==smokesprite)size[i]=initialsize[i]*abs(fast_sqrt(fast_sqrt(abs(initialbrightness[i]-brightness[i]))));//velocity[i].y+=multiplier*20;
+		if(type[i]==smokesprite)size[i]=initialsize[i]*abs(fast_sqrt(fast_sqrt((float)abs(initialbrightness[i]-brightness[i]))));//velocity[i].y+=multiplier*20;
 		if(type[i]==bloodspritenoup||type[i]==particlesspritedown)size[i]=initialsize[i]*(initialbrightness[i]-brightness[i]+.4)*(initialbrightness[i]-brightness[i]+.4);//velocity[i].y+=multiplier*20;
 		if(type[i]==bloodspritenoup||type[i]==particlesspritedown)velocity[i]=initialvelocity[i]*brightness[i];//velocity[i].y+=multiplier*20;
 		if(type[i]==bullet)brightness[i]-=multiplier;
@@ -399,12 +403,12 @@ void Sprites::draw()
 			glColor4f(color1[i]*fogcolorr*1.6,color2[i]*fogcolorg*1.6,color3[i]*fogcolorb*1.6,brightness[i]);
 			glTranslatef(location[i].x,location[i].y,location[i].z);
 			glGetFloatv(GL_MODELVIEW_MATRIX,M);
-			for( int i=0; i<3; i+=2 ) 
+			for( int ii=0; ii<3; ii+=2 ) 
 				for( int j=0; j<3; j++ ) {
-					if ( i==j )
-						M[i*4+j] = 1.0;
+					if ( ii==j )
+						M[ii*4+j] = 1.0;
 					else
-						M[i*4+j] = 0.0;
+						M[ii*4+j] = 0.0;
 				}
 			
 			

@@ -285,6 +285,7 @@ void Normalise(XYZ *vectory) {
 
 float fast_sqrt (register float arg)
 {	
+#ifdef MAC
 	// Can replace with slower return std::sqrt(arg);
 	register float result;
 
@@ -299,6 +300,9 @@ float fast_sqrt (register float arg)
 	result = result + 0.5 * result * (1.0 - arg * result * result);
 	
 	return result * arg;
+#else
+	std::sqrt(arg);
+#endif
 }
 
 float normaldotproduct(XYZ point1, XYZ point2){
