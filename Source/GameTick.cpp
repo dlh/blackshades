@@ -153,7 +153,6 @@ void 	Game::Tick(){
 		mousex=(float)mouseloc.h*640/screenwidth;
 
 		mousey=480-(float)mouseloc.v*480/screenheight;
-
 		
 
 		oldmouseoverbutton=mouseoverbutton;
@@ -720,6 +719,7 @@ void 	Game::Tick(){
 
 		}
 
+#if 0	// DDOI
 		GetMouse(&mouseloc);
 
 		if (mouseloc.h>600){MoveMouse(mouseloc.h-500,mouseloc.v,&mouseloc);}
@@ -734,11 +734,17 @@ void 	Game::Tick(){
 
 		GetMouse(&mouseloc);
 
+#else
+		GetMouseRel(&mouseloc);
+#endif
+
 		
 
+#if 0	// DDOI
 		oldmouserotation=(oldmouseloc.h/1.3888)*mousesensitivity;
 
 		oldmouserotation2=(oldmouseloc.v/1.3888)*mousesensitivity;
+#endif
 
 		mouserotation=(mouseloc.h/1.3888)*mousesensitivity;
 
@@ -746,6 +752,7 @@ void 	Game::Tick(){
 
 		
 
+#if 0	// DDOI
 		if(abs(oldmouseloc.h-mouseloc.h)<400)camera.rotation+=mouserotation-oldmouserotation;
 
 		if(abs(oldmouseloc.v-mouseloc.v)<200)camera.rotation2+=mouserotation2-oldmouserotation2;
@@ -757,6 +764,16 @@ void 	Game::Tick(){
 		if(mouseloc.v-oldmouseloc.v>200)camera.rotation2+=mouserotation2-oldmouserotation2-(300/1.3888*mousesensitivity);
 
 		if(mouseloc.v-oldmouseloc.v<-200)camera.rotation2+=mouserotation2-oldmouserotation2+(300/1.3888*mousesensitivity);
+#else
+		if(abs(mouseloc.h)<400)camera.rotation+=mouserotation;
+		if(abs(mouseloc.v)<200)camera.rotation2+=mouserotation2;
+		if(mouseloc.h>400)camera.rotation+=mouserotation-(500/1.3888*mousesensitivity);
+		if(mouseloc.h<-400)camera.rotation+=mouserotation+(500/1.3888*mousesensitivity);
+
+		if(mouseloc.v>200)camera.rotation2+=mouserotation2-(300/1.3888*mousesensitivity);
+
+		if(mouseloc.v<-200)camera.rotation2+=mouserotation2+(300/1.3888*mousesensitivity);
+#endif
 
 		
 

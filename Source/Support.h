@@ -37,6 +37,7 @@ typedef struct Point
 int Random();
 void Microseconds(UnsignedWide *microTickCount);
 void GetMouse(Point *p);
+void GetMouseRel(Point *p);
 void GetKeys(unsigned long *keys);
 int Button(void);
 

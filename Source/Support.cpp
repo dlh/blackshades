@@ -39,6 +39,16 @@ void GetMouse(Point *p)
 	p->v = y;
 }
 
+void GetMouseRel(Point *p)
+{
+	int x;
+	int y;
+	
+	SDL_GetRelativeMouseState(&x, &y);
+	
+	p->h = x;
+	p->v = y;
+}
 int Button(void)
 {
 	return (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(1));

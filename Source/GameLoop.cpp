@@ -314,6 +314,7 @@ static void DoSDLKey(Game *g, SDL_Event *event)
 	int index;
 	int mask;
 	
+
 	if (mapinit == 0) {
 		init_sdlkeymap();
 	}
@@ -346,6 +347,27 @@ static void ProcessSDLEvents(Game *g)
 		do {
 			switch(event.type) {
 				case SDL_KEYDOWN:
+				if (event.key.keysym.sym == SDLK_RETURN &&
+					event.key.keysym.mod & KMOD_ALT)
+				{
+					SDL_WM_ToggleFullScreen (SDL_GetVideoSurface ());
+					break;
+				}
+				if (event.key.keysym.sym == SDLK_g &&
+					event.key.keysym.mod & KMOD_CTRL)
+				{
+					if (SDL_WM_GrabInput (SDL_GRAB_QUERY) == SDL_GRAB_OFF)
+					{
+						SDL_WM_GrabInput (SDL_GRAB_ON);
+						SDL_ShowCursor (SDL_DISABLE);
+					}
+					else
+					{
+						SDL_WM_GrabInput (SDL_GRAB_OFF);
+						SDL_ShowCursor (SDL_ENABLE);
+					}
+					break;
+				}
 				case SDL_KEYUP:
 					DoSDLKey(g, &event);
 					break;
