@@ -74,23 +74,28 @@ class Files
 		SFReply    sfReply;
 		Boolean       bGameSaved;
 #endif
+#ifdef MAC
 		short sFile;
+#else
+		int sFile;
+#endif
 		long  lSize;
 
-#ifdef MAC	
 		short OpenFile(Str255 Name);
+#ifdef MAC
 		short PromptForSaveAS( short   sPromptID,
                               short   sNameID,
                               Str255  str255NamePrompt,
                               OSType  osTypeCreator,
                               OSType  osTypeType,
                               SFReply *psfReply );
-        short OpenNewFile( SFReply *psfReply, OSType  osTypeCreator, OSType  osTypeType );
+	        short OpenNewFile( SFReply *psfReply, OSType  osTypeCreator, OSType  osTypeType );
+#endif
 		short OpenSavedGame(Str255 Name);
 		short OpenFileDialog();
 		void LoadNamedMap(Str255 Name);
 		void LoadGame(Str255 Name, int animnum);
-#endif
+
 		void LoadMap();
 		void StartSave();
 		void EndSave();

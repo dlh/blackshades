@@ -18,6 +18,7 @@ SRCS := Camera.cpp \
         Globals.cpp \
         Maths.cpp \
         Quaternions.cpp \
+	Skeleton.cpp \
         Sprites.cpp \
 	Support.cpp \
         TGALoader.cpp \
@@ -31,8 +32,6 @@ SRCS := Camera.cpp \
 # Main.cpp
 # Models.cpp
 # Person.cpp
-# Skeleton.cpp
-# Timer.cpp
 
 OBJS1 := $(SRCS:.c=.o)
 OBJS2 := $(OBJS1:.cpp=.o)
