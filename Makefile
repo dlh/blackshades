@@ -15,7 +15,9 @@ SRCS := Camera.cpp \
         Fog.cpp \
         Frustum.cpp \
         GameDraw.cpp \
+	GameTick.cpp \
         Globals.cpp \
+	MacInput.cpp \
         Maths.cpp \
 	Person.cpp \
         Quaternions.cpp \
@@ -32,7 +34,6 @@ SRCS := Camera.cpp \
 # GameTick.cpp
 # Main.cpp
 # Models.cpp
-# Person.cpp
 
 OBJS1 := $(SRCS:.c=.o)
 OBJS2 := $(OBJS1:.cpp=.o)

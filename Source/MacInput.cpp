@@ -2,7 +2,9 @@
 #include "MacInput.h"
 
 /**> Mouse Stuff <**/
+#ifdef MAC
 CursorDevicePtr	theCursor;
+#endif
 
 /********************> IsKeyDown() <*****/
 Boolean	IsKeyDown( unsigned char *keyMap, unsigned short theKey )
@@ -25,6 +27,7 @@ Boolean	IsKeyDown( unsigned char *keyMap, unsigned short theKey )
 	
 }
 
+#ifdef MAC
 void 	InitMouse()
 {
 	CursorDeviceNewDevice( &theCursor ); //Mouse
@@ -40,3 +43,4 @@ void DisposeMouse()
 {
 	CursorDeviceDisposeDevice( theCursor );//Mouse
 }
+#endif

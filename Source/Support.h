@@ -9,10 +9,9 @@
 typedef unsigned char * Str255;
 typedef int OSErr;
 
-typedef enum {
- FALSE,
- TRUE
-} Boolean;
+typedef bool Boolean;
+#define TRUE true
+#define FALSE false
 
 typedef struct UnsignedWide
 {
@@ -28,9 +27,10 @@ typedef struct Point
 
 #define Random rand
 
-void Microseconds (UnsignedWide *microTickCount);
+void Microseconds(UnsignedWide *microTickCount);
 OSErr FSRead(int refNum, long *count, void *buffPtr);
 void GetMouse(Point *p);
 void GetKeys(unsigned long *keys);
+int Button(void);
 
 #endif

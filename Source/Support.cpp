@@ -4,7 +4,7 @@
 
 #include "SDL.h"
 
-void Microseconds (UnsignedWide *microTickCount)
+void Microseconds(UnsignedWide *microTickCount)
 {
 	/* NOTE: hi isn't used in BS, so it's not implemented here */
 	/* TODO: does game need microsecond precision? */
@@ -25,6 +25,27 @@ STUB_FUNCTION;
 }
 
 void GetKeys(unsigned long *keys)
+{
+STUB_FUNCTION;
+}
+
+int Button(void)
+{
+STUB_FUNCTION;
+	return 0;
+}
+
+void InitMouse()
+{
+STUB_FUNCTION;
+}
+
+void MoveMouse(int xcoord, int ycoord, Point *mouseloc)
+{
+STUB_FUNCTION;
+}
+
+void DisposeMouse()
 {
 STUB_FUNCTION;
 }
