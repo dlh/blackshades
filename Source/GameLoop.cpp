@@ -283,6 +283,8 @@ static void init_sdlkeymap()
 	sdlkeymap[SDLK_LSHIFT] = MAC_SHIFT_KEY;
 	sdlkeymap[SDLK_RSHIFT] = MAC_SHIFT_KEY;
 	sdlkeymap[SDLK_CAPSLOCK] = MAC_CAPS_LOCK_KEY;
+	sdlkeymap[SDLK_LALT] = MAC_OPTION_KEY;
+	sdlkeymap[SDLK_RALT] = MAC_OPTION_KEY;
 	sdlkeymap[SDLK_PAGEUP] = MAC_PAGE_UP_KEY;
 	sdlkeymap[SDLK_PAGEDOWN] = MAC_PAGE_DOWN_KEY;
 	sdlkeymap[SDLK_INSERT] = MAC_INSERT_KEY;
