@@ -323,7 +323,12 @@ void	Game::EventLoop( void )
 
 				highscore=score;
 
-				 ofstream opstream(":Data:Highscore"); 
+#ifdef MAC
+				ofstream opstream(":Data:Highscore"); 
+#else
+				/* TODO */
+				ofstream opstream("Data/Highscore");
+#endif
 
 		        opstream << highscore;
 

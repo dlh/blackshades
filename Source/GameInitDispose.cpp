@@ -3707,17 +3707,24 @@ int Game::InitGL(GLvoid)
 		
 
 		//Read high score
-
+#ifdef MAC
 		ifstream ipstream2(":Data:Highscore");
-
+#else
+		/* TODO */
+		ifstream ipstream2("Data/Highscore");
+#endif
 	    if(!ipstream2) {
 
 	    	highscore=0;
 
 	        beatgame=0;
 
+#ifdef MAC
 	        ofstream opstream(":Data:Highscore"); 
-
+#else
+		/* TODO */
+		ofstream opstream("Data/Highscore");
+#endif
 	        opstream << highscore;
 
 			opstream << "\n";

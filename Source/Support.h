@@ -41,10 +41,13 @@ void GetMouse(Point *p);
 void GetKeys(unsigned long *keys);
 int Button(void);
 
-void alutLoadWAVFile(char *filename, ALenum *format, void **wave, 
+void alutLoadWAVFile_CFH(char *filename, ALenum *format, void **wave, 
 	unsigned int *size, ALsizei *freq);
-void alutUnloadWAV(ALenum format, void *wave, unsigned int size, 
+void alutUnloadWAV_CFH(ALenum format, void *wave, unsigned int size, 
 	ALsizei freq);
+
+#define alutLoadWAVFile alutLoadWAVFile_CFH
+#define alutUnloadWAV alutUnloadWAV_CFH 
 
 FILE *cfh_fopen(const char *filename, const char *mode);
 

@@ -124,7 +124,10 @@ void Files::EndLoad()
 }
 
     
-void alutLoadWAVFile(char *filename, ALenum *format, void **wave,
+/*
+  Our own special magic version that fixes the filename.
+ */
+void alutLoadWAVFile_CFH(char *filename, ALenum *format, void **wave,
 	unsigned int *size, ALsizei *freq)
 {
 	char filename1[256];
@@ -140,7 +143,7 @@ void alutLoadWAVFile(char *filename, ALenum *format, void **wave,
 	*freq = freq1;
 }
 
-void alutUnloadWAV(ALenum format, void *wave, unsigned int size,
+void alutUnloadWAV_CFH(ALenum format, void *wave, unsigned int size,
 	ALsizei freq)
 {
 	free(wave);
