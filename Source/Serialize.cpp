@@ -93,7 +93,9 @@ int ReadXYZ(int fd, int count, XYZ *xyz)
 int ReadTexturedTriangle(int fd, int count, TexturedTriangle *tt)
 {
 	while (count--) {
+		short pad;
 		ReadShort(fd, 3, tt->vertex);
+		ReadShort(fd, 1, &pad); /* crud */
 		ReadFloat(fd, 1, &(tt->r));
 		ReadFloat(fd, 1, &(tt->g));
 		ReadFloat(fd, 1, &(tt->b));

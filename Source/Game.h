@@ -28,7 +28,7 @@
 #include "AGL_DSp.h"	
 #endif
 #include "MacInput.h"
-#ifdef POOLOOPS
+#ifndef MAC
 #include <SDL/SDL.h>
 #endif
 #include "Quaternions.h"
