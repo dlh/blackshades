@@ -80,7 +80,12 @@ class Sprites{
 				void LoadSnowTexture(char *fileName);
 				void LoadRainTexture(char *fileName);
 				
+				Sprites() {
+					printf("SPRITES!!!!!!!1\n");
+				}
+				
 				~Sprites() {
+					printf("DRPEPPERS!!!!!!!!!\n");
 					glDeleteTextures( 1, (const GLuint *)muzzleflaretextureptr );
 					glDeleteTextures( 1, (const GLuint *)flaretextureptr );
 					glDeleteTextures( 1, (const GLuint *)bullettextureptr );

@@ -249,6 +249,7 @@ int Model::LineCheck(XYZ p1,XYZ p2, XYZ *p)
 								boundingsphereradius))
 	for (j=0;j<TriangleNum;j++){
 		intersecting=LineFacetd(p1,p2,vertex[Triangles[j].vertex[0]],vertex[Triangles[j].vertex[1]],vertex[Triangles[j].vertex[2]],normals[j],&point);
+		if (intersecting == 0) continue;
 		distance=(point.x-p1.x)*(point.x-p1.x)+(point.y-p1.y)*(point.y-p1.y)+(point.z-p1.z)*(point.z-p1.z);
 		if((distance<olddistance||firstintersecting==-1)&&intersecting){olddistance=distance; firstintersecting=j; *p=point;}
 	}
@@ -273,6 +274,7 @@ int Model::LineCheck2(XYZ p1,XYZ p2, XYZ *p, XYZ move, float rotate)
 								boundingsphereradius))
 	for (j=0;j<TriangleNum;j++){
 		intersecting=LineFacetd(p1,p2,vertex[Triangles[j].vertex[0]],vertex[Triangles[j].vertex[1]],vertex[Triangles[j].vertex[2]],normals[j],&point);
+		if (intersecting == 0) continue;
 		distance=(point.x-p1.x)*(point.x-p1.x)+(point.y-p1.y)*(point.y-p1.y)+(point.z-p1.z)*(point.z-p1.z);
 		if((distance<olddistance||firstintersecting==-1)&&intersecting){olddistance=distance; firstintersecting=j; *p=point;}
 	}
@@ -300,6 +302,7 @@ int Model::LineCheck2(XYZ *p1,XYZ *p2, XYZ *p, XYZ *move, float *rotate)
 								boundingsphereradius))
 	for (j=0;j<TriangleNum;j++){
 		intersecting=LineFacetd(p1,p2,&vertex[Triangles[j].vertex[0]],&vertex[Triangles[j].vertex[1]],&vertex[Triangles[j].vertex[2]],&normals[j],&point);
+		if (intersecting == 0) continue;
 		distance=(point.x-p1->x)*(point.x-p1->x)+(point.y-p1->y)*(point.y-p1->y)+(point.z-p1->z)*(point.z-p1->z);
 		if((distance<olddistance||firstintersecting==-1)&&intersecting){olddistance=distance; firstintersecting=j; *p=point;}
 	}
@@ -327,6 +330,7 @@ int Model::LineCheck3(XYZ p1,XYZ p2, XYZ *p, XYZ move, float rotate, float *d)
 								boundingsphereradius))
 	for (j=0;j<TriangleNum;j++){
 		intersecting=LineFacetd(p1,p2,vertex[Triangles[j].vertex[0]],vertex[Triangles[j].vertex[1]],vertex[Triangles[j].vertex[2]],normals[j],&point);
+		if (intersecting == 0) continue;
 		distance=(point.x-p1.x)*(point.x-p1.x)+(point.y-p1.y)*(point.y-p1.y)+(point.z-p1.z)*(point.z-p1.z);
 		if((distance<olddistance||firstintersecting==-1)&&intersecting){olddistance=distance; firstintersecting=j; *p=point;}
 	}
