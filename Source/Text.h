@@ -1,0 +1,29 @@
+#ifndef _TEXT_H_
+#define _TEXT_H_
+
+
+/**> HEADER FILES <**/
+#include "Quaternions.h"
+#include <gl.h>
+#include <glu.h>
+#include "Files.h"
+#include "Quaternions.h"
+#include "gl.h"		
+#include "glut.h"
+#include "TGALoader.h"
+
+class Text{
+	public:
+		GLuint FontTexture;
+		GLuint base;
+		
+		void LoadFontTexture(char *fileName);
+		void BuildFont();
+		void glPrint(GLint x, GLint y, char *string, int set, float size, float width, float height);
+		
+		~Text(){
+			glDeleteTextures( 1, (const unsigned long *)FontTexture );
+		}
+};
+
+#endif
