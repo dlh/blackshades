@@ -1437,9 +1437,9 @@ void 	Game::Tick(){
 
 		XYZ blah;
 
-		int closesttarget;
+		int closesttarget = 0;
 
-		float leastdistance;
+		float leastdistance = 0.0;
 
 		
 
@@ -1723,10 +1723,9 @@ void 	Game::Tick(){
 
 				
 
-				bool realcheck;
+				bool realcheck = false;
 
 				//Pathfinding
-
 			 	if(i>0&&person[i].targetanimation!=getupfrontanim&&person[i].targetanimation!=thrownanim&&person[i].targetanimation!=getupbackanim&&person[i].currentanimation!=getupfrontanim&&person[i].currentanimation!=getupbackanim){
 
 			 		person[i].pathcheckdelay-=multiplier;
@@ -1835,7 +1834,7 @@ void 	Game::Tick(){
 
 					 		//Check other blocks?
 
-					 		if((closesttarget==person[i].pathnum)){
+					 		if ((closesttarget==person[i].pathnum)){
 
 					 			beginx=person[i].whichblockx-2;
 
@@ -2410,8 +2409,6 @@ void 	Game::Tick(){
 					}
 
 			 	}
-
-			 	
 
 			 	person[i].whichblockx=((person[i].playercoords.x+block_spacing/2)/block_spacing);
 
@@ -3057,7 +3054,7 @@ void 	Game::Tick(){
 
 		bool firing;
 
-		float inaccuracy;
+		float inaccuracy = 0.0;
 
 		int numshots;
 
@@ -3067,9 +3064,9 @@ void 	Game::Tick(){
 
 		int hitpoly=0;
 
-		float hitrotation;
+		float hitrotation = 0.0f;
 
-		Model *model;
+		Model *model = NULL;
 
 		for(int j=0;j<numpeople;j++){
 
@@ -3163,11 +3160,11 @@ void 	Game::Tick(){
 
 					HitStruct hitstruct,temphitstruct;
 
-					float olddistance;
+					float olddistance = 0.0f;
 
-					float distance;
+					float distance = 0.0f;
 
-					float totalarea;
+					float totalarea = 0.0f;
 
 					int whichhit=-1;
 
