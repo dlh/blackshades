@@ -73,6 +73,91 @@ void FRUSTUM::
 	frustum[5][1] = clip[7] + clip[6];
 	frustum[5][2] = clip[11] + clip[10];
 	frustum[5][3] = clip[15] + clip[14];
+
+	/* normalize the right plane */
+	t = sqrt(frustum[0][0]*frustum[0][0] 
+		+ frustum[0][1]*frustum[0][1] 
+		+ frustum[0][2]*frustum[0][2]);
+	frustum[0][0] /= t;
+	frustum[0][1] /= t;
+	frustum[0][2] /= t;
+	frustum[0][3] /= t;
+		
+	/* calculate left plane */
+	frustum[1][0] = clip[ 3] + clip[ 0];
+	frustum[1][1] = clip[ 7] + clip[ 4];
+	frustum[1][2] = clip[11] + clip[ 8];
+	frustum[1][3] = clip[15] + clip[12];
+
+	/* normalize the left plane */
+	t = sqrt(frustum[1][0]*frustum[1][0] 
+		+ frustum[1][1]*frustum[1][1] 
+		+ frustum[1][2]*frustum[1][2]);
+	frustum[1][0] /= t;
+	frustum[1][1] /= t;
+	frustum[1][2] /= t;
+	frustum[1][3] /= t;
+	
+	/* calculate the bottom plane */
+	frustum[2][0] = clip[ 3] + clip[ 1];
+	frustum[2][1] = clip[ 7] + clip[ 5];
+	frustum[2][2] = clip[11] + clip[ 9];
+	frustum[2][3] = clip[15] + clip[13];
+
+	/* normalize the bottom plane */
+	t = sqrt(frustum[2][0]*frustum[2][0] 
+		+ frustum[2][1]*frustum[2][1] 
+		+ frustum[2][2]*frustum[2][2]);
+	frustum[2][0] /= t;
+	frustum[2][1] /= t;
+	frustum[2][2] /= t;
+	frustum[2][3] /= t;
+	
+	/* calculate the top plane */
+	frustum[3][0] = clip[ 3] - clip[ 1];
+	frustum[3][1] = clip[ 7] - clip[ 5];
+	frustum[3][2] = clip[11] - clip[ 9];
+	frustum[3][3] = clip[15] - clip[13];
+	
+	/* normalize the top plane */
+	t = sqrt(frustum[3][0]*frustum[3][0] 
+		+ frustum[3][1]*frustum[3][1] 
+		+ frustum[3][2]*frustum[3][2]);
+	frustum[3][0] /= t;
+	frustum[3][1] /= t;
+	frustum[3][2] /= t;
+	frustum[3][3] /= t;
+	
+	/* calculate the far plane */
+	frustum[4][0] = clip[ 3] - clip[ 2];
+	frustum[4][1] = clip[ 7] - clip[ 6];
+	frustum[4][2] = clip[11] - clip[10];
+	frustum[4][3] = clip[15] - clip[14];
+	
+	/* normalize the far plane */
+	t = sqrt(frustum[4][0]*frustum[4][0] 
+		+ frustum[4][1]*frustum[4][1] 
+		+ frustum[4][2]*frustum[4][2]);
+	frustum[4][0] /= t;
+	frustum[4][1] /= t;
+	frustum[4][2] /= t;
+	frustum[4][3] /= t;
+	
+	/* calculate the near plane */
+	frustum[5][0] = clip[ 3] + clip[ 2];
+	frustum[5][1] = clip[ 7] + clip[ 6];
+	frustum[5][2] = clip[11] + clip[10];
+	frustum[5][3] = clip[15] + clip[14];
+	
+	/* normalize the near plane */
+	t = sqrt(frustum[5][0]*frustum[5][0] 
+		+ frustum[5][1]*frustum[5][1] 
+		+ frustum[5][2]*frustum[5][2]);
+	frustum[5][0] /= t;
+	frustum[5][1] /= t;
+	frustum[5][2] /= t;
+	frustum[5][3] /= t;
+
 }
 
 int FRUSTUM::
