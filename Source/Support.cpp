@@ -229,7 +229,6 @@ void alutLoadWAVFile_CFH(char *filename, ALenum *format, void **wave,
 {
 	char filename1[256];
 	ALsizei format1, size1, bits1, freq1;
-	int i, len;
 	
 	fix_filename(filename, filename1);
 	

@@ -38,6 +38,8 @@ int Sprites::MakeSprite(int atype, float abrightness, float acolor1, float acolo
 	alivetime[howmanysprites]=0;
 	owner[howmanysprites]=0;
 	if(howmanysprites<maxsprites){howmanysprites++;}
+	
+	return 0;
 }
 
 int Sprites::MakeSprite(int atype, float abrightness, float acolor1, float acolor2, float acolor3, XYZ alocation, XYZ avelocity, float asize, int aowner){
@@ -57,6 +59,8 @@ int Sprites::MakeSprite(int atype, float abrightness, float acolor1, float acolo
 	alivetime[howmanysprites]=0;
 	owner[howmanysprites]=aowner;
 	if(howmanysprites<maxsprites){howmanysprites++;}
+	
+	return 0;
 }
 
 int Sprites::DeleteSprite(int which){
@@ -78,6 +82,8 @@ int Sprites::DeleteSprite(int which){
 		
 		if(howmanysprites>0){howmanysprites--;}
 	}
+	
+	return 0;
 }
 
 void Sprites::LoadFlareTexture(char *fileName)
