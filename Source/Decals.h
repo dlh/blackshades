@@ -7,7 +7,9 @@
 #include <glu.h>
 #include "glut.h"
 #else
-#include <GL/glut.h>
+///ZWARNING
+///#include <GL/glut.h>
+///GLUT REMOVED.
 #endif
 #include "Files.h"
 #include "TGALoader.h"
