@@ -36,7 +36,7 @@ extern Decals decals;
 
 /*********************> DrawGLScene() <*****/
 
-int Game::DrawGLScene(GLvoid)									
+int Game::DrawGLScene(void)									
 
 {	
 

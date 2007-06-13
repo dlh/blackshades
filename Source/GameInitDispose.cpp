@@ -3913,7 +3913,7 @@ void Game::InitGame()
 
 
 
-int Game::InitGL(GLvoid)										
+int Game::InitGL(void)										
 
 {
 

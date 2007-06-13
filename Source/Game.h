@@ -75,8 +75,8 @@ class Game
 		
 		//GL functions
 		GLvoid ReSizeGLScene(float fov, float near);
-		int DrawGLScene(GLvoid);
-		int InitGL(GLvoid);
+		int DrawGLScene(void);
+		int InitGL(void);
 		void LoadingScreen(float percent);
 		
 		//Game Functions
