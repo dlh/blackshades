@@ -8,7 +8,7 @@ EXE := $(BINDIR)/blackshades
 
 CFLAGS := -O2 -Wall -g $(shell sdl-config --cflags) -I$(SRCDIR) -include Source/Support.h
 CXXFLAGS := $(CFLAGS)
-LDFLAGS := $(shell sdl-config --libs) -lGL -lGLU -lopenal # -framework QuickTime
+LDFLAGS := $(shell sdl-config --libs) -lGL -lGLU -lopenal -lalut # -framework QuickTime
 
 # Don't want ogg?
 #CFLAGS += -DNOOGG
