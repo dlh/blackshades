@@ -1,4 +1,5 @@
 #include "Sprites.h"
+#include "Textures.h"
 
 extern double multiplier;
 extern bool slomo;
@@ -84,212 +85,37 @@ int Sprites::DeleteSprite(int which){
 
 void Sprites::LoadFlareTexture(char *fileName)
 {
-	TGAImageRec	*tempTexture;
-	GLuint		type;
-	
-	//Load Image
-	tempTexture = LoadTGA( fileName ); 
-	//Is it valid?
-	if(tempTexture){
-		//Alpha channel?
-		if ( tempTexture->bpp == 24 )
-			type = GL_RGB;
-		else
-			type = GL_RGBA;
-	
-		glPixelStorei( GL_UNPACK_ALIGNMENT, 1 );
-	
-		glGenTextures( 1, &flaretextureptr );
-		glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-
-		glBindTexture( GL_TEXTURE_2D, flaretextureptr);
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-
-		gluBuild2DMipmaps( GL_TEXTURE_2D, type, tempTexture->sizeX, tempTexture->sizeY, type, GL_UNSIGNED_BYTE, tempTexture->data );
-		free( tempTexture->data );
-		free( tempTexture );
-	}
+	flaretextureptr = loadTexture(fileName);
 }
 
 void Sprites::LoadMuzzleFlareTexture(char *fileName)
 {
-	TGAImageRec	*tempTexture;
-	GLuint		type;
-	
-	//Load Image
-	tempTexture = LoadTGA( fileName ); 
-	//Is it valid?
-	if(tempTexture){
-		//Alpha channel?
-		if ( tempTexture->bpp == 24 )
-			type = GL_RGB;
-		else
-			type = GL_RGBA;
-	
-		glPixelStorei( GL_UNPACK_ALIGNMENT, 1 );
-	
-		glGenTextures( 1, &muzzleflaretextureptr );
-		glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-
-		glBindTexture( GL_TEXTURE_2D, muzzleflaretextureptr);
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-
-		gluBuild2DMipmaps( GL_TEXTURE_2D, type, tempTexture->sizeX, tempTexture->sizeY, type, GL_UNSIGNED_BYTE, tempTexture->data );
-		free( tempTexture->data );
-		free( tempTexture );
-	}
+	muzzleflaretextureptr = loadTexture(fileName);
 }
 
 void Sprites::LoadSmokeTexture(char *fileName)
 {
-	TGAImageRec	*tempTexture;
-	GLuint		type;
-	
-	//Load Image
-	tempTexture = LoadTGA( fileName ); 
-	//Is it valid?
-	if(tempTexture){
-		//Alpha channel?
-		if ( tempTexture->bpp == 24 )
-			type = GL_RGB;
-		else
-			type = GL_RGBA;
-	
-		glPixelStorei( GL_UNPACK_ALIGNMENT, 1 );
-	
-		glGenTextures( 1, &smoketextureptr );
-		glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-
-		glBindTexture( GL_TEXTURE_2D, smoketextureptr);
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-
-		gluBuild2DMipmaps( GL_TEXTURE_2D, type, tempTexture->sizeX, tempTexture->sizeY, type, GL_UNSIGNED_BYTE, tempTexture->data );
-		free( tempTexture->data );
-		free( tempTexture );
-	}
+	smoketextureptr = loadTexture(fileName);
 }
 
 void Sprites::LoadBloodTexture(char *fileName)
 {
-	TGAImageRec	*tempTexture;
-	GLuint		type;
-	
-	//Load Image
-	tempTexture = LoadTGA( fileName ); 
-	//Is it valid?
-	if(tempTexture){
-		//Alpha channel?
-		if ( tempTexture->bpp == 24 )
-			type = GL_RGB;
-		else
-			type = GL_RGBA;
-	
-		glPixelStorei( GL_UNPACK_ALIGNMENT, 1 );
-	
-		glGenTextures( 1, &bloodtextureptr );
-		glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-
-		glBindTexture( GL_TEXTURE_2D, bloodtextureptr);
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-
-		gluBuild2DMipmaps( GL_TEXTURE_2D, type, tempTexture->sizeX, tempTexture->sizeY, type, GL_UNSIGNED_BYTE, tempTexture->data );
-		free( tempTexture->data );
-		free( tempTexture );
-	}
+	bloodtextureptr = loadTexture(fileName);
 }
 
 void Sprites::LoadRainTexture(char *fileName)
 {
-	TGAImageRec	*tempTexture;
-	GLuint		type;
-	
-	//Load Image
-	tempTexture = LoadTGA( fileName ); 
-	//Is it valid?
-	if(tempTexture){
-		//Alpha channel?
-		if ( tempTexture->bpp == 24 )
-			type = GL_RGB;
-		else
-			type = GL_RGBA;
-	
-		glPixelStorei( GL_UNPACK_ALIGNMENT, 1 );
-	
-		glGenTextures( 1, &raintextureptr );
-		glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-
-		glBindTexture( GL_TEXTURE_2D, raintextureptr);
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-
-		gluBuild2DMipmaps( GL_TEXTURE_2D, type, tempTexture->sizeX, tempTexture->sizeY, type, GL_UNSIGNED_BYTE, tempTexture->data );
-		free( tempTexture->data );
-		free( tempTexture );
-	}
+	raintextureptr = loadTexture(fileName);
 }
 
 void Sprites::LoadSnowTexture(char *fileName)
 {
-	TGAImageRec	*tempTexture;
-	GLuint		type;
-	
-	//Load Image
-	tempTexture = LoadTGA( fileName ); 
-	//Is it valid?
-	if(tempTexture){
-		//Alpha channel?
-		if ( tempTexture->bpp == 24 )
-			type = GL_RGB;
-		else
-			type = GL_RGBA;
-	
-		glPixelStorei( GL_UNPACK_ALIGNMENT, 1 );
-	
-		glGenTextures( 1, &snowtextureptr );
-		glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-
-		glBindTexture( GL_TEXTURE_2D, snowtextureptr);
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-
-		gluBuild2DMipmaps( GL_TEXTURE_2D, type, tempTexture->sizeX, tempTexture->sizeY, type, GL_UNSIGNED_BYTE, tempTexture->data );
-		free( tempTexture->data );
-		free( tempTexture );
-	}
+	snowtextureptr = loadTexture(fileName);
 }
 
 void Sprites::LoadBulletTexture(char *fileName)
 {
-	TGAImageRec	*tempTexture;
-	GLuint		type;
-	
-	//Load Image
-	tempTexture = LoadTGA( fileName ); 
-	//Is it valid?
-	if(tempTexture){
-		//Alpha channel?
-		if ( tempTexture->bpp == 24 )
-			type = GL_RGB;
-		else
-			type = GL_RGBA;
-	
-		glPixelStorei( GL_UNPACK_ALIGNMENT, 1 );
-	
-		glGenTextures( 1, &bullettextureptr );
-		glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-
-		glBindTexture( GL_TEXTURE_2D, bullettextureptr);
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-
-		gluBuild2DMipmaps( GL_TEXTURE_2D, type, tempTexture->sizeX, tempTexture->sizeY, type, GL_UNSIGNED_BYTE, tempTexture->data );
-		free( tempTexture->data );
-		free( tempTexture );
-	}
+	bullettextureptr = loadTexture(fileName);
 }
 
 

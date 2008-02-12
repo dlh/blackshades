@@ -1,34 +1,10 @@
 /**> HEADER FILES <**/
 #include "Text.h"
+#include "Textures.h"
 
 void Text::LoadFontTexture(char *fileName)
 {
-	TGAImageRec	*tempTexture;
-	GLuint		type;
-	
-	//Load Image
-	tempTexture = LoadTGA( fileName ); 
-	//Is it valid?
-	if(tempTexture){
-		//Alpha channel?
-		if ( tempTexture->bpp == 24 )
-			type = GL_RGB;
-		else
-			type = GL_RGBA;
-	
-		glPixelStorei( GL_UNPACK_ALIGNMENT, 1 );
-	
-		glGenTextures( 1, &FontTexture );
-		glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-
-		glBindTexture( GL_TEXTURE_2D, FontTexture);
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-
-		gluBuild2DMipmaps( GL_TEXTURE_2D, type, tempTexture->sizeX, tempTexture->sizeY, type, GL_UNSIGNED_BYTE, tempTexture->data );
-		free( tempTexture->data );
-		free( tempTexture );
-	}
+	FontTexture = loadTexture(fileName);
 }
 
 void Text::BuildFont()								// Build Our Font Display List

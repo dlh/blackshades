@@ -12,7 +12,6 @@
 ///GLUT REMOVED.
 #endif
 #include "Files.h"
-#include "TGALoader.h"
 #include "Quaternions.h"
 #include "Camera.h"
 #include "Models.h"

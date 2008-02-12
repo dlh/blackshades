@@ -13,7 +13,6 @@
 #endif
 #include "Files.h"
 #include "Quaternions.h"
-#include "TGALoader.h"
 
 class Text{
 	public:

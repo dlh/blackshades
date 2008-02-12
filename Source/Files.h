@@ -30,6 +30,8 @@
 #include <TextUtils.h>
 #endif
 
+#include "Support.h"
+
 #define FILE_STRINGS              130
 #define Pstr unsigned char *
 #define Cstr char *

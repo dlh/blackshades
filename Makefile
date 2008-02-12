@@ -36,7 +36,8 @@ SRCS := Camera.cpp \
 	Support.cpp \
         TGALoader.cpp \
         Text.cpp \
-	Timer.cpp
+	Timer.cpp \
+	Textures.cpp
 
 OBJS1 := $(SRCS:.c=.o)
 OBJS2 := $(OBJS1:.cpp=.o)

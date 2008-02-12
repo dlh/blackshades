@@ -1,4 +1,5 @@
 #include "Decals.h"
+#include "Textures.h"
 
 extern double multiplier;
 extern bool slomo;
@@ -276,92 +277,17 @@ int Decals::DeleteDecal(int which){
 
 void Decals::LoadBulletHoleTexture(char *fileName)
 {
-	TGAImageRec	*tempTexture;
-	GLuint		type;
-	
-	//Load Image
-	tempTexture = LoadTGA( fileName ); 
-	//Is it valid?
-	if(tempTexture){
-		//Alpha channel?
-		if ( tempTexture->bpp == 24 )
-			type = GL_RGB;
-		else
-			type = GL_RGBA;
-	
-		glPixelStorei( GL_UNPACK_ALIGNMENT, 1 );
-	
-		glGenTextures( 1, &bulletholetextureptr );
-		glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-
-		glBindTexture( GL_TEXTURE_2D, bulletholetextureptr);
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-
-		gluBuild2DMipmaps( GL_TEXTURE_2D, type, tempTexture->sizeX, tempTexture->sizeY, type, GL_UNSIGNED_BYTE, tempTexture->data );
-		free( tempTexture->data );
-		free( tempTexture );
-	}
+	bulletholetextureptr = loadTexture(fileName);
 }
 
 void Decals::LoadBloodTexture(char *fileName, int which)
 {
-	TGAImageRec	*tempTexture;
-	GLuint		type;
-	
-	//Load Image
-	tempTexture = LoadTGA( fileName ); 
-	//Is it valid?
-	if(tempTexture){
-		//Alpha channel?
-		if ( tempTexture->bpp == 24 )
-			type = GL_RGB;
-		else
-			type = GL_RGBA;
-	
-		glPixelStorei( GL_UNPACK_ALIGNMENT, 1 );
-	
-		glGenTextures( 1, &bloodtextureptr[which] );
-		glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-
-		glBindTexture( GL_TEXTURE_2D, bloodtextureptr[which]);
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-
-		gluBuild2DMipmaps( GL_TEXTURE_2D, type, tempTexture->sizeX, tempTexture->sizeY, type, GL_UNSIGNED_BYTE, tempTexture->data );
-		free( tempTexture->data );
-		free( tempTexture );
-	}
+	bloodtextureptr[which] = loadTexture(fileName);
 }
 
 void Decals::LoadCraterTexture(char *fileName)
 {
-	TGAImageRec	*tempTexture;
-	GLuint		type;
-	
-	//Load Image
-	tempTexture = LoadTGA( fileName ); 
-	//Is it valid?
-	if(tempTexture){
-		//Alpha channel?
-		if ( tempTexture->bpp == 24 )
-			type = GL_RGB;
-		else
-			type = GL_RGBA;
-	
-		glPixelStorei( GL_UNPACK_ALIGNMENT, 1 );
-	
-		glGenTextures( 1, &cratertextureptr );
-		glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-
-		glBindTexture( GL_TEXTURE_2D, cratertextureptr);
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-
-		gluBuild2DMipmaps( GL_TEXTURE_2D, type, tempTexture->sizeX, tempTexture->sizeY, type, GL_UNSIGNED_BYTE, tempTexture->data );
-		free( tempTexture->data );
-		free( tempTexture );
-	}
+	cratertextureptr = loadTexture(fileName);
 }
 
 void Decals::DoStuff()

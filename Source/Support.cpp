@@ -6,7 +6,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#include "SDL.h"
+#include "SDL/SDL.h"
 
 #include "Support.h"
 #include "Files.h"

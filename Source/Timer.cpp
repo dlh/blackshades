@@ -1,6 +1,7 @@
 /**> HEADER FILES <**/
 #include <string.h>
 #include "Timer.h"				
+#include "Support.h"
 
 
 /********************> Timer <*****/

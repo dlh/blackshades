@@ -42,7 +42,6 @@
 #include "Files.h"
 #include "Models.h"
 #include "Text.h"
-#include "TGALoader.h"
 #include "Fog.h"
 #include "Frustum.h"
 #include "Sprites.h"

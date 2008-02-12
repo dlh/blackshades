@@ -1,4 +1,5 @@
 #include <ctype.h>
+#include "Textures.h"
 
 #ifndef OS9 
 #include <time.h>
@@ -1345,59 +1346,9 @@ void LoadPersonSpriteTexture(char *fileName, GLuint *textureid);
 void LoadPersonSpriteTexture(char *fileName, GLuint *textureid)
 
 {
-
-	TGAImageRec	*tempTexture;
-
-	GLuint		type;
-
-	
-
-	//Load Image
-
-	tempTexture = LoadTGA( fileName ); 
-
-	//Is it valid?
-
-	if(tempTexture){
-
-		//Alpha channel?
-
-		if ( tempTexture->bpp == 24 )
-
-			type = GL_RGB;
-
-		else
-
-			type = GL_RGBA;
-
-	
-
-		glPixelStorei( GL_UNPACK_ALIGNMENT, 1 );
-
-	
-
-		glGenTextures( 1, textureid );
-
-		glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-
-
-
-		glBindTexture( GL_TEXTURE_2D, *textureid);
-
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-
-
-
-		gluBuild2DMipmaps( GL_TEXTURE_2D, type, tempTexture->sizeX, tempTexture->sizeY, type, GL_UNSIGNED_BYTE, tempTexture->data );
-
-		free( tempTexture->data );
-
-		free( tempTexture );
-
-	}
-
+	*textureid = loadTexture(fileName);
+	glBindTexture(GL_TEXTURE_2D, *textureid);
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 }
 
 
@@ -3758,53 +3709,53 @@ void Game::InitGame()
 
 		
 
-		LoadPersonSpriteTexture(":Data:Textures:Personsprite.tga",&personspritetextureptr);
+		LoadPersonSpriteTexture(":Data:Textures:Personsprite.png",&personspritetextureptr);
 
-		LoadPersonSpriteTexture(":Data:Textures:DeadPersonsprite.tga",&deadpersonspritetextureptr);
+		LoadPersonSpriteTexture(":Data:Textures:DeadPersonsprite.png",&deadpersonspritetextureptr);
 
-		LoadPersonSpriteTexture(":Data:Textures:Scope.tga",&scopetextureptr);
+		LoadPersonSpriteTexture(":Data:Textures:Scope.png",&scopetextureptr);
 
-		LoadPersonSpriteTexture(":Data:Textures:Flare.tga",&flaretextureptr);
+		LoadPersonSpriteTexture(":Data:Textures:Flare.png",&flaretextureptr);
 
 		
 
-		sprites.LoadFlareTexture(":Data:Textures:HitFlash.tga");
+		sprites.LoadFlareTexture(":Data:Textures:HitFlash.png");
 
-		sprites.LoadMuzzleFlareTexture(":Data:Textures:MuzzleFlash.tga");
+		sprites.LoadMuzzleFlareTexture(":Data:Textures:MuzzleFlash.png");
 
-		sprites.LoadSmokeTexture(":Data:Textures:Smoke.tga");
+		sprites.LoadSmokeTexture(":Data:Textures:Smoke.png");
 
-		sprites.LoadBloodTexture(":Data:Textures:Blood.tga");
+		sprites.LoadBloodTexture(":Data:Textures:Blood.png");
 
-		sprites.LoadRainTexture(":Data:Textures:rain.tga");
+		sprites.LoadRainTexture(":Data:Textures:rain.png");
 
-		sprites.LoadSnowTexture(":Data:Textures:snow.tga");
+		sprites.LoadSnowTexture(":Data:Textures:snow.png");
 
-		decals.LoadBulletHoleTexture(":Data:Textures:BulletHole.tga");
+		decals.LoadBulletHoleTexture(":Data:Textures:BulletHole.png");
 
-		decals.LoadCraterTexture(":Data:Textures:Crater.tga");
+		decals.LoadCraterTexture(":Data:Textures:Crater.png");
 
-		decals.LoadBloodTexture(":Data:Textures:Blood:Blood1.tga",0);
+		decals.LoadBloodTexture(":Data:Textures:Blood:Blood1.png",0);
 
-		decals.LoadBloodTexture(":Data:Textures:Blood:Blood2.tga",1);
+		decals.LoadBloodTexture(":Data:Textures:Blood:Blood2.png",1);
 
-		decals.LoadBloodTexture(":Data:Textures:Blood:Blood3.tga",2);
+		decals.LoadBloodTexture(":Data:Textures:Blood:Blood3.png",2);
 
-		decals.LoadBloodTexture(":Data:Textures:Blood:Blood4.tga",3);
+		decals.LoadBloodTexture(":Data:Textures:Blood:Blood4.png",3);
 
-		decals.LoadBloodTexture(":Data:Textures:Blood:Blood5.tga",4);
+		decals.LoadBloodTexture(":Data:Textures:Blood:Blood5.png",4);
 
-		decals.LoadBloodTexture(":Data:Textures:Blood:Blood6.tga",5);
+		decals.LoadBloodTexture(":Data:Textures:Blood:Blood6.png",5);
 
-		decals.LoadBloodTexture(":Data:Textures:Blood:Blood7.tga",6);
+		decals.LoadBloodTexture(":Data:Textures:Blood:Blood7.png",6);
 
-		decals.LoadBloodTexture(":Data:Textures:Blood:Blood8.tga",7);
+		decals.LoadBloodTexture(":Data:Textures:Blood:Blood8.png",7);
 
-		decals.LoadBloodTexture(":Data:Textures:Blood:Blood9.tga",8);
+		decals.LoadBloodTexture(":Data:Textures:Blood:Blood9.png",8);
 
-		decals.LoadBloodTexture(":Data:Textures:Blood:Blood10.tga",9);
+		decals.LoadBloodTexture(":Data:Textures:Blood:Blood10.png",9);
 
-		decals.LoadBloodTexture(":Data:Textures:Blood:Blood11.tga",10);
+		decals.LoadBloodTexture(":Data:Textures:Blood:Blood11.png",10);
 
 	}
 
@@ -4200,7 +4151,7 @@ int Game::InitGL(void)
 #endif
 		
 
-	text.LoadFontTexture(":Data:Textures:Font.tga");
+	text.LoadFontTexture(":Data:Textures:Font.png");
 
 	text.BuildFont();
 
