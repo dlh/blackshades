@@ -176,125 +176,121 @@ void	Game::HandleKeyDown( char theChar )
 /********************> DoEvent() <*****/
 
 
-static int mapinit = 0;
-static int sdlkeymap[SDLK_LAST];
-
 static unsigned char ourkeys[16];
 
-static void init_sdlkeymap()
+static bool mousegrabbed = true;
+static bool relativemouse = false;
+
+static int MacKeyFromSDL(SDL_Keycode key)
 {
-	int i;
-	
-	for (i = 0; i < SDLK_LAST; i++) {
-		sdlkeymap[i] = -1;
+	switch (key) {
+		case SDLK_1: return MAC_1_KEY;
+		case SDLK_2: return MAC_2_KEY;
+		case SDLK_3: return MAC_3_KEY;
+		case SDLK_4: return MAC_4_KEY;
+		case SDLK_5: return MAC_5_KEY;
+		case SDLK_6: return MAC_6_KEY;
+		case SDLK_7: return MAC_7_KEY;
+		case SDLK_8: return MAC_8_KEY;
+		case SDLK_9: return MAC_9_KEY;
+		case SDLK_0: return MAC_0_KEY;
+		case SDLK_KP_1: return MAC_NUMPAD_1_KEY;
+		case SDLK_KP_2: return MAC_NUMPAD_2_KEY;
+		case SDLK_KP_3: return MAC_NUMPAD_3_KEY;
+		case SDLK_KP_4: return MAC_NUMPAD_4_KEY;
+		case SDLK_KP_5: return MAC_NUMPAD_5_KEY;
+		case SDLK_KP_6: return MAC_NUMPAD_6_KEY;
+		case SDLK_KP_7: return MAC_NUMPAD_7_KEY;
+		case SDLK_KP_8: return MAC_NUMPAD_8_KEY;
+		case SDLK_KP_9: return MAC_NUMPAD_9_KEY;
+		case SDLK_KP_0: return MAC_NUMPAD_0_KEY;
+		case SDLK_A: return MAC_A_KEY;
+		case SDLK_B: return MAC_B_KEY;
+		case SDLK_C: return MAC_C_KEY;
+		case SDLK_D: return MAC_D_KEY;
+		case SDLK_E: return MAC_E_KEY;
+		case SDLK_F: return MAC_F_KEY;
+		case SDLK_G: return MAC_G_KEY;
+		case SDLK_H: return MAC_H_KEY;
+		case SDLK_I: return MAC_I_KEY;
+		case SDLK_J: return MAC_J_KEY;
+		case SDLK_K: return MAC_K_KEY;
+		case SDLK_L: return MAC_L_KEY;
+		case SDLK_M: return MAC_M_KEY;
+		case SDLK_N: return MAC_N_KEY;
+		case SDLK_O: return MAC_O_KEY;
+		case SDLK_P: return MAC_P_KEY;
+		case SDLK_Q: return MAC_Q_KEY;
+		case SDLK_R: return MAC_R_KEY;
+		case SDLK_S: return MAC_S_KEY;
+		case SDLK_T: return MAC_T_KEY;
+		case SDLK_U: return MAC_U_KEY;
+		case SDLK_V: return MAC_V_KEY;
+		case SDLK_W: return MAC_W_KEY;
+		case SDLK_X: return MAC_X_KEY;
+		case SDLK_Y: return MAC_Y_KEY;
+		case SDLK_Z: return MAC_Z_KEY;
+		case SDLK_F1: return MAC_F1_KEY;
+		case SDLK_F2: return MAC_F2_KEY;
+		case SDLK_F3: return MAC_F3_KEY;
+		case SDLK_F4: return MAC_F4_KEY;
+		case SDLK_F5: return MAC_F5_KEY;
+		case SDLK_F6: return MAC_F6_KEY;
+		case SDLK_F7: return MAC_F7_KEY;
+		case SDLK_F8: return MAC_F8_KEY;
+		case SDLK_F9: return MAC_F9_KEY;
+		case SDLK_F10: return MAC_F10_KEY;
+		case SDLK_F11: return MAC_F11_KEY;
+		case SDLK_F12: return MAC_F12_KEY;
+		case SDLK_RETURN: return MAC_RETURN_KEY;
+		case SDLK_KP_ENTER: return MAC_ENTER_KEY;
+		case SDLK_TAB: return MAC_TAB_KEY;
+		case SDLK_SPACE: return MAC_SPACE_KEY;
+		case SDLK_BACKSPACE: return MAC_DELETE_KEY;
+		case SDLK_ESCAPE: return MAC_ESCAPE_KEY;
+		case SDLK_LCTRL: return MAC_CONTROL_KEY;
+		case SDLK_RCTRL: return MAC_CONTROL_KEY;
+		case SDLK_LSHIFT: return MAC_SHIFT_KEY;
+		case SDLK_RSHIFT: return MAC_SHIFT_KEY;
+		case SDLK_CAPSLOCK: return MAC_CAPS_LOCK_KEY;
+		case SDLK_LALT: return MAC_OPTION_KEY;
+		case SDLK_RALT: return MAC_OPTION_KEY;
+		case SDLK_PAGEUP: return MAC_PAGE_UP_KEY;
+		case SDLK_PAGEDOWN: return MAC_PAGE_DOWN_KEY;
+		case SDLK_INSERT: return MAC_INSERT_KEY;
+		case SDLK_DELETE: return MAC_DEL_KEY;
+		case SDLK_HOME: return MAC_HOME_KEY;
+		case SDLK_END: return MAC_END_KEY;
+		case SDLK_LEFTBRACKET: return MAC_LEFT_BRACKET_KEY;
+		case SDLK_RIGHTBRACKET: return MAC_RIGHT_BRACKET_KEY;
+		case SDLK_UP: return MAC_ARROW_UP_KEY;
+		case SDLK_DOWN: return MAC_ARROW_DOWN_KEY;
+		case SDLK_LEFT: return MAC_ARROW_LEFT_KEY;
+		case SDLK_RIGHT: return MAC_ARROW_RIGHT_KEY;
+		case SDLK_LGUI: return MAC_COMMAND_KEY;
+		case SDLK_RGUI: return MAC_COMMAND_KEY;
+		default: return -1;
 	}
-	
-	sdlkeymap[SDLK_1] = MAC_1_KEY;
-	sdlkeymap[SDLK_2] = MAC_2_KEY;
-	sdlkeymap[SDLK_3] = MAC_3_KEY;
-	sdlkeymap[SDLK_4] = MAC_4_KEY;
-	sdlkeymap[SDLK_5] = MAC_5_KEY;
-	sdlkeymap[SDLK_6] = MAC_6_KEY;
-	sdlkeymap[SDLK_7] = MAC_7_KEY;
-	sdlkeymap[SDLK_8] = MAC_8_KEY;
-	sdlkeymap[SDLK_9] = MAC_9_KEY;
-	sdlkeymap[SDLK_0] = MAC_0_KEY;
-	sdlkeymap[SDLK_KP1] = MAC_NUMPAD_1_KEY;
-	sdlkeymap[SDLK_KP2] = MAC_NUMPAD_2_KEY;
-	sdlkeymap[SDLK_KP3] = MAC_NUMPAD_3_KEY;
-	sdlkeymap[SDLK_KP4] = MAC_NUMPAD_4_KEY;
-	sdlkeymap[SDLK_KP5] = MAC_NUMPAD_5_KEY;
-	sdlkeymap[SDLK_KP6] = MAC_NUMPAD_6_KEY;
-	sdlkeymap[SDLK_KP7] = MAC_NUMPAD_7_KEY;
-	sdlkeymap[SDLK_KP8] = MAC_NUMPAD_8_KEY;
-	sdlkeymap[SDLK_KP9] = MAC_NUMPAD_9_KEY;
-	sdlkeymap[SDLK_KP0] = MAC_NUMPAD_0_KEY;
-	sdlkeymap[SDLK_a] = MAC_A_KEY;
-	sdlkeymap[SDLK_b] = MAC_B_KEY;
-	sdlkeymap[SDLK_c] = MAC_C_KEY;
-	sdlkeymap[SDLK_d] = MAC_D_KEY;
-	sdlkeymap[SDLK_e] = MAC_E_KEY;
-	sdlkeymap[SDLK_f] = MAC_F_KEY;
-	sdlkeymap[SDLK_g] = MAC_G_KEY;
-	sdlkeymap[SDLK_h] = MAC_H_KEY;
-	sdlkeymap[SDLK_i] = MAC_I_KEY;
-	sdlkeymap[SDLK_j] = MAC_J_KEY;
-	sdlkeymap[SDLK_k] = MAC_K_KEY;
-	sdlkeymap[SDLK_l] = MAC_L_KEY;
-	sdlkeymap[SDLK_m] = MAC_M_KEY;
-	sdlkeymap[SDLK_n] = MAC_N_KEY;
-	sdlkeymap[SDLK_o] = MAC_O_KEY;
-	sdlkeymap[SDLK_p] = MAC_P_KEY;
-	sdlkeymap[SDLK_q] = MAC_Q_KEY;
-	sdlkeymap[SDLK_r] = MAC_R_KEY;
-	sdlkeymap[SDLK_s] = MAC_S_KEY;
-	sdlkeymap[SDLK_t] = MAC_T_KEY;
-	sdlkeymap[SDLK_u] = MAC_U_KEY;
-	sdlkeymap[SDLK_v] = MAC_V_KEY;
-	sdlkeymap[SDLK_w] = MAC_W_KEY;
-	sdlkeymap[SDLK_x] = MAC_X_KEY;
-	sdlkeymap[SDLK_y] = MAC_Y_KEY;
-	sdlkeymap[SDLK_z] = MAC_Z_KEY;
-	sdlkeymap[SDLK_F1] = MAC_F1_KEY;
-	sdlkeymap[SDLK_F2] = MAC_F2_KEY;
-	sdlkeymap[SDLK_F3] = MAC_F3_KEY;
-	sdlkeymap[SDLK_F4] = MAC_F4_KEY;
-	sdlkeymap[SDLK_F5] = MAC_F5_KEY;
-	sdlkeymap[SDLK_F6] = MAC_F6_KEY;
-	sdlkeymap[SDLK_F7] = MAC_F7_KEY;
-	sdlkeymap[SDLK_F8] = MAC_F8_KEY;
-	sdlkeymap[SDLK_F9] = MAC_F9_KEY;
-	sdlkeymap[SDLK_F10] = MAC_F10_KEY;
-	sdlkeymap[SDLK_F11] = MAC_F11_KEY;
-	sdlkeymap[SDLK_F12] = MAC_F12_KEY;
-	sdlkeymap[SDLK_RETURN] = MAC_RETURN_KEY;
-	sdlkeymap[SDLK_KP_ENTER] = MAC_ENTER_KEY;
-	sdlkeymap[SDLK_TAB] = MAC_TAB_KEY;
-	sdlkeymap[SDLK_SPACE] = MAC_SPACE_KEY;
-	sdlkeymap[SDLK_BACKSPACE] = MAC_DELETE_KEY;
-	sdlkeymap[SDLK_ESCAPE] = MAC_ESCAPE_KEY;
-	sdlkeymap[SDLK_LCTRL] = MAC_CONTROL_KEY;
-	sdlkeymap[SDLK_RCTRL] = MAC_CONTROL_KEY;
-	sdlkeymap[SDLK_LSHIFT] = MAC_SHIFT_KEY;
-	sdlkeymap[SDLK_RSHIFT] = MAC_SHIFT_KEY;
-	sdlkeymap[SDLK_CAPSLOCK] = MAC_CAPS_LOCK_KEY;
-	sdlkeymap[SDLK_LALT] = MAC_OPTION_KEY;
-	sdlkeymap[SDLK_RALT] = MAC_OPTION_KEY;
-	sdlkeymap[SDLK_PAGEUP] = MAC_PAGE_UP_KEY;
-	sdlkeymap[SDLK_PAGEDOWN] = MAC_PAGE_DOWN_KEY;
-	sdlkeymap[SDLK_INSERT] = MAC_INSERT_KEY;
-	sdlkeymap[SDLK_DELETE] = MAC_DEL_KEY;
-	sdlkeymap[SDLK_HOME] = MAC_HOME_KEY;
-	sdlkeymap[SDLK_END] = MAC_END_KEY;
-	sdlkeymap[SDLK_LEFTBRACKET] = MAC_LEFT_BRACKET_KEY;
-	sdlkeymap[SDLK_RIGHTBRACKET] = MAC_RIGHT_BRACKET_KEY;
-	sdlkeymap[SDLK_UP] = MAC_ARROW_UP_KEY;
-	sdlkeymap[SDLK_DOWN] = MAC_ARROW_DOWN_KEY;
-	sdlkeymap[SDLK_LEFT] = MAC_ARROW_LEFT_KEY;
-	sdlkeymap[SDLK_RIGHT] = MAC_ARROW_RIGHT_KEY;
-	
-	mapinit = 1;
 }
 
-void GetKeys(unsigned long *keys)
+void GetKeys(unsigned char *keys)
 {
-	/* this is just weird */
 	memcpy(keys, ourkeys, sizeof(ourkeys));
 }
 
 static void DoSDLKey(Game *g, SDL_Event *event)
 {
-	int press = (event->type == SDL_KEYDOWN) ? 1 : 0;
+	int press = event->key.down ? 1 : 0;
 	int mackey;
 	int index;
 	int mask;
 	
-
-	if (mapinit == 0) {
-		init_sdlkeymap();
+	/* the game polls key state, so repeats would only retrigger HandleKeyDown */
+	if (event->key.repeat) {
+		return;
 	}
 	
-	mackey = sdlkeymap[event->key.keysym.sym];
+	mackey = MacKeyFromSDL(event->key.key);
 	
 	if (mackey != -1) {
 		index = mackey / 8;
@@ -307,14 +303,33 @@ static void DoSDLKey(Game *g, SDL_Event *event)
 		}
 	}
 	
-	if (event->key.keysym.unicode && 
-		!(event->key.keysym.unicode & 0xFF80)) {
+	if (press) {
+		/* not SDL text input, which pops up the macOS accent menu on held keys */
+		SDL_Keycode typed = SDL_GetKeyFromScancode(event->key.scancode, event->key.mod, false);
+		
+		if (typed != SDLK_UNKNOWN && typed < 0x80) {
+			/* hey, at least it was aleady public */
+			g->HandleKeyDown((char)typed);
+		}
+	}
+}
+
+/* Mouselook during play; the menu draws its own cursor from absolute position. */
+static void UpdateMouseMode(Game *g)
+{
+	bool relative = mousegrabbed && !g->mainmenu;
 	
-		/* hey, at least it was aleady public */
-		g->HandleKeyDown(event->key.keysym.unicode);
+	if (relative != relativemouse) {
+		relativemouse = relative;
+		SDL_SetWindowRelativeMouseMode(gWindow, relative);
+		SDL_GetRelativeMouseState(NULL, NULL); /* drop motion from the menu */
 	}
 	
-	
+	if (mousegrabbed) {
+		SDL_HideCursor();
+	} else {
+		SDL_ShowCursor();
+	}
 }
 
 static void ProcessSDLEvents(Game *g)
@@ -324,37 +339,71 @@ static void ProcessSDLEvents(Game *g)
 	if (SDL_PollEvent(&event)) {
 		do {
 			switch(event.type) {
-				case SDL_KEYDOWN:
-				if (event.key.keysym.sym == SDLK_RETURN &&
-					event.key.keysym.mod & KMOD_ALT)
+				case SDL_EVENT_KEY_DOWN:
+				if (event.key.key == SDLK_RETURN &&
+					event.key.mod & SDL_KMOD_ALT)
 				{
-					SDL_WM_ToggleFullScreen (SDL_GetVideoSurface ());
-					break;
-				}
-				if (event.key.keysym.sym == SDLK_g &&
-					event.key.keysym.mod & KMOD_CTRL)
-				{
-					if (SDL_WM_GrabInput (SDL_GRAB_QUERY) == SDL_GRAB_OFF)
-					{
-						SDL_WM_GrabInput (SDL_GRAB_ON);
-						SDL_ShowCursor (SDL_DISABLE);
-					}
-					else
-					{
-						SDL_WM_GrabInput (SDL_GRAB_OFF);
-						SDL_ShowCursor (SDL_ENABLE);
+					if (!event.key.repeat) {
+						bool fullscreen = (SDL_GetWindowFlags(gWindow) & SDL_WINDOW_FULLSCREEN) != 0;
+						SDL_SetWindowFullscreen(gWindow, !fullscreen);
 					}
 					break;
 				}
-				case SDL_KEYUP:
+				if (event.key.key == SDLK_G &&
+					event.key.mod & SDL_KMOD_CTRL)
+				{
+					if (!event.key.repeat) {
+						mousegrabbed = !mousegrabbed;
+					}
+					break;
+				}
+				case SDL_EVENT_KEY_UP:
 					DoSDLKey(g, &event);
 					break;
-				case SDL_QUIT:
-					exit(0);
+				case SDL_EVENT_WINDOW_PIXEL_SIZE_CHANGED:
+					g->screenwidth = event.window.data1;
+					g->screenheight = event.window.data2;
+					break;
+				case SDL_EVENT_WINDOW_FOCUS_LOST:
+					/* the key-up will go to whichever app took focus */
+					memset(ourkeys, 0, sizeof(ourkeys));
+					break;
+				case SDL_EVENT_QUIT:
+					g->RequestQuit();
+					break;
 			}
 		} while (SDL_PollEvent(&event));
 	}
+	
+	UpdateMouseMode(g);
 }	
+
+/********************> RequestQuit() <*****/
+
+void	Game::RequestQuit()
+
+{
+
+	gQuit = true;
+
+	if(score>highscore){
+
+		highscore=score;
+
+		ofstream opstream("Data/Highscore");
+
+		opstream << highscore;
+
+		opstream << "\n";
+
+		opstream << beatgame;
+
+		opstream.close();
+
+	}
+
+}
+
 
 
 /********************> EventLoop() <*****/
@@ -383,7 +432,7 @@ void	Game::EventLoop( void )
 
 		
 
-		colaccuracy=sps/framespersecond+1;
+		colaccuracy=framespersecond>0?sps/framespersecond+1:sps;
 
 		if(colaccuracy>sps){colaccuracy=sps;}
 
@@ -405,7 +454,7 @@ void	Game::EventLoop( void )
 
 		if ( DrawGLScene())
 
-                        SDL_GL_SwapBuffers();
+                        SDL_GL_SwapWindow(gWindow);
 
 		else
 
@@ -419,9 +468,12 @@ void	Game::EventLoop( void )
 
 		timetaken=end-start;
 
+		/* timetaken is in nanoseconds, so this is 0.6 times the real frame rate */
 		framespersecond=600000000/timetaken;
 
-		while(framespersecond>maxfps){
+		if(framespersecond>maxfps){
+
+			SDL_DelayPrecise((Uint64)(600000000.0/maxfps-timetaken));
 
 			end=TimerGetTime(&theTimer);
 
@@ -451,28 +503,11 @@ void	Game::EventLoop( void )
 
 		if(paused)multiplier=0;
 
-		GetKeys( ( unsigned long * )theKeyMap );
+		GetKeys( theKeyMap );
 
 		if ( IsKeyDown( theKeyMap, MAC_COMMAND_KEY )&&IsKeyDown( theKeyMap, MAC_Q_KEY )){
 
-			gQuit = true;
-
-			if(score>highscore){
-
-				highscore=score;
-
-				/* TODO */
-				ofstream opstream("Data/Highscore");
-
-		        opstream << highscore;
-
-				opstream << "\n";
-
-	        	opstream << beatgame;
-
-				opstream.close();
-
-			}
+			RequestQuit();
 
 		}
 

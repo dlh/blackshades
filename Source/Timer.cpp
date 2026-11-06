@@ -1,28 +1,15 @@
 /**> HEADER FILES <**/
-#include <string.h>
+#include <SDL3/SDL.h>
 #include "Timer.h"				
-#include "Support.h"
 
 
 /********************> Timer <*****/
 void TimerInit(timer* theTimer)
 {
-	UnsignedWide			ms;								
-
-	Microseconds(&ms);									
-	 
-	memset(theTimer, 0, sizeof(timer));						
-
-	theTimer->mm_timer_start	= ms.lo;						
-	theTimer->mm_timer_elapsed	= theTimer->mm_timer_start;			
+	theTimer->mm_timer_start = SDL_GetTicksNS();
 }
 
-float TimerGetTime(timer* theTimer)
+double TimerGetTime(timer* theTimer)
 {
-	UnsignedWide			ms;
-	
-	Microseconds(&ms);
-	
-	
-	return( (float) (ms.lo - theTimer->mm_timer_start) * 1000.0f);
+	return (double)(SDL_GetTicksNS() - theTimer->mm_timer_start);
 }

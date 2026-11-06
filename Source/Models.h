@@ -6,8 +6,7 @@
 // Model Maximums
 //
 #include "Quaternions.h"
-#include <GL/gl.h>
-#include <GL/glu.h>
+#include "GLHeaders.h"
 #include "Files.h"
 #include "Constants.h"
 

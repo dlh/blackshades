@@ -11,7 +11,7 @@ extern float fogcolorb;
 //Functions
 extern float sinefluct;
 extern int environment;
-extern Model gunmodels[10];
+extern Model gunmodels[11];
 extern Camera camera;
 extern float precipitationhorz;
 extern float precipitationvert;

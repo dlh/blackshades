@@ -1,6 +1,7 @@
 /********************> Headers <*****/
 
 #include "Game.h"
+#include <SDL3/SDL_main.h>
 
 
 
@@ -23,6 +24,8 @@ int 	main( int argc, char *argv[] )
 
 
 
+	LocateGameData();
+
 	game.InitGL();
 
 	
@@ -36,6 +39,8 @@ int 	main( int argc, char *argv[] )
 	
 
 	game.Dispose();
+
+	return 0;
 
 	
 	

@@ -116,7 +116,7 @@ void Skeleton::DoConstraints(Model *collide, XYZ *move, float rotation)
 			underpoint=joints[i].position;
 			underpoint.y-=offset;
 			whichtri=collide->LineCheck2(overpoint,underpoint,&impact,*move,rotation);
-			if(collide->normals[whichtri].y<=.8)whichtri=collide->LineCheck2(joints[i].realoldposition,joints[i].position,&impact,*move,rotation);
+			if(whichtri==-1||collide->normals[whichtri].y<=.8)whichtri=collide->LineCheck2(joints[i].realoldposition,joints[i].position,&impact,*move,rotation);
 			if(joints[i].position.y<=groundlevel+offset||whichtri!=-1){
 				if(whichtri==-1||(whichtri!=-1&&collide->normals[whichtri].y>.8)){
 					if(whichtri==-1)joints[i].position.y=groundlevel+offset;

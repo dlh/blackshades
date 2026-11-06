@@ -2,9 +2,8 @@
 #define _SKELETON_H_
 
 /**> HEADER FILES <**/
-#include <GL/gl.h>
+#include "GLHeaders.h"
 #include <AL/al.h>
-#include <AL/alut.h>
 #include "Quaternions.h"
 #include "Constants.h"
 #include "Files.h"

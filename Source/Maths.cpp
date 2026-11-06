@@ -1,7 +1,7 @@
 /**> HEADER FILES <**/
 #include "Maths.h"
 
-double fast_sqrt (register double arg)
+double fast_sqrt (double arg)
 {	
 	return sqrt(arg);
 }

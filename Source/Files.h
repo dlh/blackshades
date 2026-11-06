@@ -10,8 +10,7 @@
 #include <cmath>
 #include <iostream>
 #include <fstream>
-#include <GL/gl.h>
-#include <GL/glu.h>
+#include "GLHeaders.h"
 #include "MacInput.h"		// Header for Special Mac Input functions
 
 #include "Support.h"

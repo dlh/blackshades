@@ -9,7 +9,7 @@ extern int thirdperson;
 extern int visions;
 extern Camera camera;
 extern float rad2deg;
-extern Model gunmodels[10];
+extern Model gunmodels[11];
 extern Model skeletonmodels[10];
 extern Sprites sprites;
 extern float soundscalefactor;
@@ -640,7 +640,7 @@ void 	Person::DoStuff(int who){
 		if(visions==0&&targetanimation!=joganim)speed=1.3;
 		if(visions==0&&targetanimation==walkanim)speed=2.5;
 		unsigned char	theKeyMap[16];
-		GetKeys( ( unsigned long * )theKeyMap );
+		GetKeys( theKeyMap );
 		
 		if(IsKeyDown( theKeyMap, MAC_SHIFT_KEY )||visions==1){
 			moveanim=joganim;
@@ -771,7 +771,7 @@ void Person::FindRotationGun(XYZ start, XYZ target)
 }
 
 extern Model skeletonmodels[10];
-extern Costume costume[2];
+extern Costume costume[10];
 int Person::DrawSkeleton(int who){
 	GLfloat M[16];
 	//Guns

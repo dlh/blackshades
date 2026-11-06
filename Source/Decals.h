@@ -41,12 +41,6 @@ class Decals{
 				void LoadBulletHoleTexture(char *fileName);
 				void LoadCraterTexture(char *fileName);
 				void LoadBloodTexture(char *fileName, int which);
-				
-				~Decals() {
-					glDeleteTextures( 1, (const GLuint *)bulletholetextureptr );
-					glDeleteTextures( 1, (const GLuint *)cratertextureptr );
-					glDeleteTextures( 11, (const GLuint *)bloodtextureptr );
-				};
 };
 
 #endif

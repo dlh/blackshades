@@ -5,7 +5,13 @@
 #include <unistd.h>
 
 #include <AL/al.h>
-#include <AL/alut.h>
+
+struct SDL_Window;
+extern SDL_Window *gWindow;
+
+#ifndef MAX_PATH
+#define MAX_PATH 256
+#endif
 
 #define STUB_FUNCTION fprintf(stderr,"STUB: %s at " __FILE__ ", line %d, thread %d\n",__FUNCTION__,__LINE__,getpid())
 
@@ -19,12 +25,6 @@ typedef bool Boolean;
 #define TRUE true
 #define FALSE false
 
-typedef struct UnsignedWide
-{
-	unsigned int lo;
-	unsigned int hi;
-} UnsignedWide;
-
 typedef struct Point
 {
 	int h;
@@ -35,10 +35,9 @@ typedef struct Point
 #define FSClose(fildes) close(fildes)
 
 int Random();
-void Microseconds(UnsignedWide *microTickCount);
 void GetMouse(Point *p);
 void GetMouseRel(Point *p);
-void GetKeys(unsigned long *keys);
+void GetKeys(unsigned char *keys);
 int Button(void);
 void LoadOGG_CFH(char *filename, ALenum *format, void **wave, 
 	unsigned int *size, ALsizei *freq);
@@ -46,6 +45,7 @@ void FreeOGG(ALenum format, void *wave, unsigned int size,
 	ALsizei freq);
 
 
-FILE *cfh_fopen(const char *filename, const char *mode);
+void fix_filename(const char *original, char *fixed);
+void LocateGameData();
 
 #endif

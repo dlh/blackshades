@@ -132,7 +132,7 @@ void 	Game::Tick(){
 
 		unsigned char	theKeyMap[16];
 
-		GetKeys( ( unsigned long * )theKeyMap );
+		GetKeys( theKeyMap );
 
 		
 
@@ -471,7 +471,7 @@ void 	Game::Tick(){
 
 		unsigned char	theKeyMap[16];
 
-		GetKeys( ( unsigned long * )theKeyMap );
+		GetKeys( theKeyMap );
 
 		
 
@@ -1665,7 +1665,7 @@ void 	Game::Tick(){
 
 				//Zombie eat
 
-				if(i>0&&person[person[i].killtarget].eaten==i&&person[i].targetanimation==zombieeatanim){
+				if(i>0&&person[i].killtarget>=0&&person[person[i].killtarget].eaten==i&&person[i].targetanimation==zombieeatanim){
 
 			 		person[person[i].killtarget].skeleton.joints[person[person[i].killtarget].skeleton.jointlabels[head]].locked=1;
 
@@ -2456,6 +2456,15 @@ void 	Game::Tick(){
 
 				person[i].whichblocky=((person[i].skeleton.joints[0].position.z+block_spacing/2)/block_spacing);
 
+				//Bodies can get thrown clear of the city
+				if(person[i].whichblockx<0)person[i].whichblockx=0;
+
+				if(person[i].whichblockx>=num_blocks)person[i].whichblockx=num_blocks-1;
+
+				if(person[i].whichblocky<0)person[i].whichblocky=0;
+
+				if(person[i].whichblocky>=num_blocks)person[i].whichblocky=num_blocks-1;
+
 				move=0;
 
 				move.x=person[i].whichblockx*block_spacing;
@@ -2756,7 +2765,7 @@ void 	Game::Tick(){
 
 		if(Button()&&(person[0].aiming==0||person[0].ammo<=0||person[0].whichgun==nogun||person[0].whichgun==knife||person[0].targetanimation==joganim)&&person[0].currentanimation!=crouchanim&&person[0].targetanimation!=throwanim&&person[0].whichgun!=grenade&&person[0].targetanimation!=crouchanim&&visions==0){
 
-			if(person[0].attackframe==-1||person[person[0].killtarget].skeleton.free==1){
+			if(person[0].attackframe==-1||person[0].killtarget<0||person[person[0].killtarget].skeleton.free==1){
 
 				bool attacking=0;
 
@@ -2804,7 +2813,7 @@ void 	Game::Tick(){
 
 		if(person[0].attackframe>1||(person[0].attackframe>=0&&person[0].currentanimation==joganim)){
 
-			if(person[person[0].killtarget].skeleton.free<1&&person[0].killtarget!=0&&(person[0].aiming<1||person[0].whichgun==nogun||person[0].whichgun==knife||person[0].targetanimation==joganim)){
+			if(person[0].killtarget>0&&person[person[0].killtarget].skeleton.free<1&&(person[0].aiming<1||person[0].whichgun==nogun||person[0].whichgun==knife||person[0].targetanimation==joganim)){
 
 				float gLoc[3];
 

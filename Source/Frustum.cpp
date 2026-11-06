@@ -1,5 +1,5 @@
 #include <cmath>
-#include <GL/gl.h>
+#include "GLHeaders.h"
 
 #include "Frustum.h"
 

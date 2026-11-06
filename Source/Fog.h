@@ -3,7 +3,7 @@
 
 
 /**> HEADER FILES <**/
-#include <GL/gl.h>
+#include "GLHeaders.h"
 #include "Quaternions.h"
 
 

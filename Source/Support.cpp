@@ -6,7 +6,8 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#include "SDL/SDL.h"
+#include <SDL3/SDL.h>
+#include <vorbis/vorbisfile.h>
 
 #include "Support.h"
 #include "Files.h"
@@ -20,38 +21,41 @@ int Random()
 #endif
 }
 
-void Microseconds(UnsignedWide *microTickCount)
-{
-	/* NOTE: hi isn't used in BS, so it's not implemented here */
-	/* TODO: does game need microsecond precision? */
-	microTickCount->hi = 0;
-	microTickCount->lo = SDL_GetTicks() * 1000;
-}
-
+/* SDL reports the mouse in window points; the game works in pixels. */
 void GetMouse(Point *p)
 {
-	int x;
-	int y;
+	float x;
+	float y;
+	float density = SDL_GetWindowPixelDensity(gWindow);
 	
 	SDL_GetMouseState(&x, &y);
 	
-	p->h = x;
-	p->v = y;
+	p->h = (int)(x * density);
+	p->v = (int)(y * density);
 }
 
 void GetMouseRel(Point *p)
 {
-	int x;
-	int y;
+	/* carry the fractions over so slow mouse movement isn't lost */
+	static float remainderx = 0;
+	static float remaindery = 0;
+	float x;
+	float y;
 	
 	SDL_GetRelativeMouseState(&x, &y);
 	
-	p->h = x;
-	p->v = y;
+	remainderx += x;
+	remaindery += y;
+	
+	p->h = (int)remainderx;
+	p->v = (int)remaindery;
+	
+	remainderx -= p->h;
+	remaindery -= p->v;
 }
 int Button(void)
 {
-	return (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(1));
+	return (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON_LMASK);
 }
 
 void InitMouse()
@@ -61,11 +65,7 @@ void InitMouse()
 
 void MoveMouse(int xcoord, int ycoord, Point *mouseloc)
 {
-	/* TODO: mouse warp is annoying when we can just grab the mouse */
-#ifdef FULLSCREEN
-	SDL_WarpMouse(xcoord, ycoord);
-	SDL_PumpEvents();
-#endif
+	/* the mouse is in relative mode during play, so there's nothing to warp */
 	GetMouse(mouseloc);
 }
 
@@ -74,12 +74,41 @@ void DisposeMouse()
 // STUB_FUNCTION;
 }
 
+/*
+The game opens everything relative to the directory holding Data/. Look in the
+current directory, next to the executable and one level above it (a build dir).
+*/
+void LocateGameData()
+{
+	const char *base = SDL_GetBasePath();
+	char path[MAX_PATH];
+	
+	if (access("Data/Textures/Font.png", R_OK) == 0) {
+		return;
+	}
+	
+	if (base != NULL) {
+		const char *suffixes[] = { "", "../" };
+		
+		for (int i = 0; i < 2; i++) {
+			snprintf(path, sizeof(path), "%s%sData/Textures/Font.png", base, suffixes[i]);
+			
+			if (access(path, R_OK) == 0) {
+				snprintf(path, sizeof(path), "%s%s", base, suffixes[i]);
+				
+				if (chdir(path) == 0) {
+					return;
+				}
+			}
+		}
+	}
+	
+	fprintf(stderr, "ERROR: could not find the Data directory\n");
+	exit(EXIT_FAILURE);
+}
+
 #ifndef O_BINARY
 #define O_BINARY 0
-#endif
-
-#ifndef MAX_PATH
-#define MAX_PATH 256
 #endif
 
 static int find_filename(char *filename)
@@ -131,7 +160,7 @@ static int find_filename(char *filename)
 				}
 				
 				if (next) {
-					*next = 0;
+					*next = '/';
 				}
 				
 				return 0;
@@ -168,7 +197,7 @@ static int find_filename(char *filename)
 	return 0;
 }
 
-static void fix_filename(const char *original, char *fixed)
+void fix_filename(const char *original, char *fixed)
 {
 	const char *start;
 	int i;
@@ -211,19 +240,6 @@ static void fix_filename(const char *original, char *fixed)
 	}
 }
 
-/*
-Convenient Filename Hacks
-*/
-
-FILE *cfh_fopen(const char *filename, const char *mode)
-{
-	char filename1[MAX_PATH];
-	
-	fix_filename(filename, filename1);
-	
-	return fopen(filename1, mode);	
-}
-
 int Files::OpenFile(Str255 Name)
 {
 	char filename1[MAX_PATH];
@@ -242,8 +258,6 @@ void Files::EndLoad()
 	
 	sFile = -1;
 }
-
-#include <vorbis/vorbisfile.h>
 
 /*
 Read the requested OGG file into memory, and extract the information required
@@ -264,11 +278,7 @@ void LoadOGG_CFH(char *filename, ALenum *format, void **wave,
 	int err;
 	int eof;
 
-#if BYTE_ORDER == BIG_ENDIAN
-	const int endian = 1;
-#else
-	const int endian = 0;
-#endif
+	const int endian = (SDL_BYTEORDER == SDL_BIG_ENDIAN) ? 1 : 0;
 
 	/* try to find the real file (and place it in filename1) */
 	fix_filename(filename, filename1);
@@ -313,20 +323,30 @@ void LoadOGG_CFH(char *filename, ALenum *format, void **wave,
 	buf = (char *)wave1;
 	
 	while(!eof) {
-		long ret = ov_read(&vf, buf, 1024, endian, 2, 1, 
+		int space = asize - (int)(buf - (char *)wave1);
+		long ret;
+		
+		if (space <= 0) {
+			break;
+		}
+		
+		ret = ov_read(&vf, buf, space < 1024 ? space : 1024, endian, 2, 1, 
 			&current_section);
 		
 		if (ret == 0) {
 			/* end of file */
 			eof = 1;
+		} else if (ret == OV_HOLE) {
+			/* a gap in the data; the decoder picks up after it */
 		} else if (ret < 0) {
-			/* some sort of error */
-			
-			/* TODO: is this ok to ignore? */
+			fprintf(stderr, "ERROR: vorbis error %ld reading %s\n", -ret, filename1);
+			eof = 1;
 		} else {
 			buf += ret;
 		}
 	}
+	
+	size1 = (ALsizei)(buf - (char *)wave1);
 
 	/* get the rest of the information */
 	if (vi->channels == 1) {

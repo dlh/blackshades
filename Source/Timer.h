@@ -6,13 +6,12 @@
 class timer			 							
 {
 	public:
-  	unsigned long mm_timer_start;			
-  	unsigned long mm_timer_elapsed;					
+  	unsigned long long mm_timer_start;			
 };
 
 
 void TimerInit(timer* theTimer);
-float TimerGetTime(timer* theTimer);
+double TimerGetTime(timer* theTimer);
 
 #endif
 

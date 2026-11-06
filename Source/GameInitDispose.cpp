@@ -22,7 +22,7 @@ extern Decals decals;
 
 extern Model skeletonmodels[10];
 
-extern Model gunmodels[10];
+extern Model gunmodels[11];
 
 extern Costume costume[10];
 
@@ -79,7 +79,7 @@ void LoadSounds(bool musictoggle)
 {
 	char *pBuffer1;
 
-	long lBuffer1Len;
+	unsigned int lBuffer1Len;
 
 	ALenum formatBuffer1;
 
@@ -101,7 +101,15 @@ void LoadSounds(bool musictoggle)
 
 	// initialize OpenAL
 
-	alutInit(NULL, 0);
+	ALCdevice *device = alcOpenDevice(NULL);
+
+	ALCcontext *context = device ? alcCreateContext(device, NULL) : NULL;
+
+	if (!context || !alcMakeContextCurrent(context)) {
+
+		fprintf(stderr, "OpenAL init failed, continuing without sound\n");
+
+	}
 
 	
 
@@ -955,7 +963,9 @@ void Game::LoadingScreen(float percent)
 	
 
 	
-	SDL_GL_SwapBuffers( );
+	SDL_GL_SwapWindow(gWindow);
+
+	SDL_PumpEvents(); /* keeps macOS from flagging us as hung while loading */
 
 }
 
@@ -2081,7 +2091,7 @@ void Game::InitGame()
 
 			blocks[i].boundingsphereradius=0;
 
-			for(int x=0;i<blocks[x].vertexNum;x++){
+			for(int x=0;x<blocks[i].vertexNum;x++){
 
 				if(findDistancefast(blocks[i].boundingspherecenter,blocks[i].vertex[x])>blocks[i].boundingsphereradius)blocks[i].boundingsphereradius=findDistancefast(blocks[i].boundingspherecenter,blocks[i].vertex[x]);
 
@@ -3485,11 +3495,10 @@ int Game::InitGL(void)
 	if(!initialized){
 
 		//Default config in case config is not found	
-		STUB_FUNCTION;
 
-		screenwidth = 640;
+		screenwidth = 1024;
 
-		screenheight = 480;
+		screenheight = 768;
 
 		usermousesensitivity=.7;
 
@@ -3557,7 +3566,7 @@ int Game::InitGL(void)
 
 		    opstream << musictoggle;
 
-			opstream << "\azerty keyboard:\n";
+			opstream << "\nazerty keyboard:\n";
 
 		    opstream << azertykeyboard;
 
@@ -3664,7 +3673,7 @@ int Game::InitGL(void)
 
 		    ipstream2 >> highscore;
 
-		    ipstream.ignore(256,'\n');
+		    ipstream2.ignore(256,'\n');
 
 		    ipstream2 >> beatgame;
 
@@ -3689,49 +3698,39 @@ int Game::InitGL(void)
 
 
 	//Setup screen
-        if (SDL_Init(SDL_INIT_VIDEO) == -1) {
+        if (!SDL_Init(SDL_INIT_VIDEO)) {
 		fprintf(stderr, "SDL Init Video failed: %s\n", SDL_GetError());
 		exit(EXIT_FAILURE);
         }
-        
-	atexit(SDL_Quit);
 
-	SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 5);
-        SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 5);
-        SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5);
-        SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
-        SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+	SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
+	SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
+	SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
+	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
-	if(screenwidth<640||screenheight<480) {
-#ifdef FULLSCREEN 
-		if (SDL_SetVideoMode(640, 480, 0, SDL_OPENGL | SDL_FULLSCREEN) == NULL) {
-#else
-		if (SDL_SetVideoMode(640, 480, 0, SDL_OPENGL) == NULL) {
-#endif
-			fprintf(stderr, "(OpenGL) SDL SetVideoMode failed: %s\n", SDL_GetError());
-			exit(EXIT_FAILURE);
-		}
-	} else {
-#ifdef FULLSCREEN
-		if (SDL_SetVideoMode(screenwidth, screenheight, 0, SDL_OPENGL | SDL_FULLSCREEN) == NULL) {
-#else
-		if (SDL_SetVideoMode(screenwidth, screenheight, 0, SDL_OPENGL) == NULL) {
-#endif
-			fprintf(stderr, "(OpenGL) SDL SetVideoMode failed: %s\n", SDL_GetError());
-			exit(EXIT_FAILURE);
-		}
+	/* config sizes are window points; screenwidth/height are pixels from here on */
+	if(screenwidth<640)screenwidth=640;
+	if(screenheight<480)screenheight=480;
+
+	gWindow = SDL_CreateWindow("Black Shades", screenwidth, screenheight,
+		SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIGH_PIXEL_DENSITY);
+	if (gWindow == NULL) {
+		fprintf(stderr, "(OpenGL) SDL_CreateWindow failed: %s\n", SDL_GetError());
+		exit(EXIT_FAILURE);
 	}
-	
-	SDL_WM_SetCaption("Black Shades", "Black Shades");
-	
-	SDL_EnableUNICODE(1); /* toggle it to ON */
+	SDL_SetWindowMinimumSize(gWindow, 640, 480);
 
-#ifdef FULLSCREEN
-	SDL_WM_GrabInput(SDL_GRAB_ON);
-	SDL_ShowCursor(0);
-#endif
-
-		
+	glcontext = SDL_GL_CreateContext(gWindow);
+	if (glcontext == NULL) {
+		fprintf(stderr, "(OpenGL) SDL_GL_CreateContext failed: %s\n", SDL_GetError());
+		exit(EXIT_FAILURE);
+	}
+	SDL_GL_SetSwapInterval(vblsync ? 1 : 0);
+	SDL_GetWindowSizeInPixels(gWindow, &screenwidth, &screenheight);
+	SDL_HideCursor();
 
 	text.LoadFontTexture(":Data:Textures:Font.png");
 
@@ -3764,9 +3763,25 @@ void Game::Dispose()
 
 	//Delete sound sources
 
-	alDeleteSources(100, gSourceID);
+	alDeleteSources(37, gSourceID);
 
+	alDeleteBuffers(37, gSampleSet);
 
+	ALCcontext *context = alcGetCurrentContext();
+
+	ALCdevice *device = context ? alcGetContextsDevice(context) : NULL;
+
+	alcMakeContextCurrent(NULL);
+
+	if (context) alcDestroyContext(context);
+
+	if (device) alcCloseDevice(device);
+
+	SDL_GL_DestroyContext(glcontext);
+
+	SDL_DestroyWindow(gWindow);
+
+	SDL_Quit();
 
 }
 

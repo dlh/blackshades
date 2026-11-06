@@ -2,3 +2,6 @@
 .DS_Store
 build/
 objs/
+build-*/
+config.txt
+Data/Highscore

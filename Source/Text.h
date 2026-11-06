@@ -4,8 +4,7 @@
 
 /**> HEADER FILES <**/
 #include "Quaternions.h"
-#include <GL/gl.h>
-#include <GL/glu.h>
+#include "GLHeaders.h"
 #include "Files.h"
 #include "Quaternions.h"
 
@@ -17,10 +16,6 @@ class Text{
 		void LoadFontTexture(char *fileName);
 		void BuildFont();
 		void glPrint(GLint x, GLint y, char *string, int set, float size, float width, float height);
-		
-		~Text(){
-			glDeleteTextures( 1, (const GLuint *)FontTexture );
-		}
 };
 
 #endif

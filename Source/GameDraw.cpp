@@ -517,7 +517,7 @@ int Game::DrawGLScene(void)
 
 		
 
-		float size=5;
+		float size=5.0f*screenheight/480;
 
 		
 

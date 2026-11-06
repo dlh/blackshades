@@ -2,8 +2,7 @@
 #define _SPRITE_H_
 
 #include "Quaternions.h"
-#include <GL/gl.h>
-#include <GL/glu.h>
+#include "GLHeaders.h"
 #include "Files.h"
 #include "Quaternions.h"
 #include "Camera.h"
@@ -73,16 +72,6 @@ class Sprites{
 				void LoadBloodTexture(char *fileName);
 				void LoadSnowTexture(char *fileName);
 				void LoadRainTexture(char *fileName);
-				
-				~Sprites() {
-					glDeleteTextures( 1, (const GLuint *)muzzleflaretextureptr );
-					glDeleteTextures( 1, (const GLuint *)flaretextureptr );
-					glDeleteTextures( 1, (const GLuint *)bullettextureptr );
-					glDeleteTextures( 1, (const GLuint *)smoketextureptr );
-					glDeleteTextures( 1, (const GLuint *)bloodtextureptr );
-					glDeleteTextures( 1, (const GLuint *)raintextureptr );
-					glDeleteTextures( 1, (const GLuint *)snowtextureptr );
-				};
 };
 
 #endif

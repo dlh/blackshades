@@ -1,16 +1,15 @@
 #ifndef _GAME_H_
 #define _GAME_H_
 
-#include <GL/gl.h>
-#include <GL/glu.h>
+#include "GLHeaders.h"
 #include <stdlib.h>			
 #include <stdio.h>			
 #include <string.h>
 #include <ctype.h>
 #include <cstdarg>
-#include <SDL/SDL.h>
+#include <SDL3/SDL.h>
 #include <AL/al.h>
-#include <AL/alut.h>
+#include <AL/alc.h>
 #include "Timer.h"	
 #include "MacInput.h"
 #include "Quaternions.h"
@@ -49,10 +48,12 @@ class Game
 		GLvoid ReSizeGLScene(float fov, float near);
 		int DrawGLScene(void);
 		int InitGL(void);
+		SDL_GLContext glcontext;
 		void LoadingScreen(float percent);
 		
 		//Game Functions
 		void	HandleKeyDown( char theChar );
+		void	RequestQuit();
 		void	EventLoop( void );
 		void 	Tick();
 		void 	Splat(int k);
@@ -187,13 +188,6 @@ class Game
 		float difficulty;
 		bool azertykeyboard;
 		bool oldvisionkey;
-		
-		~Game() {
-			glDeleteTextures( 1, (const GLuint *)personspritetextureptr );
-			glDeleteTextures( 1, (const GLuint *)deadpersonspritetextureptr );
-			glDeleteTextures( 1, (const GLuint *)scopetextureptr );
-			glDeleteTextures( 1, (const GLuint *)flaretextureptr );
-		}
 		
 };
 

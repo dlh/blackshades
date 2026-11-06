@@ -9,6 +9,8 @@ float sinefluctprog;
 
 double multiplier=0;
 
+SDL_Window *gWindow;
+
 unsigned int gSourceID[100]; // hundred source IDs
 unsigned int gSampleSet[100]; // hundred sample set ID numbers
 
