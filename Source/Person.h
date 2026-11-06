@@ -3,17 +3,9 @@
 
 /**> HEADER FILES <**/
 #include <cmath>
-#ifdef OS9 
-#include <gl.h>
-#else
 #include <GL/gl.h>
-#endif
-#ifdef OS9 
-#include "alut.h"
-#else
 #include <AL/al.h>
 #include <AL/alut.h>
-#endif
 #include "Quaternions.h"
 #include "Constants.h"
 #include "Skeleton.h"

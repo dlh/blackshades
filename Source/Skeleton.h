@@ -2,14 +2,9 @@
 #define _SKELETON_H_
 
 /**> HEADER FILES <**/
-#ifdef OS9 
-#include <gl.h>
-#include "alut.h"
-#else
 #include <GL/gl.h>
 #include <AL/al.h>
 #include <AL/alut.h>
-#endif
 #include "Quaternions.h"
 #include "Constants.h"
 #include "Files.h"

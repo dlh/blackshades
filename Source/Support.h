@@ -40,19 +40,10 @@ void GetMouse(Point *p);
 void GetMouseRel(Point *p);
 void GetKeys(unsigned long *keys);
 int Button(void);
-#ifdef NOOGG
-void alutLoadWAVFile_CFH(char *filename, ALenum *format, void **wave, 
-	unsigned int *size, ALsizei *freq);
-void alutUnloadWAV_CFH(ALenum format, void *wave, unsigned int size, 
-	ALsizei freq);
-#define alutLoadWAVFile alutLoadWAVFile_CFH
-#define alutUnloadWAV alutUnloadWAV_CFH 
-#else
 void LoadOGG_CFH(char *filename, ALenum *format, void **wave, 
 	unsigned int *size, ALsizei *freq);
 void FreeOGG(ALenum format, void *wave, unsigned int size, 
 	ALsizei freq);
-#endif
 
 
 FILE *cfh_fopen(const char *filename, const char *mode);

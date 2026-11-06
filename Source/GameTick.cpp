@@ -269,12 +269,8 @@ void 	Game::Tick(){
 
 				highscore=score;
 
-#ifdef OS9 
-				ofstream opstream(":Data:Highscore"); 
-#else
 				/* TODO */
 				ofstream opstream("Data/Highscore");
-#endif
 		        opstream << highscore;
 
 				opstream << "\n";
@@ -301,12 +297,8 @@ void 	Game::Tick(){
 
 				highscore=score;
 
-#ifdef OS9 
-				 ofstream opstream(":Data:Highscore"); 
-#else
 				/* TODO */
 				ofstream opstream("Data/Highscore");
-#endif
 		        opstream << highscore;
 
 				opstream << "\n";
@@ -399,12 +391,8 @@ void 	Game::Tick(){
 
 					highscore=score;
 
-#ifdef OS9 
-					 ofstream opstream(":Data:Highscore"); 
-#else
 					/* TODO */
 					ofstream opstream("Data/Highscore");
-#endif
 			        opstream << highscore;
 
 					opstream << "\n";

@@ -1,9 +1,7 @@
 #include <ctype.h>
 #include "Textures.h"
 
-#ifndef OS9 
 #include <time.h>
-#endif
 
 #include "Game.h"	
 
@@ -121,379 +119,6 @@ void LoadSounds(bool musictoggle)
 
 	alGenBuffers(iNumSampleSets, &gSampleSet[0]);
 
-#ifdef NOOGG	
-	alutLoadWAVFile((char *)":Data:Sounds:underwater.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[visionsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[visionsound], AL_BUFFER, gSampleSet[visionsound]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	
-
-	alutLoadWAVFile((char *)":Data:Sounds:soulin.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[soulinsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[soulinsound], AL_BUFFER, gSampleSet[soulinsound]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	
-
-	alutLoadWAVFile((char *)":Data:Sounds:soulout.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[souloutsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[souloutsound], AL_BUFFER, gSampleSet[souloutsound]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	
-
-	alutLoadWAVFile((char *)":Data:Sounds:footstep1.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[footstepsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[footstepsound], AL_BUFFER, gSampleSet[footstepsound]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	
-
-	alutLoadWAVFile((char *)":Data:Sounds:footstep2.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[footstepsound+1], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[footstepsound+1], AL_BUFFER, gSampleSet[footstepsound+1]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	
-
-	alutLoadWAVFile((char *)":Data:Sounds:footstep3.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[footstepsound+2], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[footstepsound+2], AL_BUFFER, gSampleSet[footstepsound+2]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	
-
-	alutLoadWAVFile((char *)":Data:Sounds:footstep4.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[footstepsound+3], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[footstepsound+3], AL_BUFFER, gSampleSet[footstepsound+3]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	
-
-	alutLoadWAVFile((char *)":Data:Sounds:footstep5.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[footstepsound+4], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[footstepsound+4], AL_BUFFER, gSampleSet[footstepsound+4]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	
-
-	alutLoadWAVFile((char *)":Data:Sounds:bodyland.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[bodylandsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[bodylandsound], AL_BUFFER, gSampleSet[bodylandsound]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-
-
-	alutLoadWAVFile((char *)":Data:Sounds:headland.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[headlandsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[headlandsound], AL_BUFFER, gSampleSet[headlandsound]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	
-
-	alutLoadWAVFile((char *)":Data:Sounds:sniperrifle.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[riflesound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[riflesound], AL_BUFFER, gSampleSet[riflesound]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	
-
-	alutLoadWAVFile((char *)":Data:Sounds:BodyHit.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[bodyhitsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[bodyhitsound], AL_BUFFER, gSampleSet[bodyhitsound]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-
-
-	alutLoadWAVFile((char *)":Data:Sounds:WallHit.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[wallhitsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[wallhitsound], AL_BUFFER, gSampleSet[wallhitsound]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	
-
-	alutLoadWAVFile((char *)":Data:Sounds:machinegun.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[machinegunsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[machinegunsound], AL_BUFFER, gSampleSet[machinegunsound]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	
-
-	alutLoadWAVFile((char *)":Data:Sounds:Nearbullet.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[nearbulletsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[nearbulletsound], AL_BUFFER, gSampleSet[nearbulletsound]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	
-
-	alutLoadWAVFile((char *)":Data:Sounds:riflewhack.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[headwhacksound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[headwhacksound], AL_BUFFER, gSampleSet[headwhacksound]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-
-
-	alutLoadWAVFile((char *)":Data:Sounds:headshot.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[headshotsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[headshotsound], AL_BUFFER, gSampleSet[headshotsound]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	
-
-	alutLoadWAVFile((char *)":Data:Sounds:reload.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[reloadsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[reloadsound], AL_BUFFER, gSampleSet[reloadsound]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	
-
-	alutLoadWAVFile((char *)":Data:Sounds:click.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[clicksound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[clicksound], AL_BUFFER, gSampleSet[clicksound]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	
-
-	alutLoadWAVFile((char *)":Data:Sounds:SW.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[pistol1sound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[pistol1sound], AL_BUFFER, gSampleSet[pistol1sound]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	
-
-	alutLoadWAVFile((char *)":Data:Sounds:glock.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[pistol2sound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[pistol2sound], AL_BUFFER, gSampleSet[pistol2sound]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	
-
-	alutLoadWAVFile((char *)":Data:Sounds:pinpull.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[pinpullsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[pinpullsound], AL_BUFFER, gSampleSet[pinpullsound]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	
-
-	alutLoadWAVFile((char *)":Data:Sounds:pinreplace.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[pinreplacesound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[pinreplacesound], AL_BUFFER, gSampleSet[pinreplacesound]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	
-
-	alutLoadWAVFile((char *)":Data:Sounds:handlerelease.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[grenadethrowsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[grenadethrowsound], AL_BUFFER, gSampleSet[grenadethrowsound]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	
-
-	alutLoadWAVFile((char *)":Data:Sounds:bounce.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[bouncesound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[bouncesound], AL_BUFFER, gSampleSet[bouncesound]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	
-
-	alutLoadWAVFile((char *)":Data:Sounds:bounce2.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[bounce2sound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[bounce2sound], AL_BUFFER, gSampleSet[bounce2sound]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	
-
-	alutLoadWAVFile((char *)":Data:Sounds:explosion.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[explosionsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[explosionsound], AL_BUFFER, gSampleSet[explosionsound]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	
-
-	alutLoadWAVFile((char *)":Data:Sounds:headland.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[bodywhacksound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[bodywhacksound], AL_BUFFER, gSampleSet[bodywhacksound]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-
-
-	alutLoadWAVFile((char *)":Data:Sounds:rain.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[rainsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[rainsound], AL_BUFFER, gSampleSet[rainsound]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-
-
-	alutLoadWAVFile((char *)":Data:Sounds:Lose.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[losesound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[losesound], AL_BUFFER, gSampleSet[losesound]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-
-
-	alutLoadWAVFile((char *)":Data:Sounds:Disguisekill.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[disguisekillsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[disguisekillsound], AL_BUFFER, gSampleSet[disguisekillsound]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-
-
-	alutLoadWAVFile((char *)":Data:Sounds:knifeslash.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[knifeslashsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[knifeslashsound], AL_BUFFER, gSampleSet[knifeslashsound]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-
-
-	alutLoadWAVFile((char *)":Data:Sounds:shotgun.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[shotgunsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[shotgunsound], AL_BUFFER, gSampleSet[shotgunsound]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-
-
-	if(musictoggle){
-
-	alutLoadWAVFile((char *)":Data:Sounds:mainmenusong.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[mainmenusong], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[mainmenusong], AL_BUFFER, gSampleSet[mainmenusong]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-
-
-	alutLoadWAVFile((char *)":Data:Sounds:shootsong.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[shootsong], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[shootsong], AL_BUFFER, gSampleSet[shootsong]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-
-
-	alutLoadWAVFile((char *)":Data:Sounds:zombiesong.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[zombiesong], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[zombiesong], AL_BUFFER, gSampleSet[zombiesong]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-
-
-	alutLoadWAVFile((char *)":Data:Sounds:knifesong.wav",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
-
-	alBufferData(gSampleSet[knifesong], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	alSourcei(gSourceID[knifesong], AL_BUFFER, gSampleSet[knifesong]);
-
-	alutUnloadWAV(formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
-
-	}
-#else
 	LoadOGG_CFH((char *)":Data:Sounds:underwater.ogg",&formatBuffer1, (void **) &pBuffer1,(unsigned int *)&lBuffer1Len,&freqBuffer1);
 
 	alBufferData(gSampleSet[visionsound], formatBuffer1, pBuffer1, lBuffer1Len, freqBuffer1);
@@ -867,7 +492,6 @@ void LoadSounds(bool musictoggle)
 	}
 
 
-#endif
 
 
 	float gLoc[3];
@@ -1331,11 +955,7 @@ void Game::LoadingScreen(float percent)
 	
 
 	
-#ifdef OS9 
-	aglSwapBuffers( gOpenGLContext );
-#else
 	SDL_GL_SwapBuffers( );
-#endif
 
 }
 
@@ -1993,11 +1613,7 @@ void Game::InitGame()
 
 	//Setup random seed
 
-#ifdef OS9 
-	qd.randSeed = TickCount();
-#else
 	srand(time(NULL));
-#endif
 
 	gamespeed=1;
 
@@ -3815,11 +3431,7 @@ void Game::InitGame()
 
 		GLint swapInt = 1;
 
-#ifdef OS9 
- 	   	aglSetInteger(gOpenGLContext, AGL_SWAP_INTERVAL, &swapInt);
-#else
  
-#endif
 
 
                
@@ -3873,11 +3485,7 @@ int Game::InitGL(void)
 	if(!initialized){
 
 		//Default config in case config is not found	
-#ifdef OS9 
-		HideCursor();
-#else
 		STUB_FUNCTION;
-#endif
 
 		screenwidth = 640;
 
@@ -4032,24 +3640,16 @@ int Game::InitGL(void)
 		
 
 		//Read high score
-#ifdef OS9 
-		ifstream ipstream2(":Data:Highscore");
-#else
 		/* TODO */
 		ifstream ipstream2("Data/Highscore");
-#endif
 	    if(!ipstream2) {
 
 	    	highscore=0;
 
 	        beatgame=0;
 
-#ifdef OS9 
-	        ofstream opstream(":Data:Highscore"); 
-#else
 		/* TODO */
 		ofstream opstream("Data/Highscore");
-#endif
 	        opstream << highscore;
 
 			opstream << "\n";
@@ -4089,23 +3689,6 @@ int Game::InitGL(void)
 
 
 	//Setup screen
-#ifdef OS9 
-	if(screenwidth<640||screenheight<480)
-
-		theScreen = SetupScreen( 640, 480 );
-
-	else
-
-		theScreen = SetupScreen( screenwidth, screenheight );
-
-
-
-	gOpenGLContext = SetupAGL( ( AGLDrawable )theScreen );
-
-	if ( !gOpenGLContext )
-
-		return;
-#else
         if (SDL_Init(SDL_INIT_VIDEO) == -1) {
 		fprintf(stderr, "SDL Init Video failed: %s\n", SDL_GetError());
 		exit(EXIT_FAILURE);
@@ -4148,7 +3731,6 @@ int Game::InitGL(void)
 	SDL_ShowCursor(0);
 #endif
 
-#endif
 		
 
 	text.LoadFontTexture(":Data:Textures:Font.png");
@@ -4178,13 +3760,6 @@ int Game::InitGL(void)
 void Game::Dispose()										
 
 {
-#ifdef OS9 
-	CleanupAGL( gOpenGLContext );
-
-	ShutdownScreen( theScreen );
-
-	ShowCursor();
-#endif
 	
 
 	//Delete sound sources

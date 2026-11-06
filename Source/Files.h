@@ -10,25 +10,9 @@
 #include <cmath>
 #include <iostream>
 #include <fstream>
-#ifdef OS9 
-#include "gl.h"				// Header File For The OpenGL32 Library
-#include "glu.h"			// Header File For The GLu32 Library
-#include "tk.h"				// Header File For The Glaux Library
-#else
 #include <GL/gl.h>
 #include <GL/glu.h>
-#endif
-#ifdef OS9 
-#include <Sound.h>
-#include <Resources.h>
-#include "AGL_DSp.h"		// Header for OpenGL and DrawSprocket Functions
-#include "Alerts.h"			// Header for Dialogs and alerts for this application
-#endif
 #include "MacInput.h"		// Header for Special Mac Input functions
-#ifdef OS9 
-#include "glm.h"
-#include <TextUtils.h>
-#endif
 
 #include "Support.h"
 
@@ -72,32 +56,11 @@ class Files
 	public:
 		char          szSavedGameName[FILE_NAME_SIZE + 1];
 		short         sSavedGameVolume;
-#ifdef OS9 
-		SFReply    sfReply;
-		Boolean       bGameSaved;
-#endif
-#ifdef OS9 
-		short sFile;
-#else
 		int sFile;
-#endif
 
-#ifdef OS9 
-		short OpenFile(Str255 Name);
-#else
 		int OpenFile(Str255 Name);
 		Files() : sFile(-1) { } 
-#endif
 
-#ifdef OS9 
-		short PromptForSaveAS( short   sPromptID,
-                              short   sNameID,
-                              Str255  str255NamePrompt,
-                              OSType  osTypeCreator,
-                              OSType  osTypeType,
-                              SFReply *psfReply );
-	        short OpenNewFile( SFReply *psfReply, OSType  osTypeCreator, OSType  osTypeType );
-#endif
 		short OpenSavedGame(Str255 Name);
 		short OpenFileDialog();
 		void LoadNamedMap(Str255 Name);

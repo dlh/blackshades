@@ -175,41 +175,7 @@ void	Game::HandleKeyDown( char theChar )
 
 /********************> DoEvent() <*****/
 
-#ifdef OS9 
-void	Game::DoEvent( EventRecord *event )
 
-{
-
-	
-
-	char	theChar;
-
-	
-
-	switch ( event->what )
-
-	{
-
-		case keyDown:
-
-		case autoKey:
-
-			theChar = event->message & charCodeMask;	// Get the letter of the key pressed from the event message
-
-			HandleKeyDown( theChar );					// Only some key presses are handled here because it is slower and less responsive
-
-			break;
-
-	}
-
-	
-
-	
-
-}
-#endif
-
-#ifndef OS9 
 static int mapinit = 0;
 static int sdlkeymap[SDLK_LAST];
 
@@ -390,7 +356,6 @@ static void ProcessSDLEvents(Game *g)
 	}
 }	
 
-#endif
 
 /********************> EventLoop() <*****/
 
@@ -398,9 +363,6 @@ void	Game::EventLoop( void )
 
 {
 
-#ifdef OS9 
-	EventRecord		event;
-#endif
 
 	unsigned char	theKeyMap[16];
 
@@ -414,13 +376,7 @@ void	Game::EventLoop( void )
 
 	{
 
-#ifdef OS9 
-		if ( GetNextEvent( everyEvent, &event ) )
-
-			DoEvent( &event );
-#else
 		ProcessSDLEvents(this);
-#endif
 		
 
 		start=TimerGetTime(&theTimer);
@@ -449,11 +405,7 @@ void	Game::EventLoop( void )
 
 		if ( DrawGLScene())
 
-#ifdef OS9 
-			aglSwapBuffers( gOpenGLContext );
-#else
                         SDL_GL_SwapBuffers();
-#endif
 
 		else
 
@@ -509,12 +461,8 @@ void	Game::EventLoop( void )
 
 				highscore=score;
 
-#ifdef OS9 
-				ofstream opstream(":Data:Highscore"); 
-#else
 				/* TODO */
 				ofstream opstream("Data/Highscore");
-#endif
 
 		        opstream << highscore;
 

@@ -2,15 +2,9 @@
 #define _DECALS_H_
 
 #include "Quaternions.h"
-#ifdef OS9 
-#include <gl.h>
-#include <glu.h>
-#include "glut.h"
-#else
 ///ZWARNING
 ///#include <GL/glut.h>
 ///GLUT REMOVED.
-#endif
 #include "Files.h"
 #include "Quaternions.h"
 #include "Camera.h"

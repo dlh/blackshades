@@ -19,15 +19,6 @@ int 	main( int argc, char *argv[] )
 	{
 
 	
-#ifdef OS9 
-	ToolboxInit();
-
-	
-
-	if ( HasAppearance() )
-
-		RegisterAppearanceClient();
-#endif
 	
 
 
@@ -47,17 +38,6 @@ int 	main( int argc, char *argv[] )
 	game.Dispose();
 
 	
-#ifdef OS9 
-	if ( HasAppearance() )
-
-		UnregisterAppearanceClient();
-
-	
-
-	FlushEvents( everyEvent, 0 );
-
-	ExitToShell();
-#endif
 	
 
 }

@@ -1,40 +1,17 @@
 #ifndef _GAME_H_
 #define _GAME_H_
 
-#ifdef OS9 
-#include <gl.h>
-#include <glu.h>
-#include <tk.h>
-#else
 #include <GL/gl.h>
 #include <GL/glu.h>
-#endif
 #include <stdlib.h>			
 #include <stdio.h>			
 #include <string.h>
 #include <ctype.h>
-#ifdef OS9 
-#include <Sound.h>
-#include <Resources.h>		
-#endif
 #include <cstdarg>
-#ifdef OS9 
-#include <glm.h>
-#include <TextUtils.h>
-#endif
-#ifndef OS9 
 #include <SDL/SDL.h>
-#endif
-#ifdef OS9 
-#include "alut.h"
-#else
 #include <AL/al.h>
 #include <AL/alut.h>
-#endif
 #include "Timer.h"	
-#ifdef OS9 
-#include "AGL_DSp.h"	
-#endif
 #include "MacInput.h"
 #include "Quaternions.h"
 #include "Camera.h"
@@ -64,10 +41,6 @@ class Game
 		timer theTimer;	
 		float sps;
 		int maxfps;
-#ifdef OS9 
-		AGLContext gOpenGLContext;
-		CGrafPtr	theScreen;
-#endif
 		//Graphics
 		int screenwidth,screenheight;
 		float viewdistance;
@@ -80,9 +53,6 @@ class Game
 		
 		//Game Functions
 		void	HandleKeyDown( char theChar );
-#ifdef OS9 
-		void	DoEvent( EventRecord *event );
-#endif
 		void	EventLoop( void );
 		void 	Tick();
 		void 	Splat(int k);

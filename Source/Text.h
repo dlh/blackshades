@@ -4,13 +4,8 @@
 
 /**> HEADER FILES <**/
 #include "Quaternions.h"
-#ifdef OS9 
-#include <gl.h>
-#include <glu.h>
-#else
 #include <GL/gl.h>
 #include <GL/glu.h>
-#endif
 #include "Files.h"
 #include "Quaternions.h"
 

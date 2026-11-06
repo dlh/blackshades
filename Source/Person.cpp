@@ -526,11 +526,7 @@ void 	Person::DoAnimations(int who){
 					gLoc[0]=playercoords.x/soundscalefactor;
 					gLoc[1]=playercoords.y/soundscalefactor;
 					gLoc[2]=playercoords.z/soundscalefactor;
-#ifdef DEBIAN_NEEDS_TO_UPDATE_THEIR_OPENAL					
-					alGetSourceiv(gSourceID[reloadsound], AL_SOURCE_STATE, &tempint);
-#else					
 					alGetSourcei(gSourceID[reloadsound], AL_SOURCE_STATE, &tempint);
-#endif
 
 					if (tempint != AL_PLAYING){
 						alSourcefv(gSourceID[reloadsound], AL_POSITION, gLoc);
