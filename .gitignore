@@ -5,3 +5,4 @@ objs/
 build-*/
 config.txt
 Data/Highscore
+dist/

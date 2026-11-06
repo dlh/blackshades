@@ -3,7 +3,8 @@
 
 #include <time.h>
 
-#include "Game.h"	
+#include "Game.h"
+#include "Gamepad.h"
 
 
 extern unsigned int gSourceID[100];
@@ -3703,6 +3704,8 @@ int Game::InitGL(void)
 		exit(EXIT_FAILURE);
         }
 
+	InitGamepads();
+
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
 	SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
@@ -3715,8 +3718,21 @@ int Game::InitGL(void)
 	if(screenwidth<640)screenwidth=640;
 	if(screenheight<480)screenheight=480;
 
-	gWindow = SDL_CreateWindow("Black Shades", screenwidth, screenheight,
-		SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIGH_PIXEL_DENSITY);
+	SDL_WindowFlags windowflags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIGH_PIXEL_DENSITY;
+
+	/* Steam sets this to 1 on a Steam Deck and 0 elsewhere; fill the screen on a Deck,
+	   docked or not. The size covers compositors that ignore the fullscreen request. */
+	const char *steamdeck = SDL_getenv("SteamDeck");
+	if(steamdeck&&SDL_atoi(steamdeck)){
+		const SDL_DisplayMode *mode = SDL_GetDesktopDisplayMode(SDL_GetPrimaryDisplay());
+		if(mode){
+			screenwidth=mode->w;
+			screenheight=mode->h;
+		}
+		windowflags|=SDL_WINDOW_FULLSCREEN;
+	}
+
+	gWindow = SDL_CreateWindow("Black Shades", screenwidth, screenheight, windowflags);
 	if (gWindow == NULL) {
 		fprintf(stderr, "(OpenGL) SDL_CreateWindow failed: %s\n", SDL_GetError());
 		exit(EXIT_FAILURE);

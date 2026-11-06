@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.25)
 project(BlackShades LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -18,12 +18,14 @@ if(APPLE)
       OUTPUT_VARIABLE OPENAL_PREFIX OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
     list(APPEND CMAKE_PREFIX_PATH ${OPENAL_PREFIX})
   endif()
+  find_package(OpenAL REQUIRED CONFIG)
+else()
+  find_package(OpenAL REQUIRED)
 endif()
 
 set(OpenGL_GL_PREFERENCE LEGACY)
 find_package(OpenGL REQUIRED)
 find_package(SDL3 3.4 REQUIRED CONFIG)
-find_package(OpenAL REQUIRED CONFIG)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(VORBISFILE REQUIRED IMPORTED_TARGET vorbisfile)
 
@@ -33,6 +35,7 @@ add_executable(blackshades
   Source/Fog.cpp
   Source/Frustum.cpp
   Source/GameDraw.cpp
+  Source/Gamepad.cpp
   Source/GameInitDispose.cpp
   Source/GameLoop.cpp
   Source/GameTick.cpp

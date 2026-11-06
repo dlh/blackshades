@@ -11,6 +11,7 @@
 
 #include "Support.h"
 #include "Files.h"
+#include "Gamepad.h"
 
 int Random()
 {
@@ -27,7 +28,18 @@ void GetMouse(Point *p)
 	float x;
 	float y;
 	float density = SDL_GetWindowPixelDensity(gWindow);
-	
+
+	if (GamepadCursor(&x, &y)) {
+		int width;
+		int height;
+
+		SDL_GetWindowSizeInPixels(gWindow, &width, &height);
+
+		p->h = (int)(x * width);
+		p->v = (int)(y * height);
+		return;
+	}
+
 	SDL_GetMouseState(&x, &y);
 	
 	p->h = (int)(x * density);
@@ -43,7 +55,8 @@ void GetMouseRel(Point *p)
 	float y;
 	
 	SDL_GetRelativeMouseState(&x, &y);
-	
+	GamepadLook(&x, &y);
+
 	remainderx += x;
 	remaindery += y;
 	
@@ -55,7 +68,7 @@ void GetMouseRel(Point *p)
 }
 int Button(void)
 {
-	return (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON_LMASK);
+	return (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON_LMASK) || GamepadButton();
 }
 
 void InitMouse()

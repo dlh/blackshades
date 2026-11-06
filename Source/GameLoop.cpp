@@ -1,4 +1,5 @@
-#include "Game.h"	
+#include "Game.h"
+#include "Gamepad.h"
 
 
 
@@ -276,6 +277,7 @@ static int MacKeyFromSDL(SDL_Keycode key)
 void GetKeys(unsigned char *keys)
 {
 	memcpy(keys, ourkeys, sizeof(ourkeys));
+	GamepadKeys(keys);
 }
 
 static void DoSDLKey(Game *g, SDL_Event *event)
@@ -338,6 +340,8 @@ static void ProcessSDLEvents(Game *g)
 	
 	if (SDL_PollEvent(&event)) {
 		do {
+			GamepadEvent(&event);
+
 			switch(event.type) {
 				case SDL_EVENT_KEY_DOWN:
 				if (event.key.key == SDLK_RETURN &&
@@ -375,8 +379,9 @@ static void ProcessSDLEvents(Game *g)
 		} while (SDL_PollEvent(&event));
 	}
 	
+	UpdateGamepads(g->mainmenu);
 	UpdateMouseMode(g);
-}	
+}
 
 /********************> RequestQuit() <*****/
 

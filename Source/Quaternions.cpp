@@ -335,11 +335,11 @@ bool PointInTriangle(Vector *p, Vector normal, float p11, float p12, float p13, 
 	
 #define ABS(X) (((X)<0.f)?-(X):(X) )
 #define MAX(A, B) (((A)<(B))?(B):(A))	
-	max = MAX(MAX(ABS(normalv[0]), ABS(normalv[1])), ABS(normalv[2]));
+	::max = MAX(MAX(ABS(normalv[0]), ABS(normalv[1])), ABS(normalv[2]));
 #undef MAX
-	if (max == ABS(normalv[0])) {i = 1; j = 2;} // y, z
-	if (max == ABS(normalv[1])) {i = 0; j = 2;} // x, z
-	if (max == ABS(normalv[2])) {i = 0; j = 1;} // x, y
+	if (::max == ABS(normalv[0])) {i = 1; j = 2;} // y, z
+	if (::max == ABS(normalv[1])) {i = 0; j = 2;} // x, z
+	if (::max == ABS(normalv[2])) {i = 0; j = 1;} // x, y
 #undef ABS
 	
 	u0 = pointv[i] - p1v[i];
@@ -430,11 +430,11 @@ bool PointInTriangle(XYZ *p, XYZ normal, XYZ *p1, XYZ *p2, XYZ *p3)
 	
 #define ABS(X) (((X)<0.f)?-(X):(X) )
 #define MAX(A, B) (((A)<(B))?(B):(A))	
-	max = MAX(MAX(ABS(normalv[0]), ABS(normalv[1])), ABS(normalv[2]));
+	::max = MAX(MAX(ABS(normalv[0]), ABS(normalv[1])), ABS(normalv[2]));
 #undef MAX
-	if (max == ABS(normalv[0])) {i = 1; j = 2;} // y, z
-	if (max == ABS(normalv[1])) {i = 0; j = 2;} // x, z
-	if (max == ABS(normalv[2])) {i = 0; j = 1;} // x, y
+	if (::max == ABS(normalv[0])) {i = 1; j = 2;} // y, z
+	if (::max == ABS(normalv[1])) {i = 0; j = 2;} // x, z
+	if (::max == ABS(normalv[2])) {i = 0; j = 1;} // x, y
 #undef ABS
 	
 	u0 = pointv[i] - p1v[i];
