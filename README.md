@@ -1,5 +1,7 @@
 # Black Shades
 
+![Black Shades running on a Steam Deck](docs/steamdeck.png)
+
 David Rosen's [2002 uDevGame entry](https://www.wolfire.com/black-shades/): you
 are a psychic bodyguard protecting a VIP from assassins. See `Readme` for the
 original notes, controls and scoring. This repository continues the
