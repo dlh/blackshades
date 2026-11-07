@@ -41,6 +41,8 @@ static Uint64 lastupdate = 0;
 
 static bool wasinmenu = true;
 static bool startwasdown = false;
+static bool crouchwasdown = false;
+static bool crouching = false;
 static bool padcursor = false;
 static int menuselection = 0;
 static bool ignoreclick = false;
@@ -111,6 +113,11 @@ static float PadAxis(SDL_GamepadAxis axis)
 	return value;
 }
 
+static bool CrouchDown()
+{
+	return PadDown(SDL_GAMEPAD_BUTTON_EAST) || PadDown(SDL_GAMEPAD_BUTTON_RIGHT_STICK);
+}
+
 static void PressKey(int key)
 {
 	padkeys[key/8] |= 1 << (key%8);
@@ -142,6 +149,7 @@ static void UpdateMenu()
 	/* the press that picks a menu item shouldn't also act in the game */
 	ignoredive = PadDown(SDL_GAMEPAD_BUTTON_SOUTH);
 
+	crouching = false;
 	lookx = 0;
 	looky = 0;
 }
@@ -159,7 +167,19 @@ static void UpdatePlay(float elapsed)
 		if (movey > movekeydown) PressKey(backwardskey);
 		if (movex < -movekeydown) PressKey(leftkey);
 		if (movex > movekeydown) PressKey(rightkey);
+
+		/* the player can't move while crouched, so walking stands them up */
+		if (fmaxf(fabsf(movex), fabsf(movey)) > movekeydown) {
+			crouching = false;
+		}
 	}
+
+	/* B or R3 toggles crouch, since holding it ties up the thumb that aims the sniper
+	   rifle while zoomed */
+	if (CrouchDown() && !crouchwasdown) {
+		crouching = !crouching;
+	}
+	if (crouching) PressKey(MAC_CONTROL_KEY);
 
 	/* curved for fine aim near the center of the stick's travel; squaring made
 	   half deflection too slow */
@@ -177,7 +197,6 @@ static void UpdatePlay(float elapsed)
 	if (PadAxis(SDL_GAMEPAD_AXIS_LEFT_TRIGGER) > triggerdown) PressKey(aimkey);
 	if (PadDown(SDL_GAMEPAD_BUTTON_LEFT_SHOULDER) || PadDown(SDL_GAMEPAD_BUTTON_LEFT_STICK)) PressKey(MAC_SHIFT_KEY);
 	if (PadDown(SDL_GAMEPAD_BUTTON_RIGHT_SHOULDER)) PressKey(psychicaimkey);
-	if (PadDown(SDL_GAMEPAD_BUTTON_EAST)) PressKey(MAC_CONTROL_KEY);
 	if (PadDown(SDL_GAMEPAD_BUTTON_WEST)) PressKey(MAC_R_KEY);
 	if (PadDown(SDL_GAMEPAD_BUTTON_NORTH)) PressKey(psychickey);
 
@@ -221,6 +240,7 @@ void UpdateGamepads(bool inmenu)
 	}
 
 	startwasdown = PadDown(SDL_GAMEPAD_BUTTON_START);
+	crouchwasdown = CrouchDown();
 }
 
 void GamepadKeys(unsigned char *keys)

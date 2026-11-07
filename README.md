@@ -76,7 +76,7 @@ layout for the controls below; keyboard and mouse layouts also work.
 | Shift | L1 or L3 (hold) | Run |
 | Mouse | Right stick | Look |
 | Left click | R2 | Fire, smash, disarm or pick up, depending on stance |
-| Ctrl | B (hold) | Crouch / zoom |
+| Ctrl (hold) | B or R3 (toggle; walking also stands up) | Crouch / zoom |
 | Q | L2 | Aim / un-aim |
 | R | X | Reload |
 | E | R1 | Psychic aim |
