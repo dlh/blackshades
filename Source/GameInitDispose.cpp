@@ -3521,11 +3521,11 @@ int Game::InitGL(void)
 
 		//If no config, write one
 
-		ifstream ipstream("config.txt");
+		ifstream ipstream(gConfigPath);
 
 	    if(!ipstream) {
 
-	        ofstream opstream("config.txt"); 
+	        ofstream opstream(gConfigPath); 
 
 	        opstream << "Screenwidth:\n";
 
@@ -3651,7 +3651,7 @@ int Game::InitGL(void)
 
 		//Read high score
 		/* TODO */
-		ifstream ipstream2("Data/Highscore");
+		ifstream ipstream2(gHighscorePath);
 	    if(!ipstream2) {
 
 	    	highscore=0;
@@ -3659,7 +3659,7 @@ int Game::InitGL(void)
 	        beatgame=0;
 
 		/* TODO */
-		ofstream opstream("Data/Highscore");
+		ofstream opstream(gHighscorePath);
 	        opstream << highscore;
 
 			opstream << "\n";

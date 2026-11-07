@@ -270,7 +270,7 @@ void 	Game::Tick(){
 				highscore=score;
 
 				/* TODO */
-				ofstream opstream("Data/Highscore");
+				ofstream opstream(gHighscorePath);
 		        opstream << highscore;
 
 				opstream << "\n";
@@ -298,7 +298,7 @@ void 	Game::Tick(){
 				highscore=score;
 
 				/* TODO */
-				ofstream opstream("Data/Highscore");
+				ofstream opstream(gHighscorePath);
 		        opstream << highscore;
 
 				opstream << "\n";
@@ -392,7 +392,7 @@ void 	Game::Tick(){
 					highscore=score;
 
 					/* TODO */
-					ofstream opstream("Data/Highscore");
+					ofstream opstream(gHighscorePath);
 			        opstream << highscore;
 
 					opstream << "\n";

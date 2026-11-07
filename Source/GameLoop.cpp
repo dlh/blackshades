@@ -395,7 +395,7 @@ void	Game::RequestQuit()
 
 		highscore=score;
 
-		ofstream opstream("Data/Highscore");
+		ofstream opstream(gHighscorePath);
 
 		opstream << highscore;
 

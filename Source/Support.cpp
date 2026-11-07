@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <sys/types.h>
 #include <dirent.h>
 #include <sys/stat.h>
@@ -118,6 +119,34 @@ void LocateGameData()
 	
 	fprintf(stderr, "ERROR: could not find the Data directory\n");
 	exit(EXIT_FAILURE);
+}
+
+char gConfigPath[MAX_PATH] = "config.txt";
+char gHighscorePath[MAX_PATH] = "Data/Highscore";
+
+/*
+The game saves next to Data/, except in a macOS app bundle, where writing would
+break the code signature and may not be allowed at all, so it saves under
+~/Library/Application Support instead.
+*/
+void LocateSaveFiles()
+{
+	const char *base = SDL_GetBasePath();
+
+	if (base == NULL || strstr(base, ".app/Contents/") == NULL) {
+		return;
+	}
+
+	char *pref = SDL_GetPrefPath(NULL, "Black Shades");
+
+	if (pref == NULL) {
+		fprintf(stderr, "WARNING: %s; saving inside the app\n", SDL_GetError());
+		return;
+	}
+
+	snprintf(gConfigPath, sizeof(gConfigPath), "%sconfig.txt", pref);
+	snprintf(gHighscorePath, sizeof(gHighscorePath), "%sHighscore", pref);
+	SDL_free(pref);
 }
 
 #ifndef O_BINARY

@@ -48,4 +48,8 @@ void FreeOGG(ALenum format, void *wave, unsigned int size,
 void fix_filename(const char *original, char *fixed);
 void LocateGameData();
 
+extern char gConfigPath[MAX_PATH];
+extern char gHighscorePath[MAX_PATH];
+void LocateSaveFiles();
+
 #endif

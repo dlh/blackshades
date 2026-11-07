@@ -26,6 +26,8 @@ int 	main( int argc, char *argv[] )
 
 	LocateGameData();
 
+	LocateSaveFiles();
+
 	game.InitGL();
 
 	
