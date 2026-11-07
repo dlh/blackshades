@@ -23,6 +23,31 @@ runs from anywhere.
 For AddressSanitizer and UBSan, configure a separate build directory with
 `-DBLACKSHADES_SANITIZE=ON`.
 
+## macOS app
+
+To build `dist/blackshades-macos.zip`, holding `Black Shades.app` with the Homebrew
+libraries bundled inside, so it runs on Macs without Homebrew:
+
+```sh
+packaging/macos/build.sh
+```
+
+The app needs the macOS version it was built on, or later, because Homebrew builds
+its libraries for that version. The script prints the minimum version.
+
+To install `dist/blackshades-macos.zip`:
+
+1. Unzip it and move `Black Shades.app` to Applications or `~/Applications`;
+   opened from Downloads, it may fail to launch.
+2. Open it. The app is ad-hoc signed, not notarized, so macOS blocks the first
+   launch. To allow it, open System Settings > Privacy & Security, click Open Anyway
+   next to the message about Black Shades, then click Open Anyway again when the
+   app launches.
+
+The bundle ID is `io.github.<owner>.<repo>`, taken from the GitHub repository the
+build runs in or the `origin` remote, so forks get their own. Set `BUNDLE_ID` to
+choose another.
+
 ## Steam Deck
 
 The Deck build compiles in Valve's Steam Runtime SDK container on any machine with
@@ -68,8 +93,11 @@ Gamepad buttons are named by position on an Xbox layout, which matches the Deck.
 ## Settings
 
 `config.txt` and `Data/Highscore` are created on first run and are untracked. The
-screen size in `config.txt` sets the initial window size in points; the window is
-resizable. Set "Show fps and other info" to 1 to enable the debug keys in `Readme`.
+macOS app keeps them as `config.txt` and `Highscore` in
+`~/Library/Application Support/Black Shades/` instead. The game writes `config.txt`
+only when it's missing, so edits to it stay. The screen size in `config.txt` sets
+the initial window size in points; the window is resizable. Set "Show fps and other
+info" to 1 to enable the debug keys in `Readme`.
 
 ## Credits
 
