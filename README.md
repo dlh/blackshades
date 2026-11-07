@@ -105,6 +105,11 @@ Black Shades is by David Rosen, with music by John Graham and Carlos Camacho and
 weapon models by David Drew. The icculus.org port is by relnev, theoddone33,
 icculus and zakk. See `Readme` and `IF_THIS_IS_A_README_YOU_HAVE_WON` for details.
 
+## Releases
+
+Pushing a tag that starts with `v`, such as `v1.0`, builds the macOS app and the
+Steam Deck archive on GitHub Actions and publishes them as a GitHub release.
+
 ## License
 
 GNU General Public License version 3 or later

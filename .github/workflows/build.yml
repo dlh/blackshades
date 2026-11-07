@@ -1,0 +1,39 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+
+# Each job uploads one package unzipped, so the download is the package itself.
+jobs:
+  macos:
+    # The app needs the macOS version it's built on, so use the oldest Apple
+    # Silicon runner rather than macos-latest.
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Install dependencies
+        run: brew install cmake pkgconf sdl3 openal-soft libvorbis
+      - name: Build
+        run: packaging/macos/build.sh
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          path: dist/blackshades-macos.zip
+          archive: false
+
+  steamdeck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Build
+        run: packaging/steamdeck/build.sh
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          path: dist/blackshades-steamdeck.tar.gz
+          archive: false
