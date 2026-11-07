@@ -8,6 +8,10 @@ original notes, controls and scoring. This repository continues the
 This port uses SDL3, OpenAL Soft and OpenGL 2.1. It is tested on macOS (Apple
 Silicon) and Steam Deck; other platforms are untested.
 
+Prebuilt binaries for macOS and Steam Deck are on the
+[releases page](https://github.com/dlh/blackshades/releases). See
+[macOS app](#macos-app) and [Steam Deck](#steam-deck) for how to install them.
+
 ## Build and run
 
 ```sh
